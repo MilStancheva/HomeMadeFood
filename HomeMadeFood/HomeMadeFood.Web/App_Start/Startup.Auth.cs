@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using HomeMadeFood.Web.Models;
+using HomeMadeFood.Data;
+using HomeMadeFood.Models;
 
 namespace HomeMadeFood.Web
 {
