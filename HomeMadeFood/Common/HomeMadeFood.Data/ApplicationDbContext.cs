@@ -6,7 +6,7 @@ namespace HomeMadeFood.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HomeMadeFood", throwIfV1Schema: false)
         {
         }
 
