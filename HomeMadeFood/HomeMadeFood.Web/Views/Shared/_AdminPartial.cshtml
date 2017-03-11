@@ -1,0 +1,10 @@
+﻿@using HomeMadeFood.Models.Enums
+
+@if (this.User.IsInRole((UserRoles.Admin).ToString()))
+{
+    <ul class="nav navbar-nav">
+        <li>
+            @Html.ActionLink("Admin", "Index", "Admin", new { area = "Admin" }, htmlAttributes: new { title = "Admin" })
+        </li>
+    </ul>
+}
