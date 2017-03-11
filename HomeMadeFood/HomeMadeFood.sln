@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RoutesTests", "RoutesTests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeMadeFood.Controllers.UnitTests", "Tests\ControllerTests\HomeMadeFood.Controllers.UnitTests\HomeMadeFood.Controllers.UnitTests.csproj", "{67F6D767-D5E1-48F5-BE13-8E3EC43BCE2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeMadeFood.Web.Common", "Web\HomeMadeFood.Web.Common\HomeMadeFood.Web.Common.csproj", "{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeMadeFood.Services.Common", "Services\Common\HomeMadeFood.Services.Common\HomeMadeFood.Services.Common.csproj", "{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,14 @@ Global
 		{67F6D767-D5E1-48F5-BE13-8E3EC43BCE2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67F6D767-D5E1-48F5-BE13-8E3EC43BCE2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F6D767-D5E1-48F5-BE13-8E3EC43BCE2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +83,7 @@ Global
 		{4B80AEDE-E325-4043-A274-DF62568AE2F7} = {4BE0ADF5-F548-4ADA-846B-E20C4118E06B}
 		{6C182F03-9096-4BFE-86BC-CF202E2D30B0} = {4BE0ADF5-F548-4ADA-846B-E20C4118E06B}
 		{67F6D767-D5E1-48F5-BE13-8E3EC43BCE2F} = {DD08029A-23F7-427F-9436-A7C3318CA80A}
+		{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB} = {301EEA1D-A39C-4337-B388-B7AE363C27E0}
+		{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6} = {BDE297EB-F16D-4E48-9B47-DC3587146D83}
 	EndGlobalSection
 EndGlobal

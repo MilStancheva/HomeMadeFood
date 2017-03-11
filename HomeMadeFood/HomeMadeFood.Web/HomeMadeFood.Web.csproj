@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -233,6 +237,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\ServicesNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -347,6 +353,14 @@
     <ProjectReference Include="..\Models\HomeMadeFood.Models\HomeMadeFood.Models.csproj">
       <Project>{A706C400-002F-4BD5-AAE5-39E85D3CA83A}</Project>
       <Name>HomeMadeFood.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Common\HomeMadeFood.Services.Common\HomeMadeFood.Services.Common.csproj">
+      <Project>{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}</Project>
+      <Name>HomeMadeFood.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web\HomeMadeFood.Web.Common\HomeMadeFood.Web.Common.csproj">
+      <Project>{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}</Project>
+      <Name>HomeMadeFood.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
