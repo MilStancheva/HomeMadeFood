@@ -1,5 +1,6 @@
 ﻿using HomeMadeFood.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace HomeMadeFood.Data
 {
@@ -9,6 +10,8 @@ namespace HomeMadeFood.Data
             : base("HomeMadeFoodDb", throwIfV1Schema: false)
         {
         }
+
+        public virtual IDbSet<Ingredient> Ingredients { get; set; }
 
         public static ApplicationDbContext Create()
         {
