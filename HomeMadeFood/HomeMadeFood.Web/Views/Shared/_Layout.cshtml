@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - HomeMadeFood</title>
+    <title>@ViewBag.Title - Home Made Food</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://bootswatch.com/sandstone/_variables.scss" rel="stylesheet" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -17,13 +20,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("HomeMadeFood", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Домашна Храна", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("За нас", "About", "Home")</li>
+                    <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -32,11 +35,38 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - HomeMadeFood</p>
-        </footer>
     </div>
-
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <img src="~/Content/images/homemadefood-logo.png" width="150" />
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Седмично меню</a>
+                ·
+                <a href="#">За нас</a>
+                ·
+                <a href="#">Faq</a>
+                ·
+                <a href="#">Контакти</a>
+            </p>
+            <p class="footer-company-name">&copy; @DateTime.Now.Year - Домашна Храна</p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p>Свържете се с нас</p>
+            <form action="#" method="post">
+                <input type="text" name="email" placeholder="Email" />
+                <textarea name="message" placeholder="Съобщение"></textarea>
+                <button>Изпрати</button>
+            </form>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

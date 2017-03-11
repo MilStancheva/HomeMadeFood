@@ -25,6 +25,8 @@ namespace HomeMadeFood.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/sandstone.bootstrap.min.css",
+                      "~/Content/footer-distributed-with-contact-form.css",
                       "~/Content/site.css"));
         }
     }
