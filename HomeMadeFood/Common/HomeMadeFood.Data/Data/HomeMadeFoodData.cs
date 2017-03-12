@@ -14,7 +14,13 @@ namespace HomeMadeFood.Data.Data
             this.dbContext = dbContext;
         }
 
-        public IEfRepository<Ingredient> Ingredients { get; }
+        public IEfRepository<Ingredient> Ingredients
+        {
+            get
+            {
+                return new EfRepository<Ingredient>(this.dbContext);
+            }
+        }
 
         public void Commit()
         {

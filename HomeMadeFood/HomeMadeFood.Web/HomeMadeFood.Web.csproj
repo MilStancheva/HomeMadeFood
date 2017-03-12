@@ -48,6 +48,14 @@
       <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Bytes2you.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions, Version=5.0.1.17, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataAnnotationsExtensions.5.0.1.17\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
@@ -244,8 +252,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\IngredientsController.cs" />
     <Compile Include="Areas\Admin\Models\IngredientViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Extensions\ControllerExtensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -280,6 +290,8 @@
     <Content Include="Content\images\homemadefood-logo.jpg" />
     <Content Include="Content\images\homemadefood-logo.png" />
     <Content Include="Content\sandstone.bootstrap.min.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -292,6 +304,11 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminSideBarMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Ingredients\AddIngredient.cshtml" />
+    <Content Include="Areas\Admin\Views\Ingredients\Index.cshtml" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="App_Code\ToastrBuilder.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />
@@ -311,6 +328,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -347,6 +366,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
+    <Content Include="Views\Shared\_ToastrPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -370,6 +390,10 @@
     <ProjectReference Include="..\Services\Common\HomeMadeFood.Services.Common\HomeMadeFood.Services.Common.csproj">
       <Project>{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}</Project>
       <Name>HomeMadeFood.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Data\HomeMadeFood.Services.Data\HomeMadeFood.Services.Data.csproj">
+      <Project>{BE51CDDD-F2C6-4E1E-AAAA-6CABD8327D78}</Project>
+      <Name>HomeMadeFood.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Web\HomeMadeFood.Web.Common\HomeMadeFood.Web.Common.csproj">
       <Project>{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}</Project>

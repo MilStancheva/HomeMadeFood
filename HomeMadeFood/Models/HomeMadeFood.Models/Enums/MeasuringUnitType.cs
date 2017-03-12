@@ -3,6 +3,7 @@
     public enum MeasuringUnitType
     {
         Kg,
-        L
+        L,
+        PerUnit
     }
 }

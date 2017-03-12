@@ -1,0 +1,7 @@
+﻿@using HomeMadeFood.Web.Common.Messaging
+
+@if (TempData.ContainsKey("Toastr"))
+{
+    Toastr toastr = TempData["Toastr"] as Toastr;
+    @ToastrBuilder.ShowToastMessages(toastr);
+}

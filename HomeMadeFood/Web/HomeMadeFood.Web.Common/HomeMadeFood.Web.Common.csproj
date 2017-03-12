@@ -75,6 +75,9 @@
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
+    <Compile Include="Messaging\ToastMessage.cs" />
+    <Compile Include="Messaging\Toastr.cs" />
+    <Compile Include="Messaging\ToastType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
