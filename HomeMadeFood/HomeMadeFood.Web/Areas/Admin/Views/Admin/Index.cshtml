@@ -4,5 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Admin Dashboard</h2>
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Admin Dashboard</h2>
+    </div>
+</div>
 
+@section scripts {
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="~/Scripts/Custom/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/custom.js"></script>
+}
