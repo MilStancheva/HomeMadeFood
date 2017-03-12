@@ -128,6 +128,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -254,6 +258,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\IngredientsController.cs" />
     <Compile Include="Areas\Admin\Models\IngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SearchIngredientViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Extensions\ControllerExtensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -309,6 +314,7 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="App_Code\ToastrBuilder.cshtml" />
+    <Content Include="Areas\Admin\Views\Ingredients\_IngredientsGridPartial.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />

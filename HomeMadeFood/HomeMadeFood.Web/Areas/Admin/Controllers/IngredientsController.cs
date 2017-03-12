@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Linq.Dynamic;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
@@ -29,17 +30,35 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var ingredients = this.ingredientsService.GetAllIngredients();
-            var ingredientsModel = new List<IngredientViewModel>();
+            var ingredients = this.ingredientsService.GetAllIngredients()
+                .Select(this.mappingService.Map<IngredientViewModel>)
+                .ToList();
 
-            foreach (var ingredient in ingredients)
-            {
-                var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
-                ingredientsModel.Add(ingredientModel);
-            }
+            var searchModel = new SearchIngredientViewModel();
+            searchModel.Ingredients = ingredients;
 
             this.AddToastMessage("Hello", "You are in admin index", ToastType.Info);
-            return this.View(ingredientsModel);
+            return this.View(searchModel);
+        }
+
+        public ActionResult Search(string name)
+        {
+            var ingredients = this.ingredientsService.GetAllIngredients()
+                .Where(x => x.Name.ToLower().Contains(name.ToLower()))
+                .Select(this.mappingService.Map<IngredientViewModel>)
+                .ToList();
+
+            SearchIngredientViewModel model = new SearchIngredientViewModel();
+
+            model.Ingredients = ingredients
+                    .OrderBy(model.Sort + " " + model.SortDir)
+                    .Skip((model.Page - 1) * model.PageSize)
+                    .Take(model.PageSize)
+                    .ToList();
+
+            model.TotalRecords = ingredients.Count;
+
+            return this.View("_IngredientsGridPartial", model);
         }
 
         [HttpGet]
