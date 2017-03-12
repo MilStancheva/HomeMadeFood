@@ -2,31 +2,26 @@
 
 @helper ShowToastMessages(Toastr toastr)
 {
-// your helper can contain code and/or markup, e.g.
-// var msg = "Hello " + name;
-// <p>@msg</p>
-// For more information, visit http://go.microsoft.com/fwlink/?LinkID=204658
-
-if (toastr != null)
-{
-        <script>
-            $(document).ready(function () {
-                toastr.options.closeButton = '@toastr.ShowCloseButton';
-                toastr.options.newestOnTop = '@toastr.ShowNewestOnTop';
-
-                @foreach (ToastMessage message in toastr.ToastMessages)
-                {
-                    string toastTypeValue = message.ToastType.ToString("F").ToLower();
-                    @: var optionsOverride = { /* Add message specific options here */ };
-                    if (message.IsSticky)
+    if (toastr != null)
+    {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    toastr.options.closeButton = '@toastr.ShowCloseButton';
+                    toastr.options.newestOnTop = '@toastr.ShowNewestOnTop';
+    
+                    @foreach (ToastMessage message in toastr.ToastMessages)
                     {
-                        @:optionsOverride.timeOut = 0;
-                        @:optionsOverride.extendedTimeout = 0;
+                        string toastTypeValue = message.ToastType.ToString("F").ToLower();
+                        @: var optionsOverride = { /* Add message specific options here */ };
+                        if (message.IsSticky)
+                        {
+                            @:optionsOverride.timeOut = 0;
+                            @:optionsOverride.extendedTimeout = 0;
+                        }
+    
+                        @:toastr['@toastTypeValue']('@message.Message', '@message.Title', optionsOverride);
                     }
-
-                    @:toastr['@toastTypeValue']('@message.Message', '@message.Title', optionsOverride);
-                }
-            });
-        </script>
-}
+                });
+            </script>
+    }
 }
