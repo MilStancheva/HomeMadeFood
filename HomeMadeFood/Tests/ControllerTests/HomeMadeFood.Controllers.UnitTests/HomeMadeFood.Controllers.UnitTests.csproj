@@ -35,9 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -45,6 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -69,6 +78,10 @@
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="TestStack.FluentMVCTesting, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TestStack.FluentMVCTesting.3.0.0\lib\NET45\TestStack.FluentMVCTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -83,9 +96,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AdminControllerUnitTests\Index_Should.cs" />
     <Compile Include="HomeControllerTests\ContactShould.cs" />
     <Compile Include="HomeControllerTests\AboutShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
+    <Compile Include="IngredientsControllerUnitTests\Index_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,11 +108,32 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\HomeMadeFood.Data\HomeMadeFood.Data.csproj">
+      <Project>{F1147CC2-F763-4043-96EB-6CB45E60B186}</Project>
+      <Name>HomeMadeFood.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\HomeMadeFood.Web\HomeMadeFood.Web.csproj">
       <Project>{F13D4544-2288-4D64-9F5B-6E8AD5B4B627}</Project>
       <Name>HomeMadeFood.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Models\HomeMadeFood.Models\HomeMadeFood.Models.csproj">
+      <Project>{A706C400-002F-4BD5-AAE5-39E85D3CA83A}</Project>
+      <Name>HomeMadeFood.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Common\HomeMadeFood.Services.Common\HomeMadeFood.Services.Common.csproj">
+      <Project>{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6}</Project>
+      <Name>HomeMadeFood.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Data\HomeMadeFood.Services.Data\HomeMadeFood.Services.Data.csproj">
+      <Project>{BE51CDDD-F2C6-4E1E-AAAA-6CABD8327D78}</Project>
+      <Name>HomeMadeFood.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Web\HomeMadeFood.Web.Common\HomeMadeFood.Web.Common.csproj">
+      <Project>{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}</Project>
+      <Name>HomeMadeFood.Web.Common</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
