@@ -39,5 +39,31 @@ namespace HomeMadeFood.Services.Data
         {
             return this.data.Ingredients.GetAll();
         }
+
+        public Ingredient GetIngredientById(Guid id)
+        {
+            Guard.WhenArgument(id, "id").IsEmptyGuid().Throw();
+
+            var ingretient = this.data.Ingredients.GetById(id);
+
+            if (ingretient == null)
+            {
+                return null;
+            }
+
+            return ingretient;
+        }
+
+        public void EditIngredient(Ingredient ingredient)
+        {
+            this.data.Ingredients.Update(ingredient);
+            this.data.Commit();
+        }
+
+        public void DeleteIngredient(Ingredient ingredient)
+        {
+            this.data.Ingredients.Delete(ingredient);
+            this.data.Commit();
+        }
     }
 }

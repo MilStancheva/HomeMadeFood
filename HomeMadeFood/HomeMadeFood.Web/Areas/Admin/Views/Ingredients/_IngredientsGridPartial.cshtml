@@ -20,8 +20,8 @@
               grid.Column("Quantity", "Quantity", style: "col-lg-2"),
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "EditIngredient", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteIngredient", new { id = item.Id })
                 </text>)
         ));
     }

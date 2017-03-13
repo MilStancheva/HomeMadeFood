@@ -1,5 +1,6 @@
 ﻿using HomeMadeFood.Models;
 using HomeMadeFood.Models.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace HomeMadeFood.Services.Data.Contracts
@@ -9,5 +10,11 @@ namespace HomeMadeFood.Services.Data.Contracts
         IEnumerable<Ingredient> GetAllIngredients();
 
         void AddIngredient(string name, FoodType foodType, decimal pricePerMeasuringUnit, MeasuringUnitType measuringUnit, decimal quantity = 0);
+
+        Ingredient GetIngredientById(Guid id);
+
+        void EditIngredient(Ingredient ingredient);
+
+        void DeleteIngredient(Ingredient ingredient);
     }
 }

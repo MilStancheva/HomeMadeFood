@@ -1,5 +1,4 @@
-﻿using Bytes2you.Validation;
-using HomeMadeFood.Services.Common.Contracts;
+﻿using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
 using HomeMadeFood.Web.Common.Messaging;
@@ -7,9 +6,13 @@ using HomeMadeFood.Web.Controllers.Extensions;
 using System.Linq;
 using System.Web.Mvc;
 using System.Linq.Dynamic;
+using System;
+using HomeMadeFood.Models;
+using Bytes2you.Validation;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class IngredientsController : Controller
     {
         private readonly IIngredientsService ingredientsService;
@@ -36,7 +39,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 .Where(x => x.Name.ToLower().Contains(name.ToLower()))
                 .Select(this.mappingService.Map<IngredientViewModel>)
                 .ToList();
-            }            
+            }
 
             var searchModel = new SearchIngredientViewModel();
             if (ingredients != null)
@@ -45,8 +48,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 searchModel.PageSize = 5;
                 searchModel.TotalRecords = ingredients.Count();
             }
-            
-            this.AddToastMessage("Hello", "You are in admin index", ToastType.Info);
+
             return this.View(searchModel);
         }
 
@@ -70,6 +72,57 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
             this.AddToastMessage("Yeah!", $"{ingredientModel.Name} is successfully added", ToastType.Success);
 
+            return this.RedirectToAction("Index", "Ingredients");
+        }
+
+        [HttpGet]
+        public ActionResult EditIngredient(Guid id)
+        {
+            var ingredient = this.ingredientsService.GetIngredientById(id);
+            var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
+            return this.View(ingredientModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditIngredient(IngredientViewModel ingredientModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.AddToastMessage("Something went wrong...", $"Ooops! {ingredientModel.Name} could not be updated. Please check again the input data. Thanks!", ToastType.Error);
+                return this.View(ingredientModel);
+            }
+
+            var ingredient = this.mappingService.Map<Ingredient>(ingredientModel);
+            this.ingredientsService.EditIngredient(ingredient);
+
+            this.AddToastMessage("Yeah!", $"{ingredientModel.Name} is successfully updated", ToastType.Success);
+            return this.RedirectToAction("Index", "Ingredients");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteIngredient(Guid id)
+        {
+            var ingredient = this.ingredientsService.GetIngredientById(id);
+            var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
+            return this.View("DeleteIngredient", ingredientModel);
+        }
+
+        [HttpPost, ActionName("DeleteIngredient")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteIngredientConfirm(Guid id)
+        {
+            var ingredient = this.ingredientsService.GetIngredientById(id);
+
+            if (ingredient == null)
+            {
+                this.AddToastMessage("Something went wrong...", $"Ooops! {ingredient.Name} could not be deleted.", ToastType.Error);
+                var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
+                return this.View("DeleteIngredient", ingredientModel.Id);
+            }
+
+            this.ingredientsService.DeleteIngredient(ingredient);
+
+            this.AddToastMessage("Yeah!", $"{ingredient.Name} is successfully deleted", ToastType.Success);
             return this.RedirectToAction("Index", "Ingredients");
         }
     }

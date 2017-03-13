@@ -12,12 +12,12 @@
         <h2>Ingredients</h2>
 
         @using (Ajax.BeginForm("Index", null,
-                                        new AjaxOptions
-                                        {
-                                            UpdateTargetId = "results",
-                                            InsertionMode = InsertionMode.Replace,
-                                            HttpMethod = "POST"
-                                        }, new { id = "searchForm" }))
+                                            new AjaxOptions
+                                            {
+                                                UpdateTargetId = "results",
+                                                InsertionMode = InsertionMode.Replace,
+                                                HttpMethod = "POST"
+                                            }, new { id = "searchForm" }))
         {
             <div class="row">
                 <div class="col-md-4">
@@ -41,3 +41,9 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery.js"></script>    
+    <script src="~/Scripts/Custom/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/custom.js"></script>
+}

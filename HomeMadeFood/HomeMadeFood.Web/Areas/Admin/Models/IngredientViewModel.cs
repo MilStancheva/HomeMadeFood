@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
 {
-    public class IngredientViewModel : IMapFrom<Ingredient>
+    public class IngredientViewModel : IMapFrom<Ingredient>, IMapTo<Ingredient>
     {
         public Guid Id { get; set; }
 
