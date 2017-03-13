@@ -1,44 +1,43 @@
 ﻿@model HomeMadeFood.Web.Areas.Admin.Models.SearchIngredientViewModel
 
-    @{
-        ViewBag.Title = "Ingredients";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-        var message = TempData["message"];
-    }
+@{
+    ViewBag.Title = "Ingredients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var message = TempData["message"];
+}
 
-    <div class="row">
-        @Html.Partial("_AdminSideBarMenu")
-        <div class="col-md-10">
-            <h2>Ingredients</h2>
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Ingredients</h2>
 
-            <p>
-                @Html.ActionLink("Add New Ingredient", "AddIngredient")
-            </p>
-
-            <h3>Search Ingredients</h3>
-
-            @using (Ajax.BeginForm("Search", null,
-                new AjaxOptions
-                {
-                    UpdateTargetId = "results",
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "POST"
-                }, new { id = "searchForm" }))
-            {
-                <div class="row">
-                    <div class="form-horizontal">
-                        <input type="text" name="name" oninput="changed()"  class="form-control"/>
-                        <input type="submit" class="btn btn-success" value="Search" />
-                    </div>
+        @using (Ajax.BeginForm("Index", null,
+                                        new AjaxOptions
+                                        {
+                                            UpdateTargetId = "results",
+                                            InsertionMode = InsertionMode.Replace,
+                                            HttpMethod = "POST"
+                                        }, new { id = "searchForm" }))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" name="name" oninput="changed()" class="form-control" placeholder="Ingredient's name" />
                 </div>
-            }
-            <script>
-                function changed() {
-                    $("#searchForm").submit();
-                }
-            </script>
-            <div id="results">
-                @Html.Partial("_IngredientsGridPartial", Model)
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+                <div class="col-md-3">
+                    @Html.ActionLink("Add New Ingredient", "AddIngredient")
+                </div>
             </div>
+        }
+        <script>
+            function changed() {
+                $("#searchForm").submit();
+            }
+        </script>
+        <div id="results">
+            @Html.Partial("_IngredientsGridPartial", Model)
         </div>
     </div>
+</div>

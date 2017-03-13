@@ -2,12 +2,15 @@
 using HomeMadeFood.Models;
 using HomeMadeFood.Models.Enums;
 using HomeMadeFood.Web.Common.Mapping;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
 {
     public class IngredientViewModel : IMapFrom<Ingredient>
     {
+        public Guid Id { get; set; }
+
         [Required]
         [MinLength(2)]
         public string Name { get; set; }

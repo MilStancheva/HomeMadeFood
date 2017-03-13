@@ -2,19 +2,16 @@
 
 <div style="margin-top:17px;">
     @{
-        var grid = new WebGrid(
-                            canPage: true,
-                            rowsPerPage: Model.PageSize,
-                            canSort: true,
-                            ajaxUpdateContainerId: "grid");
-
-        grid.Bind(Model.Ingredients, rowCount: Model.TotalRecords, autoSortAndPage: false);
-        grid.Pager(WebGridPagerModes.All);
+        var grid = new WebGrid(null, rowsPerPage: Model.PageSize);
+        grid.Bind(Model.Ingredients, autoSortAndPage: true, rowCount: Model.PageSize);
 
         @grid.GetHtml(htmlAttributes: new { id = "grid" },
-        fillEmptyRows: false,
         tableStyle: "table table-bordered table-hover",
         mode: WebGridPagerModes.All,
+        firstText: "<< First",
+        previousText: "< Prev",
+        nextText: "Next >",
+        lastText: "Last >>",
         columns: grid.Columns(
               grid.Column("Name", "Name", style: "col-lg-2"),
               grid.Column("FoodType", "FoodType", style: "col-lg-2"),
@@ -23,9 +20,8 @@
               grid.Column("Quantity", "Quantity", style: "col-lg-2"),
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </text>)
         ));
     }
