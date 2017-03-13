@@ -22,13 +22,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Домашна Храна", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("HomeMade Food", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*<a href="/home/index/" class="navbar-brand"><img src="~/Content/images/homemadefood-logo.png" width="80" /></a>*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("За нас", "About", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Контакти", "Contact", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Контакти", "Contact", "Home", new { area = "" }, null)</li>*@
                 </ul>
                 @Html.Partial("_AdminPartial")
                 @Html.Partial("_LoginPartial")
@@ -38,7 +39,6 @@
     <div class="container body-content">
         @Html.Partial("_ToastrPartial")
         @RenderBody()
-        <hr />
     </div>
     <footer class="footer-distributed">
         <div class="footer-left">
@@ -46,15 +46,15 @@
             <p class="footer-links">
                 <a href="#">Home</a>
                 ·
-                <a href="#">Седмично меню</a>
+                <a href="#">Weekly Menu</a>
                 ·
-                <a href="#">За нас</a>
+                <a href="/home/about/">About</a>
                 ·
                 <a href="#">Faq</a>
                 ·
-                <a href="#">Контакти</a>
+                <a href="/home/contact">Contact</a>
             </p>
-            <p class="footer-company-name">&copy; @DateTime.Now.Year - Домашна Храна</p>
+            <p class="footer-company-name">&copy; @DateTime.Now.Year - HomeMade Food</p>
             <div class="footer-icons">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -63,11 +63,11 @@
             </div>
         </div>
         <div class="footer-right">
-            <p>Свържете се с нас</p>
+            <p>Contact us</p>
             <form action="#" method="post">
                 <input type="text" name="email" placeholder="Email" />
-                <textarea name="message" placeholder="Съобщение"></textarea>
-                <button>Изпрати</button>
+                <textarea name="message" placeholder="Message"></textarea>
+                <button>Send</button>
             </form>
         </div>
     </footer>
