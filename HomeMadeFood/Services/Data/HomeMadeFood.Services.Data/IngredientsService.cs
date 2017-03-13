@@ -1,12 +1,11 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+using System.Collections.Generic;
+
+using Bytes2you.Validation;
+
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
 using HomeMadeFood.Services.Data.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Services.Data
@@ -22,6 +21,8 @@ namespace HomeMadeFood.Services.Data
 
         public void AddIngredient(string name, FoodType foodType, decimal pricePerMeasuringUnit, MeasuringUnitType measuringUnit, decimal quantity = 0)
         {
+            Guard.WhenArgument(name, "name").IsNull().Throw();
+
             Ingredient ingredient = new Ingredient()
             {
                 Name = name,
@@ -56,12 +57,16 @@ namespace HomeMadeFood.Services.Data
 
         public void EditIngredient(Ingredient ingredient)
         {
+            Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
+
             this.data.Ingredients.Update(ingredient);
             this.data.Commit();
         }
 
         public void DeleteIngredient(Ingredient ingredient)
         {
+            Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
+
             this.data.Ingredients.Delete(ingredient);
             this.data.Commit();
         }

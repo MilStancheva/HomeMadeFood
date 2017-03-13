@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeMadeFood.Services.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeMadeFood.Services.Data", "Services\Data\HomeMadeFood.Services.Data\HomeMadeFood.Services.Data.csproj", "{BE51CDDD-F2C6-4E1E-AAAA-6CABD8327D78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeMadeFood.Services.Data.UnitTests", "Tests\HomeMadeFood.Services.Data.UnitTests\HomeMadeFood.Services.Data.UnitTests.csproj", "{F762C57B-AD85-4FAE-BF23-ABD50CDD4DBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{BE51CDDD-F2C6-4E1E-AAAA-6CABD8327D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE51CDDD-F2C6-4E1E-AAAA-6CABD8327D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE51CDDD-F2C6-4E1E-AAAA-6CABD8327D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F762C57B-AD85-4FAE-BF23-ABD50CDD4DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F762C57B-AD85-4FAE-BF23-ABD50CDD4DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F762C57B-AD85-4FAE-BF23-ABD50CDD4DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F762C57B-AD85-4FAE-BF23-ABD50CDD4DBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +98,6 @@ Global
 		{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB} = {301EEA1D-A39C-4337-B388-B7AE363C27E0}
 		{FF903F52-60DE-40F0-A546-DC3C0AE7AEC6} = {BDE297EB-F16D-4E48-9B47-DC3587146D83}
 		{BE51CDDD-F2C6-4E1E-AAAA-6CABD8327D78} = {229EC0FF-B34D-4B2E-B233-AAB03444CBB1}
+		{F762C57B-AD85-4FAE-BF23-ABD50CDD4DBE} = {4B80AEDE-E325-4043-A274-DF62568AE2F7}
 	EndGlobalSection
 EndGlobal
