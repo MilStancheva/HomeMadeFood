@@ -14,7 +14,7 @@ using HomeMadeFood.Web.Controllers.Extensions;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class IngredientsController : Controller
     {
         private readonly IIngredientsService ingredientsService;
@@ -61,6 +61,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddIngredient(IngredientViewModel ingredientModel)
         {
             if (!this.ModelState.IsValid)
@@ -80,12 +81,18 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult EditIngredient(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("404.html");
+            }
+
             var ingredient = this.ingredientsService.GetIngredientById(id);
             var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
             return this.View(ingredientModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditIngredient(IngredientViewModel ingredientModel)
         {
             if (!this.ModelState.IsValid)
@@ -104,6 +111,11 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult DeleteIngredient(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("404.html");
+            }
+
             var ingredient = this.ingredientsService.GetIngredientById(id);
             var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
             return this.View("DeleteIngredient", ingredientModel);
@@ -113,6 +125,11 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteIngredientConfirm(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("404.html");
+            }
+
             var ingredient = this.ingredientsService.GetIngredientById(id);
 
             if (ingredient == null)

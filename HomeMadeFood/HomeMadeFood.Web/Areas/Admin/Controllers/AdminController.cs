@@ -2,7 +2,7 @@
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         public ActionResult Index()
