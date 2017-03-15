@@ -27,6 +27,14 @@ namespace HomeMadeFood.Data.Data
             }
         }
 
+        public IEfRepository<Recipie> Recipies
+        {
+            get
+            {
+                return this.repositoryFactory.Create<Recipie>();
+            }
+        }
+
         public void Commit()
         {
             this.dbContext.SaveChanges();

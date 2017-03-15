@@ -67,6 +67,7 @@
     <Compile Include="Enums\UserRoles.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipie.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

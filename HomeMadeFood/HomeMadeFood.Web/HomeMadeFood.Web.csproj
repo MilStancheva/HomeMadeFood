@@ -266,6 +266,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\IngredientsController.cs" />
     <Compile Include="Areas\Admin\Models\IngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RecipieViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SearchIngredientViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Extensions\ControllerExtensions.cs" />
@@ -437,6 +438,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Recipies\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
