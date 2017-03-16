@@ -12,6 +12,7 @@ namespace HomeMadeFood.Web.App_Start.NinjectModules
         {
             this.Bind<IMappingService>().To<MappingService>();
             this.Bind<IIngredientsService>().To<IngredientsService>();
+            this.Bind<IRecipesService>().To<RecipesService>();
         }
     }
 }

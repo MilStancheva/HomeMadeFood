@@ -27,11 +27,11 @@ namespace HomeMadeFood.Data.Data
             }
         }
 
-        public IEfRepository<Recipie> Recipies
+        public IEfRepository<Recipe> Recipes
         {
             get
             {
-                return this.repositoryFactory.Create<Recipie>();
+                return this.repositoryFactory.Create<Recipe>();
             }
         }
 

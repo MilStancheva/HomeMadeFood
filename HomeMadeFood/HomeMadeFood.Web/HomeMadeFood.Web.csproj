@@ -265,9 +265,11 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\IngredientsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RecipesController.cs" />
     <Compile Include="Areas\Admin\Models\IngredientViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\RecipieViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AddRecipeViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SearchIngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SimpleIngredientViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Extensions\ControllerExtensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -374,12 +376,15 @@
     <Content Include="Areas\Admin\Views\Ingredients\_IngredientsGridPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Ingredients\EditIngredient.cshtml" />
     <Content Include="Areas\Admin\Views\Ingredients\DeleteIngredient.cshtml" />
+    <Content Include="Areas\Admin\Views\Recipes\AddRecipe.cshtml" />
+    <Content Include="Areas\Admin\Views\Recipes\Index.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\live.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <Content Include="Scripts\Custom\add-ingredients-autocomplete.js" />
     <Content Include="Scripts\Custom\bootstrap.min.js" />
     <Content Include="Scripts\Custom\custom.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
@@ -438,7 +443,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Recipies\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

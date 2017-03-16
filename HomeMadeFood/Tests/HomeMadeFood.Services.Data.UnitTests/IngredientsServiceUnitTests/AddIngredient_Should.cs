@@ -22,10 +22,9 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             FoodType foodType = FoodType.Fruit;
             decimal pricePerMeasuringUnit = 1.19m;
             MeasuringUnitType measuringUnit = MeasuringUnitType.Kg;
-            decimal quantity = 1m;
 
             //Act & Assert
-            Assert.Throws<ArgumentNullException>(() => ingredientsService.AddIngredient(name, foodType, pricePerMeasuringUnit, measuringUnit, quantity));
+            Assert.Throws<ArgumentNullException>(() => ingredientsService.AddIngredient(name, foodType, pricePerMeasuringUnit, measuringUnit));
         }
 
         [Test]
@@ -38,11 +37,10 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             FoodType foodType = FoodType.Fruit;
             decimal pricePerMeasuringUnit = 1.19m;
             MeasuringUnitType measuringUnit = MeasuringUnitType.Kg;
-            decimal quantity = 1m;
 
             dataMock.Setup(x => x.Ingredients.Add(It.IsAny<Ingredient>()));
             //Act
-            ingredientsService.AddIngredient(name, foodType, pricePerMeasuringUnit, measuringUnit, quantity);
+            ingredientsService.AddIngredient(name, foodType, pricePerMeasuringUnit, measuringUnit);
 
             //Assert
             dataMock.Verify(x => x.Commit(), Times.Once);
@@ -58,12 +56,11 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             FoodType foodType = FoodType.Fruit;
             decimal pricePerMeasuringUnit = 1.19m;
             MeasuringUnitType measuringUnit = MeasuringUnitType.Kg;
-            decimal quantity = 1m;
 
             dataMock.Setup(x => x.Ingredients.Add(It.IsAny<Ingredient>()));
 
             //Act
-            ingredientsService.AddIngredient(name, foodType, pricePerMeasuringUnit, measuringUnit, quantity);
+            ingredientsService.AddIngredient(name, foodType, pricePerMeasuringUnit, measuringUnit);
 
             //Assert
             dataMock.Verify(x => x.Ingredients.Add(It.IsAny<Ingredient>()), Times.Once);

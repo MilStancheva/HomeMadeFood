@@ -5,11 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using DataAnnotationsExtensions;
 
 using HomeMadeFood.Models.Enums;
+using System.Collections.Generic;
 
 namespace HomeMadeFood.Models
 {
     public class Ingredient
     {
+        private ICollection<Recipe> recipes;
+
+        public Ingredient()
+        {
+            this.recipes = new HashSet<Recipe>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -31,5 +39,17 @@ namespace HomeMadeFood.Models
 
         [Min(0)]
         public decimal Quantity { get; set; }
+
+        public virtual ICollection<Recipe> Recipes
+        {
+            get
+            {
+                return this.recipes;
+            }
+            set
+            {
+                this.recipes = value;
+            }
+        }
     }
 }

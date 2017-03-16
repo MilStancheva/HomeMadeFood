@@ -68,13 +68,9 @@
     <Compile Include="Migrations\201703101933388_Initial.Designer.cs">
       <DependentUpon>201703101933388_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703112129533_IngredientsAdded.cs" />
-    <Compile Include="Migrations\201703112129533_IngredientsAdded.Designer.cs">
-      <DependentUpon>201703112129533_IngredientsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703150946178_RecipieModelAdded.cs" />
-    <Compile Include="Migrations\201703150946178_RecipieModelAdded.Designer.cs">
-      <DependentUpon>201703150946178_RecipieModelAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201703152056471_IngeredientsAndRecipes.cs" />
+    <Compile Include="Migrations\201703152056471_IngeredientsAndRecipes.Designer.cs">
+      <DependentUpon>201703152056471_IngeredientsAndRecipes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,11 +92,8 @@
     <EmbeddedResource Include="Migrations\201703101933388_Initial.resx">
       <DependentUpon>201703101933388_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703112129533_IngredientsAdded.resx">
-      <DependentUpon>201703112129533_IngredientsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703150946178_RecipieModelAdded.resx">
-      <DependentUpon>201703150946178_RecipieModelAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703152056471_IngeredientsAndRecipes.resx">
+      <DependentUpon>201703152056471_IngeredientsAndRecipes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,7 +13,7 @@ namespace HomeMadeFood.Data
 
         public virtual IDbSet<Ingredient> Ingredients { get; set; }
 
-        public virtual IDbSet<Recipie> Recipies { get; set; }
+        public virtual IDbSet<Recipe> Recipes { get; set; }
 
         public static ApplicationDbContext Create()
         {

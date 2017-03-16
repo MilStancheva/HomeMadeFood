@@ -62,7 +62,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddIngredient(IngredientViewModel ingredientModel)
+        public ActionResult AddIngredient([Bind(Exclude = "Id, Quantity")]IngredientViewModel ingredientModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 return this.View(ingredientModel);
             }
 
-            this.ingredientsService.AddIngredient(ingredientModel.Name, ingredientModel.FoodType, ingredientModel.PricePerMeasuringUnit, ingredientModel.MeasuringUnit, ingredientModel.Quantity);
+            this.ingredientsService.AddIngredient(ingredientModel.Name, ingredientModel.FoodType, ingredientModel.PricePerMeasuringUnit, ingredientModel.MeasuringUnit);
 
             this.AddToastMessage("Yeah!", $"{ingredientModel.Name} is successfully added", ToastType.Success);
 
@@ -93,7 +93,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditIngredient(IngredientViewModel ingredientModel)
+        public ActionResult EditIngredient([Bind(Exclude ="Id")]IngredientViewModel ingredientModel)
         {
             if (!this.ModelState.IsValid)
             {

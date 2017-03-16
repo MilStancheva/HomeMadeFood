@@ -7,7 +7,7 @@ namespace HomeMadeFood.Data.Data
     {
         IEfRepository<Ingredient> Ingredients { get; }
 
-        IEfRepository<Recipie> Recipies { get; }
+        IEfRepository<Recipe> Recipes { get; }
 
         void Commit();
     }

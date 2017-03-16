@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeMadeFood.Models
 {
-    public class Recipie
+    public class Recipe
     {
         private ICollection<Ingredient> ingredients;
 
-        public Recipie()
+        public Recipe()
         {
             this.ingredients = new HashSet<Ingredient>();
         }
@@ -29,7 +29,7 @@ namespace HomeMadeFood.Models
 
         [Required]
         [MinLength(10)]
-        public string Preparation { get; set; }
+        public string Instruction { get; set; }
 
         [Required]
         public virtual ICollection<Ingredient> Ingredients

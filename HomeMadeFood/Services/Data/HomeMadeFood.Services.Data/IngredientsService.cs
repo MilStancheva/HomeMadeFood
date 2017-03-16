@@ -19,7 +19,7 @@ namespace HomeMadeFood.Services.Data
             this.data = data;
         }
 
-        public void AddIngredient(string name, FoodType foodType, decimal pricePerMeasuringUnit, MeasuringUnitType measuringUnit, decimal quantity = 0)
+        public void AddIngredient(string name, FoodType foodType, decimal pricePerMeasuringUnit, MeasuringUnitType measuringUnit)
         {
             Guard.WhenArgument(name, "name").IsNull().Throw();
 
@@ -29,7 +29,7 @@ namespace HomeMadeFood.Services.Data
                 FoodType = foodType,
                 MeasuringUnit = measuringUnit,
                 PricePerMeasuringUnit = pricePerMeasuringUnit,
-                Quantity = quantity
+                Quantity = 0
             };
 
             this.data.Ingredients.Add(ingredient);
