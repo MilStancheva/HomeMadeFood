@@ -17,12 +17,10 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Food Type")]
-        public FoodType FoodType { get; set; }
+        [Display(Name = ("Food Category"))]
+        public FoodCategory FoodCategory { get; set; }
 
-        [Required]
-        [Display(Name = "Measuring Unit")]
-        public MeasuringUnitType MeasuringUnit { get; set; }
+        public string Recipe { get; set; }
 
         [Required]
         [Min(0)]
@@ -30,6 +28,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         public decimal PricePerMeasuringUnit { get; set; }
 
         [Min(0)]
-        public decimal Quantity { get; set; }
+        [Display(Name = "Quantity In Measuring Unit")]
+        public double QuantityInMeasuringUnit { get; set; }
     }
 }

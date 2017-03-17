@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using DataAnnotationsExtensions;
+using HomeMadeFood.Models.Enums;
+
 namespace HomeMadeFood.Models
 {
     public class Recipe
@@ -24,12 +27,21 @@ namespace HomeMadeFood.Models
         public string Title { get; set; }
 
         [Required]
+        public DishType DishType { get; set; }
+
+        [Required]
         [MinLength(10)]
         public string Describtion { get; set; }
 
         [Required]
         [MinLength(10)]
         public string Instruction { get; set; }
+
+        [Min(0)]
+        public decimal CostPerPortion { get; set; }
+
+        [Min(0)]
+        public double QuantityPerPortion { get; set; }
 
         [Required]
         public virtual ICollection<Ingredient> Ingredients
@@ -43,9 +55,5 @@ namespace HomeMadeFood.Models
                 this.ingredients = value;
             }
         }
-
-        public decimal CostPerPortion { get; set; }
-
-        public double QuantityPerPortion { get; set; }
     }
 }

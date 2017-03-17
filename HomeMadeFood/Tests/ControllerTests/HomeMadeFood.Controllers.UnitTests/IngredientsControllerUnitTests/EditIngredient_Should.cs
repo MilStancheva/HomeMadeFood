@@ -12,6 +12,7 @@ using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Controllers;
 using HomeMadeFood.Web.Areas.Admin.Models;
+using HomeMadeFood.Models;
 
 namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
 {
@@ -23,8 +24,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
         {
             //Arrange
             var inredientsServiceMock = new Mock<IIngredientsService>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
             var id = Guid.NewGuid();
 
             //Act & Assert
@@ -38,8 +40,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
         {
             //Arrange
             var inredientsServiceMock = new Mock<IIngredientsService>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
             controller.WithCallTo(x => x.EditIngredient(Guid.Empty))
@@ -51,14 +54,22 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
         {
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(ingredientsServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
 
             IngredientViewModel ingredientModel = new IngredientViewModel();
-            ingredientModel.FoodType = FoodType.Spice;
-            ingredientModel.MeasuringUnit = MeasuringUnitType.Kg;
-            ingredientModel.PricePerMeasuringUnit = -0.30m;
-            ingredientModel.Quantity = -0.5m;
+            ingredientModel.Name = null;
+            ingredientModel.FoodCategory = new FoodCategory()
+            {
+                Name = "Tomatos",
+                Id = Guid.NewGuid(),
+                MeasuringUnit = MeasuringUnitType.Kg,
+                FoodType = FoodType.Vegetable
+            };
+
+            ingredientModel.PricePerMeasuringUnit = 1.80m;
+            ingredientModel.QuantityInMeasuringUnit = 2;
 
             var validationContext = new ValidationContext(ingredientModel, null, null);
             var validationResults = new List<ValidationResult>();
@@ -80,15 +91,22 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
         {
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(ingredientsServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
 
             IngredientViewModel ingredientModel = new IngredientViewModel();
             ingredientModel.Name = "Carrot";
-            ingredientModel.FoodType = FoodType.Vegetable;
-            ingredientModel.MeasuringUnit = MeasuringUnitType.Kg;
+            ingredientModel.FoodCategory = new FoodCategory()
+            {
+                Name = "Tomatos",
+                Id = Guid.NewGuid(),
+                MeasuringUnit = MeasuringUnitType.Kg,
+                FoodType = FoodType.Vegetable
+            };
+
             ingredientModel.PricePerMeasuringUnit = 1.80m;
-            ingredientModel.Quantity = 2;
+            ingredientModel.QuantityInMeasuringUnit = 2;
 
             //Act & Assert
             controller.WithCallTo(x => x.EditIngredient(ingredientModel))

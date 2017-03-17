@@ -14,10 +14,9 @@
         lastText: "Last >>",
         columns: grid.Columns(
               grid.Column("Name", "Name", style: "col-lg-2"),
-              grid.Column("FoodType", "FoodType", style: "col-lg-2"),
-              grid.Column("MeasuringUnit", "MeasuringUnit", style: "col-lg-2"),
+              grid.Column("Receipe", "Recipe", style: "col-lg-2"),
               grid.Column("PricePerMeasuringUnit", header: "PricePerMeasuringUnit", format: @<text>@string.Format("{0:C}", item.PricePerMeasuringUnit) </text>),
-              grid.Column("Quantity", "Quantity", style: "col-lg-2"),
+              grid.Column("QuantityInMeasuringUnit", "QuantityInMeasuringUnit", style: "col-lg-2"),
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>
                 @Html.ActionLink("Edit", "EditIngredient", new { id = item.Id }) |

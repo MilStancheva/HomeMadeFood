@@ -7,18 +7,18 @@ namespace HomeMadeFood.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class IngeredientsAndRecipes : IMigrationMetadata
+    public sealed partial class InitialAfterChange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IngeredientsAndRecipes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialAfterChange));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703152056471_IngeredientsAndRecipes"; }
+            get { return "201703171020474_InitialAfterChange"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

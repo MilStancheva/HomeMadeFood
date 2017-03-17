@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 using HomeMadeFood.Models;
 using HomeMadeFood.Web.Common.Mapping;
+using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
 {
@@ -12,6 +13,8 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         [MinLength(2)]
         [MaxLength(50)]
         public string Title { get; set; }
+
+        public DishType DishType { get; set; }
 
         [Required]
         [MinLength(10)]
@@ -24,12 +27,6 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         public string Instruction { get; set; }
 
         [Required]
-        public ICollection<SimpleIngredientViewModel> Ingredients { get; set; }
-
-        //[Display(Name = "Cost Per Portion")]
-        //public decimal CostPerPortion { get; set; }
-
-        //[Display(Name = "Quantity Per Portion")]
-        //public double QuantityPerPortion { get; set; }
+        public ICollection<AddIngredientViewModel> Ingredients { get; set; }
     }
 }

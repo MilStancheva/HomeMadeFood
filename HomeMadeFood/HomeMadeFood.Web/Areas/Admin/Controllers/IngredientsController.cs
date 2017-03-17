@@ -11,6 +11,7 @@ using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
 using HomeMadeFood.Web.Common.Messaging;
 using HomeMadeFood.Web.Controllers.Extensions;
+using System.Collections.Generic;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
@@ -18,12 +19,16 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
     public class IngredientsController : Controller
     {
         private readonly IIngredientsService ingredientsService;
+        private readonly IFoodCategoriesService foodCategoriesService;
         private readonly IMappingService mappingService;
 
-        public IngredientsController(IIngredientsService ingredientsService, IMappingService mappingService)
+        public IngredientsController(IIngredientsService ingredientsService, IFoodCategoriesService foodCategoriesService, IMappingService mappingService)
         {
             Guard.WhenArgument(ingredientsService, "ingredientsService").IsNull().Throw();
             this.ingredientsService = ingredientsService;
+
+            Guard.WhenArgument(foodCategoriesService, "foodCategoriesService").IsNull().Throw();
+            this.foodCategoriesService = foodCategoriesService;
 
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             this.mappingService = mappingService;
@@ -57,12 +62,17 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult AddIngredient()
         {
-            return this.View();
+            var foodCategories = this.foodCategoriesService.GetAllFoodCategories()
+                .Select(this.mappingService.Map<FoodCategoryViewModel>);
+            var model = new AddIngredientViewModel();
+            model.FoodCategories = foodCategories;
+            
+            return this.View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddIngredient([Bind(Exclude = "Id, Quantity")]IngredientViewModel ingredientModel)
+        public ActionResult AddIngredient(AddIngredientViewModel ingredientModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -71,7 +81,9 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 return this.View(ingredientModel);
             }
 
-            this.ingredientsService.AddIngredient(ingredientModel.Name, ingredientModel.FoodType, ingredientModel.PricePerMeasuringUnit, ingredientModel.MeasuringUnit);
+            var foodCategoryId = ingredientModel.SelectedFoodCategoryId;
+
+            this.ingredientsService.AddIngredient(ingredientModel.Name, foodCategoryId, ingredientModel.PricePerMeasuringUnit, ingredientModel.QuantityInMeasuringUnit);
 
             this.AddToastMessage("Yeah!", $"{ingredientModel.Name} is successfully added", ToastType.Success);
 

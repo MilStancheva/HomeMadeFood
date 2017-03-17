@@ -7,6 +7,7 @@ using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Models.Enums;
+using System.Linq;
 
 namespace HomeMadeFood.Services.Data
 {
@@ -19,17 +20,17 @@ namespace HomeMadeFood.Services.Data
             this.data = data;
         }
 
-        public void AddIngredient(string name, FoodType foodType, decimal pricePerMeasuringUnit, MeasuringUnitType measuringUnit)
+        public void AddIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit)
         {
             Guard.WhenArgument(name, "name").IsNull().Throw();
+            Guard.WhenArgument(foodCategoryId, "foodCategoryId").IsEmptyGuid().Throw();
 
             Ingredient ingredient = new Ingredient()
             {
                 Name = name,
-                FoodType = foodType,
-                MeasuringUnit = measuringUnit,
+                FoodcategoryId = foodCategoryId,
                 PricePerMeasuringUnit = pricePerMeasuringUnit,
-                Quantity = 0
+                QuantityInMeasuringUnit = quantityPerMeasuringUnit
             };
 
             this.data.Ingredients.Add(ingredient);
@@ -38,7 +39,14 @@ namespace HomeMadeFood.Services.Data
 
         public IEnumerable<Ingredient> GetAllIngredients()
         {
-            return this.data.Ingredients.GetAll();
+            var ingredients = this.data.Ingredients.GetAll();
+
+            if (ingredients == null)
+            {
+                return null;
+            }
+
+            return ingredients.OrderBy(x => x.Id);
         }
 
         public Ingredient GetIngredientById(Guid id)

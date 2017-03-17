@@ -68,9 +68,13 @@
     <Compile Include="Migrations\201703101933388_Initial.Designer.cs">
       <DependentUpon>201703101933388_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703152056471_IngeredientsAndRecipes.cs" />
-    <Compile Include="Migrations\201703152056471_IngeredientsAndRecipes.Designer.cs">
-      <DependentUpon>201703152056471_IngeredientsAndRecipes.cs</DependentUpon>
+    <Compile Include="Migrations\201703171020474_InitialAfterChange.cs" />
+    <Compile Include="Migrations\201703171020474_InitialAfterChange.Designer.cs">
+      <DependentUpon>201703171020474_InitialAfterChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703171148511_FoodCategoryIsUnique.cs" />
+    <Compile Include="Migrations\201703171148511_FoodCategoryIsUnique.Designer.cs">
+      <DependentUpon>201703171148511_FoodCategoryIsUnique.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,8 +96,11 @@
     <EmbeddedResource Include="Migrations\201703101933388_Initial.resx">
       <DependentUpon>201703101933388_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703152056471_IngeredientsAndRecipes.resx">
-      <DependentUpon>201703152056471_IngeredientsAndRecipes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703171020474_InitialAfterChange.resx">
+      <DependentUpon>201703171020474_InitialAfterChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171148511_FoodCategoryIsUnique.resx">
+      <DependentUpon>201703171148511_FoodCategoryIsUnique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

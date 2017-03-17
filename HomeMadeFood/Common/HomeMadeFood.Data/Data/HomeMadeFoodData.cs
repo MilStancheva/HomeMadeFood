@@ -1,4 +1,5 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+using Bytes2you.Validation;
 
 using HomeMadeFood.Data.Repositories;
 using HomeMadeFood.Models;
@@ -17,6 +18,14 @@ namespace HomeMadeFood.Data.Data
 
             Guard.WhenArgument(repositoryFactory, "repositoryFactory").IsNull().Throw();
             this.repositoryFactory = repositoryFactory;
+        }
+
+        public IEfRepository<FoodCategory> FoodCategories
+        {
+            get
+            {
+                return this.repositoryFactory.Create<FoodCategory>();
+            }
         }
 
         public IEfRepository<Ingredient> Ingredients

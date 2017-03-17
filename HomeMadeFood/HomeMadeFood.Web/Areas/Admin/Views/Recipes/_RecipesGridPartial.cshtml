@@ -1,0 +1,28 @@
+﻿@model SearchRecipeViewModel
+
+<div style="margin-top:17px;">
+    @{
+        var grid = new WebGrid(null, rowsPerPage: Model.PageSize);
+        grid.Bind(Model.Recipes, autoSortAndPage: true, rowCount: Model.PageSize);
+
+        @grid.GetHtml(htmlAttributes: new { id = "grid" },
+        tableStyle: "table table-bordered table-hover",
+        mode: WebGridPagerModes.All,
+        firstText: "<< First",
+        previousText: "< Prev",
+        nextText: "Next >",
+        lastText: "Last >>",
+        columns: grid.Columns(
+              grid.Column("Title", "Title", style: "col-lg-2"),
+              grid.Column("DishType", "DishType", style: "col-lg-2"),
+              grid.Column("CostPerPortion", header: "CostPerPortion", format: @<text>@string.Format("{0:C}", item.CostPerPortion) </text>),
+              grid.Column("QuantityPerPortion", "QuantityPerPortion", style: "col-lg-2"),
+              grid.Column(header: "Action", canSort: false, style: "action",
+                format: @<text>
+                @Html.ActionLink("Edit", "EditRecipe", new { id = item.Id }) |
+                @Html.ActionLink("Details", "DetailsRecipe", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteRecipe", new { id = item.Id })
+                </text>)
+        ));
+    }
+</div>

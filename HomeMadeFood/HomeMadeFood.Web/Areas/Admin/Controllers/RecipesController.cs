@@ -19,8 +19,9 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         private readonly IIngredientsService ingredientsService;
         private readonly IMappingService mappingService;
         private readonly IRecipesService recipesService;
+        private readonly IFoodCategoriesService foodCategoriesService;
 
-        public RecipesController(IRecipesService recipesService, IIngredientsService ingredientsService, IMappingService mappingService)
+        public RecipesController(IRecipesService recipesService, IIngredientsService ingredientsService, IFoodCategoriesService foodCategoriesService, IMappingService mappingService)
         {
             Guard.WhenArgument(recipesService, "recipesService").IsNull().Throw();
             this.recipesService = recipesService;
@@ -28,19 +29,51 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             Guard.WhenArgument(ingredientsService, "ingredientsService").IsNull().Throw();
             this.ingredientsService = ingredientsService;
 
+            Guard.WhenArgument(foodCategoriesService, "foodCategoriesService").IsNull().Throw();
+            this.foodCategoriesService = foodCategoriesService;
+
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             this.mappingService = mappingService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string title)
         {
-            return View();
+            var recipes = this.recipesService.GetAllRecipes()
+                .Select(this.mappingService.Map<RecipeViewModel>)
+                .ToList();
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                recipes = this.recipesService.GetAllRecipes()
+                .Where(x => x.Title.ToLower().Contains(title.ToLower()))
+                .Select(this.mappingService.Map<RecipeViewModel>)
+                .ToList();
+            }
+
+            var searchModel = new SearchRecipeViewModel();
+            if (recipes != null)
+            {
+                searchModel.Recipes = recipes;
+                searchModel.PageSize = 5;
+                searchModel.TotalRecords = recipes.Count();
+            }
+
+            return this.View(searchModel);
         }
 
         [HttpGet]
         public ActionResult AddRecipe()
-        {   
+        {            
             return this.View();
+        }
+
+        [HttpGet]
+        public JsonResult GetFoodCategories()
+        {
+            var foodCategories = this.foodCategoriesService.GetAllFoodCategories()
+                .Select(this.mappingService.Map<FoodCategoryViewModel>);
+
+            return Json(foodCategories, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -57,13 +90,18 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddRecipe([Bind(Exclude = "Ingredients")] AddRecipeViewModel recipeModel, IEnumerable<string> ingredientNames, IEnumerable<decimal> ingredientQuantities)
+        public ActionResult AddRecipe(
+            [Bind(Exclude = "Ingredients")] AddRecipeViewModel recipeModel, 
+            IEnumerable<string> ingredientNames, 
+            IEnumerable<decimal> ingredientQuantities,
+            IEnumerable<decimal> ingredientPrices,
+            IEnumerable<Guid> foodCategories)
         {
-            //if (!this.ModelState.IsValid)
-            //{
-            //    this.AddToastMessage("Something went wrong...", $"Ooops! {recipeModel.Title} could not be added. Please check again the input data. Thanks!", ToastType.Error);
-            //    return this.View(recipeModel);
-            //}
+            if (!this.ModelState.IsValid)
+            {
+                this.AddToastMessage("Something went wrong...", $"Ooops! {recipeModel.Title} could not be added. Please check again the input data. Thanks!", ToastType.Error);
+                return this.View(recipeModel);
+            }
 
             var recipe = this.mappingService.Map<Recipe>(recipeModel);
             this.recipesService.AddRecipe(recipe, ingredientNames, ingredientQuantities);            

@@ -264,12 +264,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FoodCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\IngredientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RecipesController.cs" />
+    <Compile Include="Areas\Admin\Models\AddFoodCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AddIngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FoodCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\IngredientViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AddRecipeViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RecipeViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SearchFoodCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SearchIngredientViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\SimpleIngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SearchRecipeViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Extensions\ControllerExtensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -378,6 +384,13 @@
     <Content Include="Areas\Admin\Views\Ingredients\DeleteIngredient.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\AddRecipe.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategories\AddFoodCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategories\_FoodCategoriesGridPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategories\EditFoodCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategories\DeleteFoodCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Recipes\_RecipesGridPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Recipes\_AddIngredientsToRecipe.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />
@@ -388,6 +401,7 @@
     <Content Include="Scripts\Custom\bootstrap.min.js" />
     <Content Include="Scripts\Custom\custom.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\Custom\get-foodcategories.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -443,6 +457,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\DisplayTemplates\" />
+    <Folder Include="Areas\Admin\Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

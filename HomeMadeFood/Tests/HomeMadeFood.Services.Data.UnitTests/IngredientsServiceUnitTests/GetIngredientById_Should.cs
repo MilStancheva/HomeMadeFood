@@ -29,7 +29,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
             Guid ingredientId = Guid.NewGuid();
-            Ingredient ingredient = new Ingredient() { Id = ingredientId, Name = "IngredientName", FoodType = FoodType.Cheese, MeasuringUnit = MeasuringUnitType.PerUnit, PricePerMeasuringUnit = 12.60m, Quantity = 0 };
+            Ingredient ingredient = new Ingredient() { Id = ingredientId, Name = "IngredientName", PricePerMeasuringUnit = 12.60m, QuantityInMeasuringUnit = 0 };
 
             dataMock.Setup(c => c.Ingredients.GetById(ingredientId)).Returns(ingredient);
 

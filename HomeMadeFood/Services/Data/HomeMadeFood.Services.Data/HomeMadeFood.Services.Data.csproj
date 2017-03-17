@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IFoodCategoriesService.cs" />
     <Compile Include="Contracts\IIngredientsService.cs" />
     <Compile Include="Contracts\IRecipesService.cs" />
+    <Compile Include="FoodCategoriesService.cs" />
     <Compile Include="IngredientsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesService.cs" />

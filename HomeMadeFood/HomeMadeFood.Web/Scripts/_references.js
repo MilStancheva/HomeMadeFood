@@ -3,6 +3,7 @@
 /// <reference path="custom/add-ingredients-autocomplete.js" />
 /// <reference path="custom/bootstrap.min.js" />
 /// <reference path="custom/custom.js" />
+/// <reference path="custom/get-foodcategories.js" />
 /// <reference path="jquery.validate.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-1.12.4.js" />

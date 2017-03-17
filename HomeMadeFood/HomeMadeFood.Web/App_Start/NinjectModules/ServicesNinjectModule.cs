@@ -11,6 +11,7 @@ namespace HomeMadeFood.Web.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind<IMappingService>().To<MappingService>();
+            this.Bind<IFoodCategoriesService>().To<FoodCategoriesService>();
             this.Bind<IIngredientsService>().To<IngredientsService>();
             this.Bind<IRecipesService>().To<RecipesService>();
         }

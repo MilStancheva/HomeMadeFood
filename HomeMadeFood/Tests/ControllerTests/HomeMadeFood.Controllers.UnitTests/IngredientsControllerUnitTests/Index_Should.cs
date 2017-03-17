@@ -25,8 +25,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             IEnumerable<Ingredient> ingredients = new List<Ingredient>();
             var inredientsServiceMock = new Mock<IIngredientsService>();
             inredientsServiceMock.Setup(x => x.GetAllIngredients()).Returns(ingredients);
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
             controller.WithCallTo(x => x.Index(It.IsAny<string>())).ShouldRenderView("Index");
@@ -39,8 +40,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             IEnumerable<Ingredient> ingredients = new List<Ingredient>();
             var inredientsServiceMock = new Mock<IIngredientsService>();
             inredientsServiceMock.Setup(x => x.GetAllIngredients()).Returns(ingredients);
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
             controller.WithCallTo(x => x.Index(It.IsAny<string>()))
@@ -54,17 +56,18 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
         {
             //Arrange
             Guid ingredientId = Guid.NewGuid();
-            Ingredient ingredient = new Ingredient() { Id = ingredientId, Name = "IngredientName", FoodType = FoodType.Cheese, MeasuringUnit = MeasuringUnitType.PerUnit, PricePerMeasuringUnit = 12.60m, Quantity = 0 };
+            Ingredient ingredient = new Ingredient() { Id = ingredientId, Name = "IngredientName", PricePerMeasuringUnit = 12.60m, QuantityInMeasuringUnit = 0 };
             IEnumerable<Ingredient> ingredients = new List<Ingredient>()
             {
                 ingredient
             };
             var inredientsServiceMock = new Mock<IIngredientsService>();
             inredientsServiceMock.Setup(x => x.GetAllIngredients()).Returns(ingredients);
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
             var mappingServiceMock = new Mock<IMappingService>();
             var searchModel = new SearchIngredientViewModel();
             searchModel.Ingredients = ingredients.Select(x => new IngredientViewModel() { Name = x.Name });
-            var controller = new IngredientsController(inredientsServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
             controller.Index("some name");
 
             //Act & Assert

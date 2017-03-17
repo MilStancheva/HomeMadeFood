@@ -9,7 +9,7 @@ namespace HomeMadeFood.Services.Data.Contracts
     {
         IEnumerable<Ingredient> GetAllIngredients();
 
-        void AddIngredient(string name, FoodType foodType, decimal pricePerMeasuringUnit, MeasuringUnitType measuringUnit);
+        void AddIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit);
 
         Ingredient GetIngredientById(Guid id);
 

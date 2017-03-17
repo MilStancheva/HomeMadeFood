@@ -11,6 +11,8 @@ namespace HomeMadeFood.Data
         {
         }
 
+        public virtual IDbSet<FoodCategory> FoodCategories { get; set; }
+
         public virtual IDbSet<Ingredient> Ingredients { get; set; }
 
         public virtual IDbSet<Recipe> Recipes { get; set; }
