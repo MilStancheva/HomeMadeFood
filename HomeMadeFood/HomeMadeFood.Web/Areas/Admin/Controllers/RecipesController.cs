@@ -93,18 +93,18 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         public ActionResult AddRecipe(
             [Bind(Exclude = "Ingredients")] AddRecipeViewModel recipeModel, 
             IEnumerable<string> ingredientNames, 
-            IEnumerable<decimal> ingredientQuantities,
+            IEnumerable<double> ingredientQuantities,
             IEnumerable<decimal> ingredientPrices,
             IEnumerable<Guid> foodCategories)
         {
-            if (!this.ModelState.IsValid)
-            {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {recipeModel.Title} could not be added. Please check again the input data. Thanks!", ToastType.Error);
-                return this.View(recipeModel);
-            }
+            //if (!this.ModelState.IsValid)
+            //{
+            //    this.AddToastMessage("Something went wrong...", $"Ooops! {recipeModel.Title} could not be added. Please check again the input data. Thanks!", ToastType.Error);
+            //    return this.View(recipeModel);
+            //}
 
             var recipe = this.mappingService.Map<Recipe>(recipeModel);
-            this.recipesService.AddRecipe(recipe, ingredientNames, ingredientQuantities);            
+            this.recipesService.AddRecipe(recipe, ingredientNames, ingredientQuantities, ingredientPrices, foodCategories);            
             this.AddToastMessage("Yeah!", $"{recipeModel.Title} is successfully added", ToastType.Success);
 
             return this.RedirectToAction("Index", "Recipes");

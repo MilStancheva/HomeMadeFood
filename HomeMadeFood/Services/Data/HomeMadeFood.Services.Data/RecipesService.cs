@@ -19,30 +19,51 @@ namespace HomeMadeFood.Services.Data
             this.data = data;
         }
 
-        public void AddRecipe(Recipe recipe, IEnumerable<string> ingredientNames, IEnumerable<decimal> ingredientQuantities)
+        public void AddRecipe(Recipe recipe, 
+            IEnumerable<string> ingredientNames, 
+            IEnumerable<double> ingredientQuantities, 
+            IEnumerable<decimal> ingredientPrices,
+            IEnumerable<Guid> foodCategories)
         {
-            //Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
+            Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
 
-            //var ingredients = new List<Ingredient>();
-            //var ingredientsAsList = ingredientNames.ToList();
-            //var quantitiesAsList = ingredientQuantities.ToList();
-            //var count = ingredientsAsList.Count;
+            var ingredients = new List<Ingredient>();
+            var ingredientsAsList = ingredientNames.ToList();
+            var quantitiesAsList = ingredientQuantities.ToList();
+            var pricesAsList = ingredientPrices.ToList();
+            var foodCategoriesIdsAsList = foodCategories.ToList();
+            var count = ingredientsAsList.Count;
 
-            //for (int i = 0; i < count; i++)
-            //{
-            //    var name = ingredientsAsList[i].ToLower();
-            //    var existingIngredient = this.data.Ingredients.GetAll().FirstOrDefault(x => x.Name.ToLower() == name);
-            //    existingIngredient.Quantity += quantitiesAsList[i];
-            //    recipe.Ingredients.Add(existingIngredient);
-            //}
+            for (int i = 0; i < count; i++)
+            {
+                var name = ingredientsAsList[i].ToLower();
+                var quantity = quantitiesAsList[i];
+                var price = pricesAsList[i];
+                var foodCategoryId = foodCategoriesIdsAsList[i];
+                var ingredient = new Ingredient()
+                {
+                    Name = name,
+                    QuantityInMeasuringUnit = quantity,
+                    PricePerMeasuringUnit = price,
+                    FoodcategoryId = foodCategoryId
+                };
 
-            //this.data.Recipes.Add(recipe);
-            //this.data.Commit();
+                recipe.Ingredients.Add(ingredient);
+            }
+
+            this.data.Recipes.Add(recipe);
+            this.data.Commit();
         }
 
         public IEnumerable<Recipe> GetAllRecipes()
         {
-            return this.data.Recipes.GetAll().OrderBy(x => x.Id);
+            var recipes = this.data.Recipes.GetAll();
+            if (recipes == null)
+            {
+                return null;
+            }
+
+            return recipes.OrderBy(x => x.Id);
         }
     }
 }
