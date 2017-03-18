@@ -267,6 +267,7 @@
     <Compile Include="Areas\Admin\Controllers\FoodCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\IngredientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RecipesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\AddFoodCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AddIngredientViewModel.cs" />
     <Compile Include="Areas\Admin\Models\FoodCategoryViewModel.cs" />
@@ -276,6 +277,8 @@
     <Compile Include="Areas\Admin\Models\SearchFoodCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SearchIngredientViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SearchRecipeViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SearchUserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Extensions\ControllerExtensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -394,6 +397,8 @@
     <Content Include="Areas\Admin\Views\Recipes\EditRecipe.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\DeleteRecipe.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\DetailsRecipe.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_UsersGridPartial.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />

@@ -7,7 +7,6 @@ using Bytes2you.Validation;
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Services.Data
 {

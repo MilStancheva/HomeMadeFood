@@ -1,0 +1,44 @@
+﻿@model SearchUserViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Users</h2>
+
+        @using (Ajax.BeginForm("Search",
+                        null,
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "results",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST"
+                        }, new { id = "searchForm" }))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" name="username" oninput="changed()" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+                <div class="col-md-3">
+                    @Html.ActionLink("Add New User", "AddUser")
+                </div>
+            </div>
+        }
+
+        <div id="results">
+            @Html.Partial("_UsersGridPartial", Model)
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/adminindexpage");
+}

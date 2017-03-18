@@ -3,6 +3,8 @@ using Bytes2you.Validation;
 
 using HomeMadeFood.Data.Repositories;
 using HomeMadeFood.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HomeMadeFood.Data.Data
 {
@@ -41,6 +43,22 @@ namespace HomeMadeFood.Data.Data
             get
             {
                 return this.repositoryFactory.Create<Recipe>();
+            }
+        }
+
+        public IEfRepository<IdentityUserRole> Roles
+        {
+            get
+            {
+                return this.repositoryFactory.Create<IdentityUserRole>();
+            }
+        }
+
+        public IEfRepository<ApplicationUser> Users
+        {
+            get
+            {
+               return this.repositoryFactory.Create<ApplicationUser>();
             }
         }
 

@@ -1,5 +1,7 @@
 ﻿using HomeMadeFood.Data.Repositories;
 using HomeMadeFood.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HomeMadeFood.Data.Data
 {
@@ -10,6 +12,10 @@ namespace HomeMadeFood.Data.Data
         IEfRepository<Ingredient> Ingredients { get; }
 
         IEfRepository<Recipe> Recipes { get; }
+
+        IEfRepository<ApplicationUser> Users { get; }
+
+        IEfRepository<IdentityUserRole> Roles { get; }
 
         void Commit();
     }
