@@ -1,20 +1,32 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+
+using Bytes2you.Validation;
+
 using HomeMadeFood.Models;
 using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
 using HomeMadeFood.Web.Common.Messaging;
 using HomeMadeFood.Web.Controllers.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
     public class FoodCategoriesController : Controller
     {
+        private readonly int gridPageSize = 25;
+
+        private string toastrSuccessTitle = "Yeah!";
+        private string toastrAddObjectSuccessMessage = "{0} is successfully added";
+        private string toastrUpdateObjectSuccessMessage = "{0} is successfully updated";
+        private string toastrDeleteObjectSuccessMessage = "{0} is successfully deleted";
+
+        private string toastrFailureTitle = "Something went wrong...";
+        private string toastrAddObjectFailureMessage = "Ooops! {0} could not be added. Please check again the input data. Thanks!";
+        private string toastrUpdateObjectFailureMessage = "Ooops! {0} could not be updated. Please check again the input data. Thanks!";
+        private string toastrDeleteObjectFailureMessage = "Ooops! {0} could not be deleted.";
+
         private readonly IFoodCategoriesService foodCategoriesService;
         private readonly IMappingService mappingService;
 
@@ -27,29 +39,39 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             this.mappingService = mappingService;
         }
 
-        public ActionResult Index(string name)
+        public ActionResult Index()
         {
             var foodCategories = this.foodCategoriesService.GetAllFoodCategories()
                 .Select(this.mappingService.Map<FoodCategoryViewModel>)
                 .ToList();
 
-            if (!string.IsNullOrEmpty(name))
+            var searchModel = new SearchFoodCategoryViewModel();
+            if (foodCategories != null)
             {
-                foodCategories = this.foodCategoriesService.GetAllFoodCategories()
+                searchModel.FoodCategories = foodCategories;
+                searchModel.PageSize = gridPageSize;
+                searchModel.TotalRecords = foodCategories.Count();
+            }
+
+            return this.View(searchModel);
+        }
+
+        public ActionResult Search(string name)
+        {
+            var foodCategories = this.foodCategoriesService.GetAllFoodCategories()
                 .Where(x => x.Name.ToLower().Contains(name.ToLower()))
                 .Select(this.mappingService.Map<FoodCategoryViewModel>)
                 .ToList();
-            }
 
             var searchModel = new SearchFoodCategoryViewModel();
             if (foodCategories != null)
             {
                 searchModel.FoodCategories = foodCategories;
-                searchModel.PageSize = 5;
+                searchModel.PageSize = gridPageSize;
                 searchModel.TotalRecords = foodCategories.Count();
             }
 
-            return this.View(searchModel);
+            return this.PartialView("_FoodCategoriesGridPartial", searchModel);
         }
 
         [HttpGet]
@@ -64,14 +86,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {model.Name} could not be added. Please check again the input data. Thanks!", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrAddObjectFailureMessage, model.Name), ToastType.Error);
                 return this.View(model);
             }
 
             var foodCategory = this.mappingService.Map<FoodCategory>(model);
             this.foodCategoriesService.AddFoodCategory(foodCategory);
 
-            this.AddToastMessage("Yeah!", $"{model.Name} is successfully added", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrAddObjectSuccessMessage, model.Name), ToastType.Success);
             return this.RedirectToAction("Index", "FoodCategories");
         }
 
@@ -95,14 +117,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {model.Name} could not be updated. Please check again the input data. Thanks!", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrUpdateObjectFailureMessage, model.Name), ToastType.Error);
                 return this.View(model);
             }
 
             var foodCategory = this.mappingService.Map<FoodCategory>(model);
             this.foodCategoriesService.EditFoodCategory(foodCategory);
 
-            this.AddToastMessage("Yeah!", $"{model.Name} is successfully updated", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrUpdateObjectSuccessMessage, model.Name), ToastType.Success);
             return this.RedirectToAction("Index", "FoodCategories");
         }
 
@@ -132,14 +154,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
             if (foodCategory == null)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {foodCategory.Name} could not be deleted.", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrUpdateObjectFailureMessage, foodCategory.Name), ToastType.Error);
                 var model = this.mappingService.Map<FoodCategoryViewModel>(foodCategory);
                 return this.View("DeleteFoodCategory", model.Id);
             }
 
             this.foodCategoriesService.DeleteFoodCategory(foodCategory);
 
-            this.AddToastMessage("Yeah!", $"{foodCategory.Name} is successfully deleted", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrDeleteObjectSuccessMessage, foodCategory.Name), ToastType.Success);
             return this.RedirectToAction("Index", "FoodCategories");
         }
     }

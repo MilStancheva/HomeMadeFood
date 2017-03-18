@@ -30,7 +30,7 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
-            controller.WithCallTo(x => x.Index(It.IsAny<string>())).ShouldRenderView("Index");
+            controller.WithCallTo(x => x.Index()).ShouldRenderView("Index");
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
-            controller.WithCallTo(x => x.Index(It.IsAny<string>()))
+            controller.WithCallTo(x => x.Index())
                 .ShouldRenderView("Index")
                 .WithModel<SearchIngredientViewModel>()
                 .AndNoModelErrors();
@@ -68,10 +68,10 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             var searchModel = new SearchIngredientViewModel();
             searchModel.Ingredients = ingredients.Select(x => new IngredientViewModel() { Name = x.Name });
             var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
-            controller.Index("some name");
+            controller.Index();
 
             //Act & Assert
-            controller.WithCallTo(x => x.Index(It.IsAny<string>()))
+            controller.WithCallTo(x => x.Index())
                 .ShouldRenderView("Index")
                 .WithModel<SearchIngredientViewModel>(
                     viewModel => Assert.AreEqual(ingredients.ToList()[0].Name, searchModel.Ingredients.ToList()[0].Name))

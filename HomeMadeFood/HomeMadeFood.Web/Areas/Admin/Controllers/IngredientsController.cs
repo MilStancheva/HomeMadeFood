@@ -17,6 +17,18 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class IngredientsController : Controller
     {
+        private readonly int gridPageSize = 25;
+
+        private string toastrSuccessTitle = "Yeah!";
+        private string toastrAddObjectSuccessMessage = "{0} is successfully added";
+        private string toastrUpdateObjectSuccessMessage = "{0} is successfully updated";
+        private string toastrDeleteObjectSuccessMessage = "{0} is successfully deleted";
+
+        private string toastrFailureTitle = "Something went wrong...";
+        private string toastrAddObjectFailureMessage = "Ooops! {0} could not be added. Please check again the input data. Thanks!";
+        private string toastrUpdateObjectFailureMessage = "Ooops! {0} could not be updated. Please check again the input data. Thanks!";
+        private string toastrDeleteObjectFailureMessage = "Ooops! {0} could not be deleted.";
+
         private readonly IIngredientsService ingredientsService;
         private readonly IFoodCategoriesService foodCategoriesService;
         private readonly IMappingService mappingService;
@@ -33,29 +45,39 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             this.mappingService = mappingService;
         }
 
-        public ActionResult Index(string name)
+        public ActionResult Index()
         {
             var ingredients = this.ingredientsService.GetAllIngredientsIncludingRecipes()
                 .Select(this.mappingService.Map<IngredientViewModel>)
                 .ToList();
 
-            if (!string.IsNullOrEmpty(name))
-            {
-                ingredients = this.ingredientsService.GetAllIngredientsIncludingRecipes()
-                .Where(x => x.Name.ToLower().Contains(name.ToLower()))
-                .Select(this.mappingService.Map<IngredientViewModel>)
-                .ToList();
-            }
-
             var searchModel = new SearchIngredientViewModel();
             if (ingredients != null)
             {
                 searchModel.Ingredients = ingredients;
-                searchModel.PageSize = 5;
+                searchModel.PageSize = gridPageSize;
                 searchModel.TotalRecords = ingredients.Count();
             }
 
             return this.View(searchModel);
+        }
+
+        public ActionResult Search(string name)
+        {
+            var ingredients = this.ingredientsService.GetAllIngredientsIncludingRecipes()
+                .Where(x => x.Name.ToLower().Contains(name.ToLower()))
+                .Select(this.mappingService.Map<IngredientViewModel>)
+                .ToList();
+            
+            var searchModel = new SearchIngredientViewModel();
+            if (ingredients != null)
+            {
+                searchModel.Ingredients = ingredients;
+                searchModel.PageSize = gridPageSize;
+                searchModel.TotalRecords = ingredients.Count();
+            }
+
+            return this.PartialView("_IngredientsGridPartial", searchModel);
         }
 
         [HttpGet]
@@ -75,8 +97,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {ingredientModel.Name} could not be added. Please check again the input data. Thanks!", ToastType.Error);
-
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrAddObjectFailureMessage, ingredientModel.Name), ToastType.Error);
                 return this.View(ingredientModel);
             }
 
@@ -84,8 +105,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
             this.ingredientsService.AddIngredient(ingredientModel.Name, foodCategoryId, ingredientModel.PricePerMeasuringUnit, ingredientModel.QuantityInMeasuringUnit);
 
-            this.AddToastMessage("Yeah!", $"{ingredientModel.Name} is successfully added", ToastType.Success);
-
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrAddObjectSuccessMessage, ingredientModel.Name), ToastType.Success);
             return this.RedirectToAction("Index", "Ingredients");
         }
 
@@ -108,14 +128,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {ingredientModel.Name} could not be updated. Please check again the input data. Thanks!", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrUpdateObjectFailureMessage, ingredientModel.Name), ToastType.Error);
                 return this.View(ingredientModel);
             }
 
             var ingredient = this.mappingService.Map<Ingredient>(ingredientModel);
             this.ingredientsService.EditIngredient(ingredient);
 
-            this.AddToastMessage("Yeah!", $"{ingredientModel.Name} is successfully updated", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle,string.Format(toastrUpdateObjectSuccessMessage, ingredientModel.Name), ToastType.Success);
             return this.RedirectToAction("Index", "Ingredients");
         }
 
@@ -145,14 +165,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
             if (ingredient == null)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {ingredient.Name} could not be deleted.", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrDeleteObjectFailureMessage, ingredient.Name), ToastType.Error);
                 var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
                 return this.View("DeleteIngredient", ingredientModel.Id);
             }
 
             this.ingredientsService.DeleteIngredient(ingredient);
 
-            this.AddToastMessage("Yeah!", $"{ingredient.Name} is successfully deleted", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrDeleteObjectSuccessMessage, ingredient.Name), ToastType.Success);
             return this.RedirectToAction("Index", "Ingredients");
         }
     }

@@ -1,0 +1,77 @@
+﻿@model RecipeViewModel
+
+@{
+    ViewBag.Title = "AdminDetailsRecipe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin Details Recipe</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DishType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DishType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Describtion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Describtion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instruction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instruction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostPerPortion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostPerPortion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityPerPortion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityPerPortion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingredients)
+        </dt>
+        @{
+            foreach (var ingredient in Model.Ingredients)
+            {
+                <dd>
+                    @ingredient.Name
+                </dd>
+            }
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditRecipe", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

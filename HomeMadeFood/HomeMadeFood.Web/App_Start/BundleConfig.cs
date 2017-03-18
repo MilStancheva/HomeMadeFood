@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace HomeMadeFood.Web
 {
@@ -9,7 +8,8 @@ namespace HomeMadeFood.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));            
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js"));            
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -40,6 +40,11 @@ namespace HomeMadeFood.Web
 
             bundles.Add(new ScriptBundle("~/bundles/toastr", "http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js")
                             .Include("~/Scripts/toastr.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminindexpage").Include(
+                     "~/Scripts/Custom/bootstrap.min.js",
+                     "~/Scripts/Custom/custom.js",
+                     "~/Scripts/Custom/searchform-submit.js"));
         }
     }
 }

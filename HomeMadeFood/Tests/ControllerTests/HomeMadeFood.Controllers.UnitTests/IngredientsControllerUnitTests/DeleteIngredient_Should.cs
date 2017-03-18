@@ -82,7 +82,7 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
 
             //Act & Assert
             controller.WithCallTo(x => x.DeleteIngredientConfirm(id))
-                .ShouldRedirectTo(x => x.Index(null));
+                .ShouldRedirectTo(x => x.Index());
         }
     }
 }

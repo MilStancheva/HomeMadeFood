@@ -393,6 +393,7 @@
     <Content Include="Areas\Admin\Views\Recipes\_AddIngredientsToRecipe.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\EditRecipe.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\DeleteRecipe.cshtml" />
+    <Content Include="Areas\Admin\Views\Recipes\DetailsRecipe.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />
@@ -404,12 +405,15 @@
     <Content Include="Scripts\Custom\custom.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\Custom\get-foodcategories.js" />
+    <Content Include="Scripts\Custom\searchform-submit.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

@@ -11,13 +11,14 @@
     <div class="col-md-10">
         <h2>Ingredients</h2>
 
-        @using (Ajax.BeginForm("Index", null,
-                                                new AjaxOptions
-                                                {
-                                                    UpdateTargetId = "results",
-                                                    InsertionMode = InsertionMode.Replace,
-                                                    HttpMethod = "POST"
-                                                }, new { id = "searchForm" }))
+        @using (Ajax.BeginForm("Search",
+                    null,
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "results",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "POST"
+                    }, new { id = "searchForm" }))
         {
             <div class="row">
                 <div class="col-md-4">
@@ -39,12 +40,5 @@
 </div>
 
 @section scripts {
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="~/Scripts/Custom/bootstrap.min.js"></script>
-    <script src="~/Scripts/Custom/custom.js"></script>
-    <script>
-        function changed() {
-            $("#searchForm").submit();
-        }
-    </script>
+    @Scripts.Render("~/bundles/adminindexpage");
 }

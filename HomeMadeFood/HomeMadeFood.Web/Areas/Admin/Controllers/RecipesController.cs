@@ -17,6 +17,18 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class RecipesController : Controller
     {
+        private readonly int gridPageSize = 25;
+
+        private string toastrSuccessTitle = "Yeah!";
+        private string toastrAddObjectSuccessMessage = "{0} is successfully added";
+        private string toastrUpdateObjectSuccessMessage = "{0} is successfully updated";
+        private string toastrDeleteObjectSuccessMessage = "{0} is successfully deleted";
+
+        private string toastrFailureTitle = "Something went wrong...";
+        private string toastrAddObjectFailureMessage = "Ooops! {0} could not be added. Please check again the input data. Thanks!";
+        private string toastrUpdateObjectFailureMessage = "Ooops! {0} could not be updated. Please check again the input data. Thanks!";
+        private string toastrDeleteObjectFailureMessage = "Ooops! {0} could not be deleted.";
+
         private readonly IIngredientsService ingredientsService;
         private readonly IMappingService mappingService;
         private readonly IRecipesService recipesService;
@@ -37,29 +49,46 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             this.mappingService = mappingService;
         }
 
-        public ActionResult Index(string title)
+        public ActionResult Index()
         {
             var recipes = this.recipesService.GetAllRecipes()
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
 
-            if (!string.IsNullOrEmpty(title))
+            var searchModel = new SearchRecipeViewModel();
+            if (recipes != null)
             {
-                recipes = this.recipesService.GetAllRecipes()
+                searchModel.Recipes = recipes;
+                searchModel.PageSize = gridPageSize;
+                searchModel.TotalRecords = recipes.Count();
+            }
+
+            return this.View(searchModel);
+        }
+
+        public ActionResult Search(string title)
+        {
+            var recipes = this.recipesService.GetAllRecipes()
                 .Where(x => x.Title.ToLower().Contains(title.ToLower()))
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
-            }
+
+            //if (string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(title))
+            //{
+            //    recipes = this.recipesService.GetAllRecipes()
+            //    .Select(this.mappingService.Map<RecipeViewModel>)
+            //    .ToList();
+            //}
 
             var searchModel = new SearchRecipeViewModel();
             if (recipes != null)
             {
                 searchModel.Recipes = recipes;
-                searchModel.PageSize = 5;
+                searchModel.PageSize = gridPageSize;
                 searchModel.TotalRecords = recipes.Count();
             }
 
-            return this.View(searchModel);
+            return this.PartialView("_RecipesGridPartial", searchModel);
         }
 
         [HttpGet]
@@ -100,13 +129,13 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {recipeModel.Title} could not be added. Please check again the input data. Thanks!", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrAddObjectFailureMessage, recipeModel.Title), ToastType.Error);
                 return this.View(recipeModel);
             }
 
             var recipe = this.mappingService.Map<Recipe>(recipeModel);
             this.recipesService.AddRecipe(recipe, ingredientNames, ingredientQuantities, ingredientPrices, foodCategories);            
-            this.AddToastMessage("Yeah!", $"{recipeModel.Title} is successfully added", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrAddObjectSuccessMessage, recipeModel.Title), ToastType.Success);
 
             return this.RedirectToAction("Index", "Recipes");
         }
@@ -125,14 +154,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {model.Title} could not be updated. Please check again the input data. Thanks!", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrUpdateObjectFailureMessage, model.Title), ToastType.Error);
                 return this.View(model);
             }
 
             var recipe = this.mappingService.Map<Recipe>(model);
             this.recipesService.EditRecipe(recipe);
 
-            this.AddToastMessage("Yeah!", $"{model.Title} is successfully updated", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrUpdateObjectSuccessMessage, model.Title), ToastType.Success);
             return this.RedirectToAction("Index", "Recipes");
         }
 
@@ -158,15 +187,23 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
             if (recipe == null)
             {
-                this.AddToastMessage("Something went wrong...", $"Ooops! {recipe.Title} could not be deleted.", ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrDeleteObjectFailureMessage, recipe.Title), ToastType.Error);
                 var model = this.mappingService.Map<RecipeViewModel>(recipe);
                 return this.View("DeleteRecipe", model.Id);
             }
 
             this.recipesService.DeleteRecipe(recipe);
 
-            this.AddToastMessage("Yeah!", $"{recipe.Title} is successfully deleted", ToastType.Success);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrDeleteObjectSuccessMessage, recipe.Title), ToastType.Success);
             return this.RedirectToAction("Index", "Recipes");
+        }
+
+        public ActionResult DetailsRecipe(Guid id)
+        {
+            var recipe = this.recipesService.GetRecipeById(id);
+            var model = this.mappingService.Map<RecipeViewModel>(recipe);
+
+            return this.View(model);
         }
     }
 }

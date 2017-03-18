@@ -1,0 +1,3 @@
+﻿function changed() {
+    $("#searchForm").submit();
+}
