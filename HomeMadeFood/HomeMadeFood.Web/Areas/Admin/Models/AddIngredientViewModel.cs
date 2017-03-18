@@ -1,10 +1,11 @@
-﻿using DataAnnotationsExtensions;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
+using DataAnnotationsExtensions;
 
 using HomeMadeFood.Models;
 using HomeMadeFood.Web.Common.Mapping;
-using System.Collections.Generic;
-using System;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
 {

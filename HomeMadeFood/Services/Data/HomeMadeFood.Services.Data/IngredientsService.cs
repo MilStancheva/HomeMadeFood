@@ -20,17 +20,19 @@ namespace HomeMadeFood.Services.Data
             this.data = data;
         }
 
-        public void AddIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit)
+        public void AddIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit, Guid recipeId)
         {
             Guard.WhenArgument(name, "name").IsNull().Throw();
             Guard.WhenArgument(foodCategoryId, "foodCategoryId").IsEmptyGuid().Throw();
+            Guard.WhenArgument(recipeId, "recipeId").IsEmptyGuid().Throw();
 
             Ingredient ingredient = new Ingredient()
             {
                 Name = name,
                 FoodcategoryId = foodCategoryId,
                 PricePerMeasuringUnit = pricePerMeasuringUnit,
-                QuantityInMeasuringUnit = quantityPerMeasuringUnit
+                QuantityInMeasuringUnit = quantityPerMeasuringUnit,
+                RecipeId = recipeId
             };
 
             this.data.Ingredients.Add(ingredient);

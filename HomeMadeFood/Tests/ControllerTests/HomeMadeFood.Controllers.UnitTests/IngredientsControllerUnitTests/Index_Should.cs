@@ -7,7 +7,6 @@ using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
 using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Controllers;
@@ -26,8 +25,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             var inredientsServiceMock = new Mock<IIngredientsService>();
             inredientsServiceMock.Setup(x => x.GetAllIngredients()).Returns(ingredients);
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
             controller.WithCallTo(x => x.Index()).ShouldRenderView("Index");
@@ -41,8 +41,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             var inredientsServiceMock = new Mock<IIngredientsService>();
             inredientsServiceMock.Setup(x => x.GetAllIngredients()).Returns(ingredients);
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
             controller.WithCallTo(x => x.Index())
@@ -64,10 +65,11 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             var inredientsServiceMock = new Mock<IIngredientsService>();
             inredientsServiceMock.Setup(x => x.GetAllIngredients()).Returns(ingredients);
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
             var searchModel = new SearchIngredientViewModel();
             searchModel.Ingredients = ingredients.Select(x => new IngredientViewModel() { Name = x.Name });
-            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
             controller.Index();
 
             //Act & Assert

@@ -5,13 +5,10 @@ using System.Linq;
 using Moq;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
-
-using HomeMadeFood.Models.Enums;
 using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Controllers;
 using HomeMadeFood.Web.Areas.Admin.Models;
-using HomeMadeFood.Models;
 using System;
 
 namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
@@ -25,8 +22,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             //Arrange
             var inredientsServiceMock = new Mock<IIngredientsService>();
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
             controller.WithCallTo(x => x.AddIngredient()).ShouldRenderView("AddIngredient");
@@ -38,8 +36,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
 
             AddIngredientViewModel ingredientModel = new AddIngredientViewModel();
             ingredientModel.Name = null;
@@ -77,8 +76,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
 
             AddIngredientViewModel ingredientModel = new AddIngredientViewModel();
             ingredientModel.Name = "Pink Tomato";

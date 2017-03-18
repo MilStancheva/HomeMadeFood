@@ -1,57 +1,66 @@
-﻿@model HomeMadeFood.Web.Areas.Admin.Models.IngredientViewModel
+﻿@model IngredientViewModel
 
 @{
     ViewBag.Title = "Delete Ingredient";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete Ingredient</h2>
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Delete Ingredient</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => Model.Name)
-        </dt>
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => Model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => Model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => Model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => Model.FoodCategory)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => Model.FoodCategory)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => Model.FoodCategory)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => Model.FoodCategory)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => Model.PricePerMeasuringUnit)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => Model.PricePerMeasuringUnit)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => Model.PricePerMeasuringUnit)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => Model.PricePerMeasuringUnit)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => Model.QuantityInMeasuringUnit)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => Model.QuantityInMeasuringUnit)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => Model.QuantityInMeasuringUnit)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => Model.QuantityInMeasuringUnit)
+                </dd>
 
-    </dl>
+            </dl>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> | 
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/adminaddpage")
+}

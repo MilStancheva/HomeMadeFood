@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using HomeMadeFood.Models;
@@ -14,6 +13,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         [MaxLength(50)]
         public string Title { get; set; }
 
+        [Display(Name ="Dish Type")]
         public DishType DishType { get; set; }
 
         [Required]

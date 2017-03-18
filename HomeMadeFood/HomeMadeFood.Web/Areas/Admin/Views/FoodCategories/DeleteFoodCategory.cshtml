@@ -4,61 +4,70 @@
     ViewBag.Title = "DeleteFoodCategory";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Delete Food Category</h2>
 
-<h2>Delete Food Category</h2>
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FoodType)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FoodType)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FoodType)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FoodType)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MeasuringUnit)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MeasuringUnit)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MeasuringUnit)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MeasuringUnit)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CostOfAllCategoryIngredients)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CostOfAllCategoryIngredients)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CostOfAllCategoryIngredients)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CostOfAllCategoryIngredients)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.QuantityOfAllCategoryIngredients)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuantityOfAllCategoryIngredients)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.QuantityOfAllCategoryIngredients)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.QuantityOfAllCategoryIngredients)
-        </dd>
+            </dl>
 
-    </dl>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/adminaddpage")
+}

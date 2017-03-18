@@ -13,6 +13,7 @@ using HomeMadeFood.Web.Controllers.Extensions;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FoodCategoriesController : Controller
     {
         private readonly int gridPageSize = 25;
@@ -154,7 +155,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
             if (foodCategory == null)
             {
-                this.AddToastMessage(toastrFailureTitle, string.Format(toastrUpdateObjectFailureMessage, foodCategory.Name), ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrDeleteObjectFailureMessage, foodCategory.Name), ToastType.Error);
                 var model = this.mappingService.Map<FoodCategoryViewModel>(foodCategory);
                 return this.View("DeleteFoodCategory", model.Id);
             }

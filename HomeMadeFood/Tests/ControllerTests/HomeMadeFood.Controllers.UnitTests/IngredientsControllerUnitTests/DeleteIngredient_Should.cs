@@ -5,7 +5,6 @@ using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
 using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Controllers;
@@ -21,8 +20,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             //Arrange
             var inredientsServiceMock = new Mock<IIngredientsService>();
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
             var id = Guid.NewGuid();
 
             //Act & Assert
@@ -36,8 +36,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             //Arrange
             var inredientsServiceMock = new Mock<IIngredientsService>();
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(inredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
 
             //Act & Assert
             controller.WithCallTo(x => x.DeleteIngredient(Guid.Empty))
@@ -50,8 +51,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
             var id = Guid.NewGuid();
             ingredientsServiceMock.Setup(x => x.GetIngredientById(id)).Returns<Ingredient>(null);
 
@@ -66,8 +68,9 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();
             var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            var recipesServiceMock = new Mock<IRecipesService>();
             var mappingServiceMock = new Mock<IMappingService>();
-            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, mappingServiceMock.Object);
+            var controller = new IngredientsController(ingredientsServiceMock.Object, foodCategoriesServiceMock.Object, recipesServiceMock.Object, mappingServiceMock.Object);
             var id = Guid.NewGuid();
 
             Ingredient ingredient = new Ingredient();

@@ -11,7 +11,7 @@ namespace HomeMadeFood.Services.Data.Contracts
 
         IEnumerable<Ingredient> GetAllIngredientsIncludingRecipes();
 
-        void AddIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit);
+        void AddIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit, Guid recipeId);
 
         Ingredient GetIngredientById(Guid id);
 

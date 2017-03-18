@@ -45,6 +45,12 @@ namespace HomeMadeFood.Web
                      "~/Scripts/Custom/bootstrap.min.js",
                      "~/Scripts/Custom/custom.js",
                      "~/Scripts/Custom/searchform-submit.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminaddpage").Include(
+                    "~/Scripts/Custom/bootstrap.min.js",
+                    "~/Scripts/Custom/custom.js",
+                    "~/Scripts/Custom/get-foodcategories.js",
+                    "~/Scripts/Custom/add-ingredients-autocomplete.js"));
         }
     }
 }

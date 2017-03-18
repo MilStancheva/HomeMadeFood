@@ -12,6 +12,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
 
         public int TotalRecords { get; set; }
 
+        [Display(Name ="Food Categories")]
         public IEnumerable<FoodCategoryViewModel> FoodCategories { get; set; }
     }
 }

@@ -21,10 +21,11 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             string name = null;
             decimal pricePerMeasuringUnit = 1.19m;
             Guid foodCategoryId = Guid.NewGuid();
+            Guid recipeId = Guid.NewGuid();
             double quantityPerMeasuringUnit = 0.250;
 
             //Act & Assert
-            Assert.Throws<ArgumentNullException>(() => ingredientsService.AddIngredient(name, foodCategoryId, pricePerMeasuringUnit, quantityPerMeasuringUnit));
+            Assert.Throws<ArgumentNullException>(() => ingredientsService.AddIngredient(name, foodCategoryId, pricePerMeasuringUnit, quantityPerMeasuringUnit, recipeId));
         }
 
         [Test]
@@ -36,11 +37,12 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             string name = "NameOfTheIngredient";
             decimal pricePerMeasuringUnit = 1.19m;
             Guid foodCategoryId = Guid.NewGuid();
+            Guid recipeId = Guid.NewGuid();
             double quantityPerMeasuringUnit = 0.250;
 
             dataMock.Setup(x => x.Ingredients.Add(It.IsAny<Ingredient>()));
             //Act
-            ingredientsService.AddIngredient(name, foodCategoryId, pricePerMeasuringUnit, quantityPerMeasuringUnit);
+            ingredientsService.AddIngredient(name, foodCategoryId, pricePerMeasuringUnit, quantityPerMeasuringUnit, recipeId);
 
             //Assert
             dataMock.Verify(x => x.Commit(), Times.Once);
@@ -55,12 +57,13 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             string name = "NameOfTheIngredient";
             decimal pricePerMeasuringUnit = 1.19m;
             Guid foodCategoryId = Guid.NewGuid();
+            Guid recipeId = Guid.NewGuid();
             double quantityPerMeasuringUnit = 0.250;
 
             dataMock.Setup(x => x.Ingredients.Add(It.IsAny<Ingredient>()));
 
             //Act
-            ingredientsService.AddIngredient(name, foodCategoryId, pricePerMeasuringUnit, quantityPerMeasuringUnit);
+            ingredientsService.AddIngredient(name, foodCategoryId, pricePerMeasuringUnit, quantityPerMeasuringUnit, recipeId);
 
             //Assert
             dataMock.Verify(x => x.Ingredients.Add(It.IsAny<Ingredient>()), Times.Once);

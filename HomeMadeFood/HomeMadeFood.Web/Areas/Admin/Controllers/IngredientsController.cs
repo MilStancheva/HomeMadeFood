@@ -31,15 +31,19 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         private readonly IIngredientsService ingredientsService;
         private readonly IFoodCategoriesService foodCategoriesService;
+        private readonly IRecipesService recipesService;
         private readonly IMappingService mappingService;
 
-        public IngredientsController(IIngredientsService ingredientsService, IFoodCategoriesService foodCategoriesService, IMappingService mappingService)
+        public IngredientsController(IIngredientsService ingredientsService, IFoodCategoriesService foodCategoriesService, IRecipesService recipesService, IMappingService mappingService)
         {
             Guard.WhenArgument(ingredientsService, "ingredientsService").IsNull().Throw();
             this.ingredientsService = ingredientsService;
 
             Guard.WhenArgument(foodCategoriesService, "foodCategoriesService").IsNull().Throw();
             this.foodCategoriesService = foodCategoriesService;
+
+            Guard.WhenArgument(recipesService, "recipesService").IsNull().Throw();
+            this.recipesService = recipesService;
 
             Guard.WhenArgument(mappingService, "mappingService").IsNull().Throw();
             this.mappingService = mappingService;
@@ -87,6 +91,10 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 .Select(this.mappingService.Map<FoodCategoryViewModel>);
             var model = new AddIngredientViewModel();
             model.FoodCategories = foodCategories;
+
+            var recipes = this.recipesService.GetAllRecipes()
+                .Select(this.mappingService.Map<RecipeViewModel>);
+            model.Recipes = recipes;
             
             return this.View(model);
         }
@@ -102,8 +110,9 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             }
 
             var foodCategoryId = ingredientModel.SelectedFoodCategoryId;
+            var recipeId = ingredientModel.SelectedRecipeId;
 
-            this.ingredientsService.AddIngredient(ingredientModel.Name, foodCategoryId, ingredientModel.PricePerMeasuringUnit, ingredientModel.QuantityInMeasuringUnit);
+            this.ingredientsService.AddIngredient(ingredientModel.Name, foodCategoryId, ingredientModel.PricePerMeasuringUnit, ingredientModel.QuantityInMeasuringUnit, recipeId);
 
             this.AddToastMessage(toastrSuccessTitle, string.Format(toastrAddObjectSuccessMessage, ingredientModel.Name), ToastType.Success);
             return this.RedirectToAction("Index", "Ingredients");
@@ -119,12 +128,20 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
             var ingredient = this.ingredientsService.GetIngredientById(id);
             var ingredientModel = this.mappingService.Map<IngredientViewModel>(ingredient);
+            var recipes = this.recipesService.GetAllRecipes()
+                .Select(this.mappingService.Map<RecipeViewModel>);
+            ingredientModel.Recipes = recipes;
+
+            var foodCategories = this.foodCategoriesService.GetAllFoodCategories()
+                .Select(this.mappingService.Map<FoodCategoryViewModel>);
+            ingredientModel.FoodCategories = foodCategories;
+             
             return this.View(ingredientModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditIngredient([Bind(Exclude ="Id")]IngredientViewModel ingredientModel)
+        public ActionResult EditIngredient([Bind(Exclude = "FoodCategory,FoodCategories,Recipe,Recipes")]IngredientViewModel ingredientModel)
         {
             if (!this.ModelState.IsValid)
             {
