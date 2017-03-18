@@ -11,7 +11,6 @@ using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
 using HomeMadeFood.Web.Common.Messaging;
 using HomeMadeFood.Web.Controllers.Extensions;
-using System.Collections.Generic;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
@@ -36,13 +35,13 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         public ActionResult Index(string name)
         {
-            var ingredients = this.ingredientsService.GetAllIngredients()
+            var ingredients = this.ingredientsService.GetAllIngredientsIncludingRecipes()
                 .Select(this.mappingService.Map<IngredientViewModel>)
                 .ToList();
 
             if (!string.IsNullOrEmpty(name))
             {
-                ingredients = this.ingredientsService.GetAllIngredients()
+                ingredients = this.ingredientsService.GetAllIngredientsIncludingRecipes()
                 .Where(x => x.Name.ToLower().Contains(name.ToLower()))
                 .Select(this.mappingService.Map<IngredientViewModel>)
                 .ToList();

@@ -39,7 +39,10 @@
 
             $(wrapper).find('input[type=text]:last').autocomplete({
                 source: ingredientNames
-            });            
+            });
+
+            //SendData($("ingredientName" + i), $("quantity" + i), $("price" + i), $("foodCategories" + i));
+
         }
 
         $(wrapper).on("click", ".remove_field", function (e) {
@@ -51,4 +54,20 @@
             source: ingredientNames
         });
     });
+
+    //function SendData(ingredientName, ingredientQuantity, ingredientPrice, foodCategory) {
+    //    var token = $("[name='__RequestVerificationToken']").val();
+    //    var options = {
+    //        url: '@Url.Action("AutoComplete","Recipes")',
+    //        type: "post",
+    //        data: {
+    //            __RequestVerificationToken: token,
+    //            name: ingredientName.val(),
+    //            quantity: ingredientQuantity.val(),
+    //            price: ingredientPrice.val(),
+    //            foodCategory: foodCategory.val()
+    //        }
+    //    };
+    //    $.ajax(options);
+    //}
 });

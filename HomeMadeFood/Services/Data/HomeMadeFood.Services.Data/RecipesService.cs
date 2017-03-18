@@ -1,12 +1,13 @@
-﻿using Bytes2you.Validation;
-using HomeMadeFood.Data.Data;
-using HomeMadeFood.Services.Data.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Bytes2you.Validation;
+
+using HomeMadeFood.Data.Data;
+using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Models;
+using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Services.Data
 {
@@ -48,10 +49,31 @@ namespace HomeMadeFood.Services.Data
                     FoodcategoryId = foodCategoryId
                 };
 
-                recipe.Ingredients.Add(ingredient);
+                recipe.Ingredients.Add(ingredient);               
             }
 
+            var costPerPortion = recipe.Ingredients.Select(x => x.PricePerMeasuringUnit).Sum();
+            var quantityPerPortion = recipe.Ingredients.Select(x => x.QuantityInMeasuringUnit).Sum();
+            recipe.CostPerPortion = costPerPortion;
+            recipe.QuantityPerPortion = quantityPerPortion;
+
             this.data.Recipes.Add(recipe);
+            this.data.Commit();
+        }
+
+        public void DeleteRecipe(Recipe recipe)
+        {
+            Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
+
+            this.data.Recipes.Delete(recipe);
+            this.data.Commit();
+        }
+
+        public void EditRecipe(Recipe recipe)
+        {
+            Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
+
+            this.data.Recipes.Update(recipe);
             this.data.Commit();
         }
 
@@ -64,6 +86,20 @@ namespace HomeMadeFood.Services.Data
             }
 
             return recipes.OrderBy(x => x.Id);
+        }
+
+        public Recipe GetRecipeById(Guid id)
+        {
+            Guard.WhenArgument(id, "id").IsEmptyGuid().Throw();
+
+            var recipe = this.data.Recipes.GetById(id);
+
+            if (recipe == null)
+            {
+                return null;
+            }
+
+            return recipe;
         }
     }
 }

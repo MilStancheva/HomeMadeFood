@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace HomeMadeFood.Data.Repositories
 {
@@ -14,5 +17,7 @@ namespace HomeMadeFood.Data.Repositories
         void Update(T entity);
 
         void Delete(T entity);
+
+        IEnumerable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeExpressions);
     }
 }

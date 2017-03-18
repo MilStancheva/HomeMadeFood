@@ -14,5 +14,11 @@ namespace HomeMadeFood.Services.Data.Contracts
             IEnumerable<Guid> foodCategories);
 
         IEnumerable<Recipe> GetAllRecipes();
+
+        void EditRecipe(Recipe recipe);
+
+        void DeleteRecipe(Recipe recipe);
+
+        Recipe GetRecipeById(Guid id);
     }
 }

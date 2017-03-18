@@ -20,7 +20,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         [Display(Name = ("Food Category"))]
         public FoodCategory FoodCategory { get; set; }
 
-        public string Recipe { get; set; }
+        public Recipe Recipe { get; set; }
 
         [Required]
         [Min(0)]

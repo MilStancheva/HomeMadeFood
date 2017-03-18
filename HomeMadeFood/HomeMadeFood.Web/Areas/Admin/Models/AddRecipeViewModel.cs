@@ -26,7 +26,6 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         [DataType(DataType.MultilineText)]
         public string Instruction { get; set; }
 
-        [Required]
-        public ICollection<AddIngredientViewModel> Ingredients { get; set; }
+        public IEnumerable<AddIngredientViewModel> Ingredients { get; set; }
     }
 }

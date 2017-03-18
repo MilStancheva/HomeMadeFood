@@ -78,5 +78,10 @@ namespace HomeMadeFood.Services.Data
             this.data.Ingredients.Delete(ingredient);
             this.data.Commit();
         }
+
+        public IEnumerable<Ingredient> GetAllIngredientsIncludingRecipes()
+        {
+            return this.data.Ingredients.GetAllIncluding(x => x.Recipe);
+        }
     }
 }

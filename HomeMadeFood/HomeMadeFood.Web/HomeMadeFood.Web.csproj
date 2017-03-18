@@ -391,6 +391,8 @@
     <Content Include="Areas\Admin\Views\FoodCategories\DeleteFoodCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\_RecipesGridPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Recipes\_AddIngredientsToRecipe.cshtml" />
+    <Content Include="Areas\Admin\Views\Recipes\EditRecipe.cshtml" />
+    <Content Include="Areas\Admin\Views\Recipes\DeleteRecipe.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />

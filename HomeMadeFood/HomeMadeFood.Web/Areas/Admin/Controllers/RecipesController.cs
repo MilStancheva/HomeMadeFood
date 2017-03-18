@@ -1,15 +1,16 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+
+using Bytes2you.Validation;
+
 using HomeMadeFood.Models;
 using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
 using HomeMadeFood.Web.Common.Messaging;
 using HomeMadeFood.Web.Controllers.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
@@ -97,16 +98,74 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             IEnumerable<decimal> ingredientPrices,
             IEnumerable<Guid> foodCategories)
         {
-            //if (!this.ModelState.IsValid)
-            //{
-            //    this.AddToastMessage("Something went wrong...", $"Ooops! {recipeModel.Title} could not be added. Please check again the input data. Thanks!", ToastType.Error);
-            //    return this.View(recipeModel);
-            //}
+            if (!this.ModelState.IsValid)
+            {
+                this.AddToastMessage("Something went wrong...", $"Ooops! {recipeModel.Title} could not be added. Please check again the input data. Thanks!", ToastType.Error);
+                return this.View(recipeModel);
+            }
 
             var recipe = this.mappingService.Map<Recipe>(recipeModel);
             this.recipesService.AddRecipe(recipe, ingredientNames, ingredientQuantities, ingredientPrices, foodCategories);            
             this.AddToastMessage("Yeah!", $"{recipeModel.Title} is successfully added", ToastType.Success);
 
+            return this.RedirectToAction("Index", "Recipes");
+        }
+
+        [HttpGet]
+        public ViewResult EditRecipe(Guid id)
+        {
+            var recipe = this.recipesService.GetRecipeById(id);
+            var model = this.mappingService.Map<RecipeViewModel>(recipe);
+            
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditRecipe([Bind(Exclude ="Ingredients")]RecipeViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.AddToastMessage("Something went wrong...", $"Ooops! {model.Title} could not be updated. Please check again the input data. Thanks!", ToastType.Error);
+                return this.View(model);
+            }
+
+            var recipe = this.mappingService.Map<Recipe>(model);
+            this.recipesService.EditRecipe(recipe);
+
+            this.AddToastMessage("Yeah!", $"{model.Title} is successfully updated", ToastType.Success);
+            return this.RedirectToAction("Index", "Recipes");
+        }
+
+        [HttpGet]
+        public ViewResult DeleteRecipe(Guid id)
+        {
+            var recipe = this.recipesService.GetRecipeById(id);
+            var model = this.mappingService.Map<RecipeViewModel>(recipe);
+
+            return this.View(model);
+        }
+
+        [HttpPost, ActionName("DeleteRecipe")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteRecipeConfirm(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                return this.View("404.html");
+            }
+
+            var recipe = this.recipesService.GetRecipeById(id);
+
+            if (recipe == null)
+            {
+                this.AddToastMessage("Something went wrong...", $"Ooops! {recipe.Title} could not be deleted.", ToastType.Error);
+                var model = this.mappingService.Map<RecipeViewModel>(recipe);
+                return this.View("DeleteRecipe", model.Id);
+            }
+
+            this.recipesService.DeleteRecipe(recipe);
+
+            this.AddToastMessage("Yeah!", $"{recipe.Title} is successfully deleted", ToastType.Success);
             return this.RedirectToAction("Index", "Recipes");
         }
     }

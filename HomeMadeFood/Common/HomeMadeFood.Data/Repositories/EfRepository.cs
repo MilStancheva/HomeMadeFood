@@ -1,7 +1,10 @@
 ﻿using Bytes2you.Validation;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace HomeMadeFood.Data.Repositories
 {
@@ -58,6 +61,18 @@ namespace HomeMadeFood.Data.Repositories
             }
 
             return entry;
+        }
+
+        public IEnumerable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeExpressions)
+        {
+            IQueryable<T> set = this.DbSet;
+
+            foreach (var includeExpression in includeExpressions)
+            {
+                set = set.Include(includeExpression);
+            }
+
+            return set;
         }
     }
 }

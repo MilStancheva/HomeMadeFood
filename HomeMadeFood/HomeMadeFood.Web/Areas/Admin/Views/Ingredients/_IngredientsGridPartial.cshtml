@@ -14,7 +14,7 @@
         lastText: "Last >>",
         columns: grid.Columns(
               grid.Column("Name", "Name", style: "col-lg-2"),
-              grid.Column("Receipe", "Recipe", style: "col-lg-2"),
+              grid.Column("Recipe", "Recipe", format: @<text><a href="@string.Format("/admin/recipes/editrecipe/{0}", item.Recipe.Id)">@string.Format("{0}", item.Recipe.Title)</a> </text>),
               grid.Column("PricePerMeasuringUnit", header: "PricePerMeasuringUnit", format: @<text>@string.Format("{0:C}", item.PricePerMeasuringUnit) </text>),
               grid.Column("QuantityInMeasuringUnit", "QuantityInMeasuringUnit", style: "col-lg-2"),
               grid.Column(header: "Action", canSort: false, style: "action",
