@@ -133,6 +133,8 @@
     <Compile Include="RecipesControllerUnitTests\GetFoodCategories_Should.cs" />
     <Compile Include="RecipesControllerUnitTests\Index_Should.cs" />
     <Compile Include="RecipesControllerUnitTests\Search_Should.cs" />
+    <Compile Include="UsersControllerUnitTests\Index_Should.cs" />
+    <Compile Include="UsersControllerUnitTests\Search_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
