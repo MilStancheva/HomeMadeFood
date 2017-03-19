@@ -73,13 +73,6 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
 
-            //if (string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(title))
-            //{
-            //    recipes = this.recipesService.GetAllRecipes()
-            //    .Select(this.mappingService.Map<RecipeViewModel>)
-            //    .ToList();
-            //}
-
             var searchModel = new SearchRecipeViewModel();
             if (recipes != null)
             {
@@ -143,6 +136,11 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         [HttpGet]
         public ViewResult EditRecipe(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("404.html");
+            }
+
             var recipe = this.recipesService.GetRecipeById(id);
             var model = this.mappingService.Map<RecipeViewModel>(recipe);
             
@@ -168,6 +166,11 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         [HttpGet]
         public ViewResult DeleteRecipe(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("404.html");
+            }
+
             var recipe = this.recipesService.GetRecipeById(id);
             var model = this.mappingService.Map<RecipeViewModel>(recipe);
 
@@ -200,6 +203,11 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         public ActionResult DetailsRecipe(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("404.html");
+            }
+
             var recipe = this.recipesService.GetRecipeById(id);
             var model = this.mappingService.Map<RecipeViewModel>(recipe);
 

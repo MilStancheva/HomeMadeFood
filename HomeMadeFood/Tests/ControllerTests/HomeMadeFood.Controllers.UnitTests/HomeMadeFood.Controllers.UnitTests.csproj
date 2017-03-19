@@ -125,6 +125,14 @@
     <Compile Include="IngredientsControllerUnitTests\Index_Should.cs" />
     <Compile Include="IngredientsControllerUnitTests\Search_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecipesControllerUnitTests\AddRecipe_Should.cs" />
+    <Compile Include="RecipesControllerUnitTests\AutoComplete_Should.cs" />
+    <Compile Include="RecipesControllerUnitTests\DeleteRecipe_Should.cs" />
+    <Compile Include="RecipesControllerUnitTests\DetailsRecipe_Should.cs" />
+    <Compile Include="RecipesControllerUnitTests\EditRecipe_Should.cs" />
+    <Compile Include="RecipesControllerUnitTests\GetFoodCategories_Should.cs" />
+    <Compile Include="RecipesControllerUnitTests\Index_Should.cs" />
+    <Compile Include="RecipesControllerUnitTests\Search_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
