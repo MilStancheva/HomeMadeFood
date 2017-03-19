@@ -111,6 +111,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AdminControllerUnitTests\Index_Should.cs" />
+    <Compile Include="FoodCategoriesControllerUnitTests\Index_Should.cs" />
     <Compile Include="HomeControllerTests\ContactShould.cs" />
     <Compile Include="HomeControllerTests\AboutShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
