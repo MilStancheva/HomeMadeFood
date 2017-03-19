@@ -1,8 +1,10 @@
-﻿using HomeMadeFood.Services.Data.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using Bytes2you.Validation;
+
 using HomeMadeFood.Models;
 using HomeMadeFood.Data.Data;
-using Bytes2you.Validation;
+using HomeMadeFood.Services.Data.Contracts;
 
 namespace HomeMadeFood.Services.Data
 {

@@ -13,7 +13,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
     public class GetAllFoodCategories_Should
     {
         [Test]
-        public void Invoke_TheDataFoodcategoriesRepositoryMethodGetAll_Once()
+        public void Invoke_TheDataFoodCategoriesRepositoryMethodGetAll_Once()
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
