@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 using Moq;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
+
 using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Controllers;
 using HomeMadeFood.Web.Areas.Admin.Models;
-using System;
 
 namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
 {
@@ -44,14 +45,6 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             ingredientModel.Name = null;
             var selectedFoodCategoryId = Guid.NewGuid();
             ingredientModel.SelectedFoodCategoryId = selectedFoodCategoryId;
-            //ingredientModel.FoodCategory = new FoodCategory()
-            //{
-            //    Name = "Tomatos",
-            //    Id = Guid.NewGuid(),
-            //    MeasuringUnit = MeasuringUnitType.Kg,
-            //    FoodType = FoodType.Vegetable
-            //};
-
             ingredientModel.PricePerMeasuringUnit = 1.80m;
             ingredientModel.QuantityInMeasuringUnit = 2;
 
@@ -84,14 +77,6 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             ingredientModel.Name = "Pink Tomato";
             var selectedFoodCategoryId = Guid.NewGuid();
             ingredientModel.SelectedFoodCategoryId = selectedFoodCategoryId;
-            //ingredientModel.FoodCategory = new FoodCategory()
-            //{
-            //    Name = "Tomatos",
-            //    Id = Guid.NewGuid(),
-            //    MeasuringUnit = MeasuringUnitType.Kg,
-            //    FoodType = FoodType.Vegetable
-            //};
-
             ingredientModel.PricePerMeasuringUnit = 1.80m;
             ingredientModel.QuantityInMeasuringUnit = 2;
 
