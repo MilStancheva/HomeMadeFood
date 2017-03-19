@@ -8,10 +8,12 @@ namespace HomeMadeFood.Models
     public class DailyMenu
     {
         private ICollection<Recipe> recipes;
+        private ICollection<ApplicationUser> orderedByUresers;
 
         public DailyMenu()
         {
             this.recipes = new HashSet<Recipe>();
+            this.orderedByUresers = new HashSet<ApplicationUser>();
         }
 
         [Key]
@@ -19,6 +21,8 @@ namespace HomeMadeFood.Models
         public Guid Id { get; set; }
 
         public DayOfWeek DayOfWeek { get; set; }
+
+        public decimal Price { get; set; }
 
         public virtual ICollection<Recipe> Recipes
         {
@@ -32,5 +36,16 @@ namespace HomeMadeFood.Models
             }
         }
 
+        public virtual ICollection<ApplicationUser> OrderedByUsers
+        {
+            get
+            {
+                return this.orderedByUresers;
+            }
+            set
+            {
+                this.orderedByUresers = value;
+            }
+        }
     }
 }

@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
 {
@@ -39,6 +38,34 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
 
             //Assert
             dataMock.Verify(x => x.Ingredients.Update(ingredient), Times.Once);
+        }
+
+        [Test]
+        public void InvokeDataCommitOnce_WhenThePassedArgumentsAreValid()
+        {
+            //Arrange
+            var dataMock = new Mock<IHomeMadeFoodData>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+            string name = "NameOfTheIngredient";
+            decimal pricePerMeasuringUnit = 1.19m;
+            Guid foodCategoryId = Guid.NewGuid();
+            Guid recipeId = Guid.NewGuid();
+            double quantityPerMeasuringUnit = 0.250;
+            Ingredient ingredient = new Ingredient()
+            {
+                Name = name,
+                RecipeId = recipeId,
+                FoodcategoryId = foodCategoryId,
+                QuantityInMeasuringUnit = quantityPerMeasuringUnit,
+                PricePerMeasuringUnit = pricePerMeasuringUnit
+            };            
+
+            dataMock.Setup(x => x.Ingredients.Update(ingredient));
+            //Act
+            ingredientsService.EditIngredient(ingredient);
+
+            //Assert
+            dataMock.Verify(x => x.Commit(), Times.Once);
         }
     }
 }

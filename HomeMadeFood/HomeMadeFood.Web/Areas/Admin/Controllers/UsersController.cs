@@ -2,10 +2,7 @@
 using HomeMadeFood.Services.Common.Contracts;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
@@ -28,9 +25,15 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         }
 
         public ActionResult Index()
-        {
+        {            
             var users = this.usersService.GetAllUsersWithRoles()
-                .Select(this.mappingService.Map<UserViewModel>)
+                .Select(u =>
+                new UserViewModel
+                {
+                    Username = u.UserName,
+                    Email = u.Email,
+                    Role = u.Roles.First().RoleId.Equals("0") ? "Admin" : "User"
+                })
                  .ToList();
 
             var searchModel = new SearchUserViewModel();
@@ -47,8 +50,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         {
             var users = this.usersService.GetAllUsersWithRoles()
                 .Where(x => x.UserName.ToLower().Contains(username.ToLower()))
-                .Select(this.mappingService.Map<UserViewModel>)
-                .ToList();          
+                .Select(u =>
+                new UserViewModel
+                {
+                    Username = u.UserName,
+                    Email = u.Email,
+                    Role = u.Roles.First().RoleId.Equals("0") ? "Admin" : "User"
+                })
+                .ToList();
 
 
             var searchModel = new SearchUserViewModel();

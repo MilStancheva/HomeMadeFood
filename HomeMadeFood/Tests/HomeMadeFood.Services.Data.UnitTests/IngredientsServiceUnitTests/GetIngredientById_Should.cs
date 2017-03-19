@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
 {

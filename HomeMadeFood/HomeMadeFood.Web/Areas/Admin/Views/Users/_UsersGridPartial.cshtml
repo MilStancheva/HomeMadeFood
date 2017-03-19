@@ -15,7 +15,7 @@
         columns: grid.Columns(
               grid.Column("UserName", "UserName", style: "col-lg-2"),
               grid.Column("Email", "Email", style: "col-lg-2"),
-              grid.Column("Roles", header: "Roles", format: @<text> @string.Format("{0} ", item.Roles)</text>),
+              grid.Column("Role", header: "Role", format: @<text> @string.Format("{0} ", item.Role)</text>),
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>
                 @Html.ActionLink("Edit", "EditUser", new { id = item.UserName }) |

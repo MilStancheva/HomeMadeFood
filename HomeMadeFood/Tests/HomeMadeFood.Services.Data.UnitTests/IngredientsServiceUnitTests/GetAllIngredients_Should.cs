@@ -49,7 +49,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         }
 
         [Test]
-        public void ReturnResultOfCorrectTypeIEnumerable()
+        public void ReturnResultOfCorrectTypeIEnumerableOfIngredient()
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
