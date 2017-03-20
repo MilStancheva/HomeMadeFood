@@ -1,0 +1,207 @@
+﻿@model EditDailyMenuViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-4">
+            <label for="date">Date</label>
+            @if (Model.SelectedDate != null && Model.SelectedDate == Model.SelectedDailyMenuViewModel.Date)
+            {
+                <input type="text" name="date" id="datepicker" class="form-control" value="@Model.SelectedDate" />
+            }
+            else
+            {
+                <input type="text" name="date" id="datepicker" class="form-control" value="@DateTime.Today" />
+            }
+            @Html.ValidationMessageFor(model => model.SelectedDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-12">
+            <div id="accordion">
+                <div class="group card-panel hoverable">
+                    <h3>Salads</h3>
+                    <div>
+                        <fieldset>
+                            @{
+                                var salads = Model.DailyMenuViewModelWithAllRecipes.Salads.ToList();
+                                for (int i = 0; i < salads.Count; i++)
+                                {
+                                    var salad = salads[i];
+                                    <div class="item col-md-3">
+                                        @if (Model.SelectedDailyMenuViewModel.Salads != null && Model.SelectedDailyMenuViewModel.Salads.FirstOrDefault(x => x.Id == salad.Id) != null)
+                                        {
+                                            <input type="checkbox" value="@salad.Id" id=@string.Format("salad{0}", i) name="recipesIds" checked /><label for=@string.Format("salad{0}", i)>@salad.Title</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@salad.Id" id=@string.Format("salad{0}", i) name="recipesIds" /><label for=@string.Format("salad{0}", i)>@salad.Title</label>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="group card-panel hoverable">
+                    <h3>Big Salads</h3>
+                    <div>
+                        <fieldset>
+                            @{
+                                var bigSalads = Model.DailyMenuViewModelWithAllRecipes.BigSalads.ToList();
+                                for (int i = 0; i < bigSalads.Count; i++)
+                                {
+                                    var bigSalad = bigSalads[i];
+                                    <div class="item col-md-3">
+                                        @if (Model.SelectedDailyMenuViewModel.BigSalads != null && Model.SelectedDailyMenuViewModel.BigSalads.FirstOrDefault(x => x.Id == bigSalad.Id) != null)
+                                        {
+                                            <input type="checkbox" value="@bigSalad.Id" id=@string.Format("bigSalad{0}", i) name="recipesIds" checked /><label for=@string.Format("bigSalad{0}", i)>@bigSalad.Title</label>
+
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@bigSalad.Id" id=@string.Format("bigSalad{0}", i) name="recipesIds" /><label for=@string.Format("bigSalad{0}", i)>@bigSalad.Title</label>
+
+                                        }
+                                    </div>
+                                }
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="group card-panel hoverable">
+                    <h3>Soups</h3>
+                    <div>
+                        <fieldset>
+                            @{
+                                var soups = Model.DailyMenuViewModelWithAllRecipes.Soups.ToList();
+                                for (int i = 0; i < soups.Count; i++)
+                                {
+                                    var soup = soups[i];
+                                    <div class="item col-md-3">
+                                        @if (Model.SelectedDailyMenuViewModel.Soups != null && Model.SelectedDailyMenuViewModel.Soups.FirstOrDefault(x => x.Id == soup.Id) != null)
+                                        {
+                                            <input type="checkbox" value="@soup.Id" id=@string.Format("soup{0}", i) name="recipesIds" checked /><label for=@string.Format("soup{0}", i)>@soup.Title</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@soup.Id" id=@string.Format("soup{0}", i) name="recipesIds" /><label for=@string.Format("soup{0}", i)>@soup.Title</label>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="group card-panel hoverable">
+                    <h3>Main Dishes</h3>
+                    <div>
+                        <fieldset>
+                            @{
+                                var mainDishes = Model.DailyMenuViewModelWithAllRecipes.MainDishes.ToList();
+                                for (int i = 0; i < mainDishes.Count; i++)
+                                {
+                                    var mainDish = mainDishes[i];
+                                    <div class="item col-md-3">
+                                        @if (Model.SelectedDailyMenuViewModel.MainDishes != null && Model.SelectedDailyMenuViewModel.MainDishes.FirstOrDefault(x => x.Id == mainDish.Id) != null)
+                                        {
+                                            <input type="checkbox" value="@mainDish.Id" id=@string.Format("mainDish{0}", i) name="recipesIds" checked /><label for=@string.Format("mainDish{0}", i)>@mainDish.Title</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@mainDish.Id" id=@string.Format("mainDish{0}", i) name="recipesIds" /><label for=@string.Format("mainDish{0}", i)>@mainDish.Title</label>
+
+                                        }
+                                    </div>
+                                }
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="group card-panel hoverable">
+                    <h3>Vegetarian</h3>
+                    <div>
+                        <fieldset>
+                            @{
+                                var veggies = Model.DailyMenuViewModelWithAllRecipes.Vegetarian.ToList();
+                                for (int i = 0; i < veggies.Count; i++)
+                                {
+                                    var veggie = veggies[i];
+                                    <div class="item col-md-3">
+                                        @if (Model.SelectedDailyMenuViewModel.Vegetarian != null && Model.SelectedDailyMenuViewModel.Vegetarian.FirstOrDefault(x => x.Id == veggie.Id) != null)
+                                        {
+                                            <input type="checkbox" value="@veggie.Id" id=@string.Format("veggie{0}", i) name="recipesIds" checked /><label for=@string.Format("veggie{0}", i)>@veggie.Title</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@veggie.Id" id=@string.Format("veggie{0}", i) name="recipesIds" /><label for=@string.Format("veggie{0}", i)>@veggie.Title</label>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="group card-panel hoverable">
+                    <h3>Pasta</h3>
+                    <div>
+                        <fieldset>
+                            @{
+                                var pastas = Model.DailyMenuViewModelWithAllRecipes.Pasta.ToList();
+                                for (int i = 0; i < pastas.Count; i++)
+                                {
+                                    var pasta = pastas[i];
+                                    <div class="item col-md-3">
+                                        @if (Model.SelectedDailyMenuViewModel.Pasta != null && Model.SelectedDailyMenuViewModel.Pasta.FirstOrDefault(x => x.Id == pasta.Id) != null)
+                                        {
+                                            <input type="checkbox" value="@pasta.Id" id=@string.Format("pasta{0}", i) name="recipesIds" checked /><label for=@string.Format("pasta{0}", i)>@pasta.Title</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@pasta.Id" id=@string.Format("pasta{0}", i) name="recipesIds" /><label for=@string.Format("pasta{0}", i)>@pasta.Title</label>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="group card-panel hoverable">
+                    <h3>BBQ</h3>
+                    <div>
+                        <fieldset>
+                            @{
+                                var bbqs = Model.DailyMenuViewModelWithAllRecipes.BBQ.ToList();
+                                for (int i = 0; i < bbqs.Count; i++)
+                                {
+                                    var bbq = bbqs[i];
+                                    <div class="item col-md-3">
+                                        @if (Model.SelectedDailyMenuViewModel.BBQ != null && Model.SelectedDailyMenuViewModel.BBQ.FirstOrDefault(x => x.Id == bbq.Id) != null)
+                                        {
+                                            <input type="checkbox" value="@bbq.Id" id=@string.Format("bbq{0}", i) name="recipesIds" checked /><label for=@string.Format("bbq{0}", i)>@bbq.Title</label>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@bbq.Id" id=@string.Format("bbq{0}", i) name="recipesIds" /><label for=@string.Format("bbq{0}", i)>@bbq.Title</label>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default waves-effect waves-yellow" />
+            </div>
+        </div>
+    </div>
+                                }
+
+<script src="~/Scripts/Custom/daily-menu-accordion.js"></script>

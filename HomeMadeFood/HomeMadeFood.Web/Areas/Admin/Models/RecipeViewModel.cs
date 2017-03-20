@@ -34,6 +34,9 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
         public decimal CostPerPortion { get; set; }
 
         [Min(0)]
+        public decimal PricePerPortion { get; set; }
+
+        [Min(0)]
         public double QuantityPerPortion { get; set; }
 
         public IEnumerable<IngredientViewModel> Ingredients { get; set; }

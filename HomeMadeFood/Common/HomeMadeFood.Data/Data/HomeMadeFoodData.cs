@@ -1,10 +1,7 @@
-﻿using System;
-using Bytes2you.Validation;
+﻿using Bytes2you.Validation;
 
 using HomeMadeFood.Data.Repositories;
 using HomeMadeFood.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HomeMadeFood.Data.Data
 {
@@ -20,6 +17,22 @@ namespace HomeMadeFood.Data.Data
 
             Guard.WhenArgument(repositoryFactory, "repositoryFactory").IsNull().Throw();
             this.repositoryFactory = repositoryFactory;
+        }
+
+        public IEfRepository<DailyMenu> DailyMenus
+        {
+            get
+            {
+                return this.repositoryFactory.Create<DailyMenu>();
+            }
+        }
+
+        public IEfRepository<DailyUserOrder> DailyUserOrders
+        {
+            get
+            {
+                return this.repositoryFactory.Create<DailyUserOrder>();
+            }
         }
 
         public IEfRepository<FoodCategory> FoodCategories
@@ -43,14 +56,6 @@ namespace HomeMadeFood.Data.Data
             get
             {
                 return this.repositoryFactory.Create<Recipe>();
-            }
-        }
-
-        public IEfRepository<IdentityUserRole> Roles
-        {
-            get
-            {
-                return this.repositoryFactory.Create<IdentityUserRole>();
             }
         }
 

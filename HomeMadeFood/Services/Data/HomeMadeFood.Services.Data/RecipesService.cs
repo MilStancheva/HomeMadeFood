@@ -7,6 +7,7 @@ using Bytes2you.Validation;
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Models;
+using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Services.Data
 {
@@ -76,6 +77,71 @@ namespace HomeMadeFood.Services.Data
             this.data.Commit();
         }
 
+        public IEnumerable<Recipe> GetAllBBQ()
+        {
+            var bbq = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.BBQ);
+
+            if (bbq == null)
+            {
+                return null;
+            }
+
+            return bbq.OrderBy(x => x.Id);
+        }
+
+        public IEnumerable<Recipe> GetAllBigSalads()
+        {
+            var bigSalads = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.BigSalad);
+
+            if (bigSalads == null)
+            {
+                return null;
+            }
+
+            return bigSalads.OrderBy(x => x.Id);
+        }
+
+        public IEnumerable<Recipe> GetAllDesserts()
+        {
+            var desserts = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.Dessert);
+
+            if (desserts == null)
+            {
+                return null;
+            }
+
+            return desserts.OrderBy(x => x.Id);
+        }
+
+        public IEnumerable<Recipe> GetAllMainDishes()
+        {
+            var mainDishes = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.MainDish);
+
+            if (mainDishes == null)
+            {
+                return null;
+            }
+
+            return mainDishes.OrderBy(x => x.Id);
+        }
+
+        public IEnumerable<Recipe> GetAllPasta()
+        {
+            var pasta = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.Pasta);
+
+            if (pasta == null)
+            {
+                return null;
+            }
+
+            return pasta.OrderBy(x => x.Id);
+        }
+
         public IEnumerable<Recipe> GetAllRecipes()
         {
             var recipes = this.data.Recipes.GetAll();
@@ -85,6 +151,45 @@ namespace HomeMadeFood.Services.Data
             }
 
             return recipes.OrderBy(x => x.Id);
+        }
+
+        public IEnumerable<Recipe> GetAllSalads()
+        {
+            var salads = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.Salad);
+
+            if (salads == null)
+            {
+                return null;
+            }
+
+            return salads.OrderBy(x => x.Id);
+        }
+
+        public IEnumerable<Recipe> GetAllSoups()
+        {
+            var soups = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.Soup);
+
+            if (soups == null)
+            {
+                return null;
+            }
+
+            return soups.OrderBy(x => x.Id);
+        }
+
+        public IEnumerable<Recipe> GetAllVegetarian()
+        {
+            var vegetarian = this.data.Recipes.GetAll()
+                .Where(x => x.DishType == DishType.Vegetarian);
+
+            if (vegetarian == null)
+            {
+                return null;
+            }
+
+            return vegetarian.OrderBy(x => x.Id);
         }
 
         public Recipe GetRecipeById(Guid id)

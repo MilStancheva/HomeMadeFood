@@ -2,28 +2,29 @@
     ViewBag.Title = "Home Page";
 }
 
+<div class="parallax-container">
+    <div class="fullscreen-bg">
+        <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+            <source src="~/Content/media/588741282.mp4" type="video/mp4" />
+        </video>
+    </div>
 
-<div class="fullscreen-bg">
-    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-        <source src="~/Content/media/588741282.mp4" type="video/mp4" />
-    </video>
-</div>
-
-<div class="container-home">
-    <div class="col-md-8">
-        <h1>HomeMade Food</h1>
-        <p>
-            We are here to make your day in the office joyful, to help you enjoy delicious meals prepared just like at home.
-        </p>
-        <p>
-            Make your employees happy and order them lunch!
-        </p>
-        <p>
-            Try it out now.
-        </p>
-        <p>
-            <a href="/account/register" class="btn btn-warning">Register</a>
-            <a href="/" class="btn btn-warning">Order Weekly Menu</a>
-        </p>
+    <div class="container-home parallax">
+        <div class="col-md-8">
+            <h1>HomeMade Food</h1>
+            <p>
+                We are here to make your day in the office joyful, to help you enjoy delicious meals prepared just like at home.
+            </p>
+            <p>
+                Make your employees happy and order them lunch!
+            </p>
+            <p>
+                Try it out now.
+            </p>
+            <p>
+                <a href="/account/register" class="btn btn-warning">Register</a>
+                <a href="/" class="btn btn-warning">Order Your Lunch</a>
+            </p>
+        </div>
     </div>
 </div>

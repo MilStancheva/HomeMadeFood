@@ -1,0 +1,213 @@
+﻿@model DailyMenuViewModel
+@{
+    ViewBag.Title = "Details Daily Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Daily Menu @string.Format("{0:dd/MM/yyyy} - {1}", Model.Date, Model.DayOfWeek)</h2>
+        @if (Model.Salads.Count() >= 1)
+            {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>Salads</h3>
+                </div>
+                <dl class="col-md-6 dl-horizontal">
+                    @{
+                        foreach (var salad in Model.Salads)
+                        {
+                            <dt>Title: </dt><dd>@salad.Title</dd>
+                            <dt>Describtion: </dt><dd>@salad.Describtion</dd>
+                            <dt>Instructions: </dt><dd>@salad.Instruction</dd>
+                            <dt>Quantity per portion: </dt><dd>@string.Format("{0} kg", salad.QuantityPerPortion)</dd>
+                            <dt>Cost per portion: </dt><dd>@string.Format("{0:C}", salad.CostPerPortion)</dd>
+                            <dt>Price per portion: </dt><dd>@string.Format("{0:C}", salad.PricePerPortion)</dd>
+                            <hr />
+                        }
+                    }
+                </dl>
+            </div>
+                        }
+
+        @if (Model.BigSalads.Count() >= 1)
+        {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>Big Salads</h3>
+                </div>
+                <dl class="col-md-6 dl-horizontal">
+                    @{
+                        foreach (var bigSalad in Model.BigSalads)
+                        {
+                            <dt>Title: </dt>
+                            <dd>@bigSalad.Title</dd>
+                            <dt>Describtion: </dt>
+                            <dd>@bigSalad.Describtion</dd>
+                            <dt>Instructions: </dt>
+                            <dd>@bigSalad.Instruction</dd>
+                            <dt>Quantity per portion: </dt>
+                            <dd>@string.Format("{0} kg", bigSalad.QuantityPerPortion)</dd>
+                            <dt>Cost per portion: </dt>
+                            <dd>@string.Format("{0:C}", bigSalad.CostPerPortion)</dd>
+                            <dt>Price per portion: </dt>
+                            <dd>@string.Format("{0:C}", bigSalad.PricePerPortion)</dd>
+                            <hr />
+                        }
+                    }
+                </dl>
+            </div>
+                        }
+
+        @if (Model.Soups.Count() >= 1)
+        {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>Soups</h3>
+                </div>
+                <dl class="col-md-6 dl-horizontal">
+                    @{
+                        foreach (var soup in Model.Soups)
+                        {
+                            <dt>Title: </dt>
+                            <dd>@soup.Title</dd>
+                            <dt>Describtion: </dt>
+                            <dd>@soup.Describtion</dd>
+                            <dt>Instructions: </dt>
+                            <dd>@soup.Instruction</dd>
+                            <dt>Quantity per portion: </dt>
+                            <dd>@string.Format("{0} kg", soup.QuantityPerPortion)</dd>
+                            <dt>Cost per portion: </dt>
+                            <dd>@string.Format("{0:C}", soup.CostPerPortion)</dd>
+                            <dt>Price per portion: </dt>
+                            <dd>@string.Format("{0:C}", soup.PricePerPortion)</dd>
+                            <hr />
+                        }
+                    }
+                </dl>
+            </div>
+                        }
+        @if (Model.MainDishes.Count() >= 1)
+        {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>Main Dishes</h3>
+                </div>
+                <dl class="col-md-6 dl-horizontal">
+                    @{
+                        foreach (var dish in Model.MainDishes)
+                        {
+                            <dt>Title: </dt>
+                            <dd>@dish.Title</dd>
+                            <dt>Describtion: </dt>
+                            <dd>@dish.Describtion</dd>
+                            <dt>Instructions: </dt>
+                            <dd>@dish.Instruction</dd>
+                            <dt>Quantity per portion: </dt>
+                            <dd>@string.Format("{0} kg", dish.QuantityPerPortion)</dd>
+                            <dt>Cost per portion: </dt>
+                            <dd>@string.Format("{0:C}", dish.CostPerPortion)</dd>
+                            <dt>Price per portion: </dt>
+                            <dd>@string.Format("{0:C}", dish.PricePerPortion)</dd>
+                            <hr />
+                        }
+                    }
+                </dl>
+            </div>
+                        }
+
+        @if (Model.Vegetarian.Count() >= 1)
+        {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>Vegetarian </h3>
+                </div>
+                <dl class="col-md-6 dl-horizontal">
+                    @{
+                        foreach (var veggie in Model.Vegetarian)
+                        {
+                            <dt>Title: </dt>
+                            <dd>@veggie.Title</dd>
+                            <dt>Describtion: </dt>
+                            <dd>@veggie.Describtion</dd>
+                            <dt>Instructions: </dt>
+                            <dd>@veggie.Instruction</dd>
+                            <dt>Quantity per portion: </dt>
+                            <dd>@string.Format("{0} kg", veggie.QuantityPerPortion)</dd>
+                            <dt>Cost per portion: </dt>
+                            <dd>@string.Format("{0:C}", veggie.CostPerPortion)</dd>
+                            <dt>Price per portion: </dt>
+                            <dd>@string.Format("{0:C}", veggie.PricePerPortion)</dd>
+                            <hr />
+                        }
+                    }
+                </dl>
+            </div>
+                        }
+
+        @if (Model.Pasta.Count() >= 1)
+        {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>Pasta</h3>
+                </div>
+                <dl class="col-md-6 dl-horizontal">
+                    @{
+                        foreach (var pasta in Model.Pasta)
+                        {
+                            <dt>Title: </dt>
+                            <dd>@pasta.Title</dd>
+                            <dt>Describtion: </dt>
+                            <dd>@pasta.Describtion</dd>
+                            <dt>Instructions: </dt>
+                            <dd>@pasta.Instruction</dd>
+                            <dt>Quantity per portion: </dt>
+                            <dd>@string.Format("{0} kg", pasta.QuantityPerPortion)</dd>
+                            <dt>Cost per portion: </dt>
+                            <dd>@string.Format("{0:C}", pasta.CostPerPortion)</dd>
+                            <dt>Price per portion: </dt>
+                            <dd>@string.Format("{0:C}", pasta.PricePerPortion)</dd>
+                            <hr />
+                        }
+                    }
+                </dl>
+            </div>
+                        }
+
+        @if (Model.BBQ.Count() >= 1)
+        {
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <h3>BBQ</h3>
+                </div>
+                <dl class="col-md-6 dl-horizontal">
+                    @{
+                        foreach (var bbq in Model.BBQ)
+                        {
+                            <dt>Title: </dt>
+                            <dd>@bbq.Title</dd>
+                            <dt>Describtion: </dt>
+                            <dd>@bbq.Describtion</dd>
+                            <dt>Instructions: </dt>
+                            <dd>@bbq.Instruction</dd>
+                            <dt>Quantity per portion: </dt>
+                            <dd>@string.Format("{0} kg", bbq.QuantityPerPortion)</dd>
+                            <dt>Cost per portion: </dt>
+                            <dd>@string.Format("{0:C}", bbq.CostPerPortion)</dd>
+                            <dt>Price per portion: </dt>
+                            <dd>@string.Format("{0:C}", bbq.PricePerPortion)</dd>
+                            <hr />
+                        }
+                    }
+                </dl>
+            </div>
+                        }
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/adminindexpage");
+}

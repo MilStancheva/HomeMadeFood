@@ -1,8 +1,5 @@
 ﻿using HomeMadeFood.Models;
 using HomeMadeFood.Web.Common.Mapping;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Collections.Generic;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
 {

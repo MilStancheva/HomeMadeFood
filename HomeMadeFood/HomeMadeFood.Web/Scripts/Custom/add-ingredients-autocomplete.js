@@ -34,7 +34,7 @@
             $(wrapper).append('<div><input id="ingredientName' + i + '" type="text" name="ingredientNames" placeholder="Ingredient">' +
                 '<input id="quantity' + i + '" type="number" name="ingredientQuantities" placeholder="Quantity">' +
                 '<input id="price' + i + '" type="number" name="ingredientPrices" placeholder="Price">' +
-                '<select id="foodCategories' + i + '" name="foodCategories"></select>' +
+                '<select id="foodCategories' + i + '" name="foodCategories" class="browser-default"></select>' +
                 '<a href="#" class="remove_field">Remove</a></div>');
 
             $(wrapper).find('input[type=text]:last').autocomplete({

@@ -69,6 +69,7 @@
     <Compile Include="Enums\UserRoles.cs" />
     <Compile Include="FoodCategory.cs" />
     <Compile Include="Ingredient.cs" />
+    <Compile Include="DailyUserOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="DailyMenu.cs" />

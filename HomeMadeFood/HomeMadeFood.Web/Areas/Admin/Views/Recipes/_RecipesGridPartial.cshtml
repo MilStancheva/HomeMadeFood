@@ -16,6 +16,7 @@
               grid.Column("Title", "Title", style: "col-lg-2"),
               grid.Column("DishType", "DishType", style: "col-lg-2"),
               grid.Column("CostPerPortion", header: "CostPerPortion", format: @<text>@string.Format("{0:C}", item.CostPerPortion) </text>),
+              grid.Column("PricePerPortion", header: "PricePerPortion", format: @<text>@string.Format("{0:C}", item.PricePerPortion) </text>),
               grid.Column("QuantityPerPortion", "QuantityPerPortion", style: "col-lg-2"),
               grid.Column(header: "Action", canSort: false, style: "action",
                 format: @<text>

@@ -8,12 +8,10 @@ namespace HomeMadeFood.Models
     public class DailyMenu
     {
         private ICollection<Recipe> recipes;
-        private ICollection<ApplicationUser> orderedByUresers;
 
         public DailyMenu()
         {
             this.recipes = new HashSet<Recipe>();
-            this.orderedByUresers = new HashSet<ApplicationUser>();
         }
 
         [Key]
@@ -22,7 +20,8 @@ namespace HomeMadeFood.Models
 
         public DayOfWeek DayOfWeek { get; set; }
 
-        public decimal Price { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime Date { get; set; }
 
         public virtual ICollection<Recipe> Recipes
         {
@@ -33,18 +32,6 @@ namespace HomeMadeFood.Models
             set
             {
                 this.recipes = value;
-            }
-        }
-
-        public virtual ICollection<ApplicationUser> OrderedByUsers
-        {
-            get
-            {
-                return this.orderedByUresers;
-            }
-            set
-            {
-                this.orderedByUresers = value;
             }
         }
     }

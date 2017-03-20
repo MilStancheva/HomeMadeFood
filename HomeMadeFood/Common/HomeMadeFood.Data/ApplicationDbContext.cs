@@ -17,6 +17,10 @@ namespace HomeMadeFood.Data
 
         public virtual IDbSet<Recipe> Recipes { get; set; }
 
+        public virtual IDbSet<DailyMenu> DailyMenus { get; set; }
+
+        public virtual IDbSet<DailyUserOrder> DailyUserOrders { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

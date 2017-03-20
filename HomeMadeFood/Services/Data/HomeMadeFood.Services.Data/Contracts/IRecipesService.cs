@@ -20,5 +20,21 @@ namespace HomeMadeFood.Services.Data.Contracts
         void DeleteRecipe(Recipe recipe);
 
         Recipe GetRecipeById(Guid id);
+
+        IEnumerable<Recipe> GetAllSoups();
+
+        IEnumerable<Recipe> GetAllSalads();
+
+        IEnumerable<Recipe> GetAllBigSalads();
+
+        IEnumerable<Recipe> GetAllMainDishes();
+
+        IEnumerable<Recipe> GetAllVegetarian();
+
+        IEnumerable<Recipe> GetAllPasta();
+
+        IEnumerable<Recipe> GetAllBBQ();
+
+        IEnumerable<Recipe> GetAllDesserts();
     }
 }

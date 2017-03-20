@@ -1,0 +1,24 @@
+﻿@model EditDailyMenuViewModel
+
+@{
+    ViewBag.Title = "Edit Daily Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Edit Daily Menu for @string.Format("{0: dd/MM/yyyy} - {1}", Model.SelectedDate, Model.SelectedDate.DayOfWeek)</h2>
+
+        @Html.Action("AddMenu", Model)
+
+    </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/adminindexpage");
+}

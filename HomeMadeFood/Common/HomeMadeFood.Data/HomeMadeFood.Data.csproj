@@ -80,6 +80,22 @@
     <Compile Include="Migrations\201703190926050_IgnoreChanges.Designer.cs">
       <DependentUpon>201703190926050_IgnoreChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703191747451_DailyUserOrdersAndDailyMenusAdded.cs" />
+    <Compile Include="Migrations\201703191747451_DailyUserOrdersAndDailyMenusAdded.Designer.cs">
+      <DependentUpon>201703191747451_DailyUserOrdersAndDailyMenusAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703191758458_RecipesUpdatedWithNewModels.cs" />
+    <Compile Include="Migrations\201703191758458_RecipesUpdatedWithNewModels.Designer.cs">
+      <DependentUpon>201703191758458_RecipesUpdatedWithNewModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703192206152_Daily Menu Updated.cs" />
+    <Compile Include="Migrations\201703192206152_Daily Menu Updated.Designer.cs">
+      <DependentUpon>201703192206152_Daily Menu Updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703201349387_DateTimeFormat.cs" />
+    <Compile Include="Migrations\201703201349387_DateTimeFormat.Designer.cs">
+      <DependentUpon>201703201349387_DateTimeFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfRepository.cs" />
@@ -108,6 +124,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703190926050_IgnoreChanges.resx">
       <DependentUpon>201703190926050_IgnoreChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191747451_DailyUserOrdersAndDailyMenusAdded.resx">
+      <DependentUpon>201703191747451_DailyUserOrdersAndDailyMenusAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191758458_RecipesUpdatedWithNewModels.resx">
+      <DependentUpon>201703191758458_RecipesUpdatedWithNewModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703192206152_Daily Menu Updated.resx">
+      <DependentUpon>201703192206152_Daily Menu Updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201349387_DateTimeFormat.resx">
+      <DependentUpon>201703201349387_DateTimeFormat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

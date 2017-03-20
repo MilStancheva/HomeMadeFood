@@ -1,0 +1,42 @@
+﻿@model SearchDailyMenuViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("_AdminSideBarMenu")
+    <div class="col-md-10">
+        <h2>Daily Menus</h2>
+
+        @using (Ajax.BeginForm("Search",
+                            null,
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "results",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST"
+                            }, new { id = "searchForm" }))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" name="recipeTitle" oninput="changed()" class="form-control" placeholder="Recipe's title" />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+                <div class="col-md-3">
+                    @Html.ActionLink("Add New Daily Menu", "AddDailyMenu")
+                </div>
+            </div>
+        }
+
+        <div id="results">
+            @Html.Partial("_DailyMenusGridPartial", Model)
+        </div>
+    </div>
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/adminindexpage");
+}
+

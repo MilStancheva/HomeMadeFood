@@ -3,6 +3,7 @@
 /// <reference path="custom/add-ingredients-autocomplete.js" />
 /// <reference path="custom/bootstrap.min.js" />
 /// <reference path="custom/custom.js" />
+/// <reference path="custom/daily-menu-accordion.js" />
 /// <reference path="custom/get-foodcategories.js" />
 /// <reference path="custom/searchform-submit.js" />
 /// <reference path="jquery.unobtrusive-ajax.min.js" />

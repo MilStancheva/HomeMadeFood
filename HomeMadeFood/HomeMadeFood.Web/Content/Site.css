@@ -5,10 +5,10 @@
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+/*.body-content {
+    padding-left: 5px;
+    padding-right: 5px;
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -62,6 +62,11 @@ textarea {
 
     .content-box-header:after {
         clear: both;
+    }
+
+    .container .body-content{
+        padding-left: 0;
+        margin-left: 0;
     }
 
 .sidebar ul.nav, .sidebar ul.nav ul {
@@ -317,3 +322,4 @@ footer {
         padding-top: 40px;
     }
 }
+

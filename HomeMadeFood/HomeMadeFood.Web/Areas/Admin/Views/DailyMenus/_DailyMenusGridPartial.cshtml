@@ -1,0 +1,27 @@
+﻿@model SearchDailyMenuViewModel
+
+<div style="margin-top:17px;">
+    @{
+        var grid = new WebGrid(null, rowsPerPage: Model.PageSize);
+        grid.Bind(Model.DailyMenus, autoSortAndPage: true, rowCount: Model.PageSize);
+
+        @grid.GetHtml(htmlAttributes: new { id = "grid" },
+        tableStyle: "table table-bordered table-hover",
+        mode: WebGridPagerModes.All,
+        firstText: "<< First",
+        previousText: "< Prev",
+        nextText: "Next >",
+        lastText: "Last >>",
+        columns: grid.Columns(
+              grid.Column("Date", "Date", style: "col-lg-2", format: @<text>@string.Format("{0:dd/MM/yyyy}", item.Date)</text>),
+              grid.Column("DayOfWeek", "DayOfWeek", style: "col-lg-2"),
+              grid.Column(header: "Action", canSort: false, style: "action col-lg-3",
+                format: @<text>
+                @Html.ActionLink("Edit", "EditDailyMenu", new { id = item.Id }) |
+                @Html.ActionLink("Details", "DetailsDailyMenu", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteDailyMenu", new { id = item.Id })
+                </text>)
+        ));
+    }
+</div>
+

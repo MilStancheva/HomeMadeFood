@@ -11,10 +11,14 @@ namespace HomeMadeFood.Models
     public class Recipe
     {
         private ICollection<Ingredient> ingredients;
+        private ICollection<DailyMenu> dailyMenus;
+        private ICollection<DailyUserOrder> dailyUserOrders;
 
         public Recipe()
         {
             this.ingredients = new HashSet<Ingredient>();
+            this.dailyMenus = new HashSet<DailyMenu>();
+            this.dailyUserOrders = new HashSet<DailyUserOrder>();
         }
 
         [Key]
@@ -41,6 +45,9 @@ namespace HomeMadeFood.Models
         public decimal CostPerPortion { get; set; }
 
         [Min(0)]
+        public decimal PricePerPortion { get; set; }
+
+        [Min(0)]
         public double QuantityPerPortion { get; set; }
 
         [Required]
@@ -53,6 +60,30 @@ namespace HomeMadeFood.Models
             set
             {
                 this.ingredients = value;
+            }
+        }
+
+        public virtual ICollection<DailyMenu> DailyMenus
+        {
+            get
+            {
+                return this.dailyMenus;
+            }
+            set
+            {
+                this.dailyMenus = value;
+            }
+        }
+
+        public virtual ICollection<DailyUserOrder> DailyUserOrders
+        {
+            get
+            {
+                return this.dailyUserOrders;
+            }
+            set
+            {
+                this.dailyUserOrders = value;
             }
         }
     }

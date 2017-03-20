@@ -5,7 +5,6 @@ using DataAnnotationsExtensions;
 
 using HomeMadeFood.Models;
 using HomeMadeFood.Web.Common.Mapping;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
