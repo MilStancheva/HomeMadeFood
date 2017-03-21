@@ -54,14 +54,14 @@ namespace HomeMadeFood.Services.Data
         {
             Guard.WhenArgument(recipesIds, "recipesIds").IsNullOrEmpty().Throw();
 
-            var recipesAsList = recipesIds.ToList();
+            var recipesIdsAsList = recipesIds.ToList();
             var allRecipes = this.data.Recipes.GetAll().ToList();
             var recipesToAdd = new List<Recipe>();
             for (int i = 0; i < allRecipes.Count; i++)
             {
-                for (int j = 0; j < recipesAsList.Count; j++)
+                for (int j = 0; j < recipesIdsAsList.Count; j++)
                 {
-                    if ((allRecipes[i].Id).Equals(recipesAsList[j]))
+                    if ((allRecipes[i].Id).Equals(recipesIdsAsList[j]))
                     {
                         recipesToAdd.Add(allRecipes[i]);
                     }

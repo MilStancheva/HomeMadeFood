@@ -31,7 +31,7 @@
                                 {
                                     var salad = salads[i];
                                     <div class="item col-md-3">
-                                        @if (Model.SelectedDailyMenuViewModel.Salads != null && Model.SelectedDailyMenuViewModel.Salads.FirstOrDefault(x => x.Id == salad.Id) != null)
+                                        @if (Model.SelectedDailyMenuViewModel.Salads.FirstOrDefault(x => x.Id == salad.Id) != null)
                                         {
                                             <input type="checkbox" value="@salad.Id" id=@string.Format("salad{0}", i) name="recipesIds" checked /><label for=@string.Format("salad{0}", i)>@salad.Title</label>
                                         }
@@ -56,7 +56,7 @@
                                 {
                                     var bigSalad = bigSalads[i];
                                     <div class="item col-md-3">
-                                        @if (Model.SelectedDailyMenuViewModel.BigSalads != null && Model.SelectedDailyMenuViewModel.BigSalads.FirstOrDefault(x => x.Id == bigSalad.Id) != null)
+                                        @if (Model.SelectedDailyMenuViewModel.BigSalads.FirstOrDefault(x => x.Id == bigSalad.Id) != null)
                                         {
                                             <input type="checkbox" value="@bigSalad.Id" id=@string.Format("bigSalad{0}", i) name="recipesIds" checked /><label for=@string.Format("bigSalad{0}", i)>@bigSalad.Title</label>
 
@@ -82,7 +82,7 @@
                                 {
                                     var soup = soups[i];
                                     <div class="item col-md-3">
-                                        @if (Model.SelectedDailyMenuViewModel.Soups != null && Model.SelectedDailyMenuViewModel.Soups.FirstOrDefault(x => x.Id == soup.Id) != null)
+                                        @if (Model.SelectedDailyMenuViewModel.Soups.FirstOrDefault(x => x.Id == soup.Id) != null)
                                         {
                                             <input type="checkbox" value="@soup.Id" id=@string.Format("soup{0}", i) name="recipesIds" checked /><label for=@string.Format("soup{0}", i)>@soup.Title</label>
                                         }
@@ -106,7 +106,7 @@
                                 {
                                     var mainDish = mainDishes[i];
                                     <div class="item col-md-3">
-                                        @if (Model.SelectedDailyMenuViewModel.MainDishes != null && Model.SelectedDailyMenuViewModel.MainDishes.FirstOrDefault(x => x.Id == mainDish.Id) != null)
+                                        @if (Model.SelectedDailyMenuViewModel.MainDishes.FirstOrDefault(x => x.Id == mainDish.Id) != null)
                                         {
                                             <input type="checkbox" value="@mainDish.Id" id=@string.Format("mainDish{0}", i) name="recipesIds" checked /><label for=@string.Format("mainDish{0}", i)>@mainDish.Title</label>
                                         }
@@ -131,7 +131,7 @@
                                 {
                                     var veggie = veggies[i];
                                     <div class="item col-md-3">
-                                        @if (Model.SelectedDailyMenuViewModel.Vegetarian != null && Model.SelectedDailyMenuViewModel.Vegetarian.FirstOrDefault(x => x.Id == veggie.Id) != null)
+                                        @if (Model.SelectedDailyMenuViewModel.Vegetarian.FirstOrDefault(x => x.Id == veggie.Id) != null)
                                         {
                                             <input type="checkbox" value="@veggie.Id" id=@string.Format("veggie{0}", i) name="recipesIds" checked /><label for=@string.Format("veggie{0}", i)>@veggie.Title</label>
                                         }
@@ -155,7 +155,7 @@
                                 {
                                     var pasta = pastas[i];
                                     <div class="item col-md-3">
-                                        @if (Model.SelectedDailyMenuViewModel.Pasta != null && Model.SelectedDailyMenuViewModel.Pasta.FirstOrDefault(x => x.Id == pasta.Id) != null)
+                                        @if (Model.SelectedDailyMenuViewModel.Pasta.FirstOrDefault(x => x.Id == pasta.Id) != null)
                                         {
                                             <input type="checkbox" value="@pasta.Id" id=@string.Format("pasta{0}", i) name="recipesIds" checked /><label for=@string.Format("pasta{0}", i)>@pasta.Title</label>
                                         }
@@ -179,7 +179,7 @@
                                 {
                                     var bbq = bbqs[i];
                                     <div class="item col-md-3">
-                                        @if (Model.SelectedDailyMenuViewModel.BBQ != null && Model.SelectedDailyMenuViewModel.BBQ.FirstOrDefault(x => x.Id == bbq.Id) != null)
+                                        @if (Model.SelectedDailyMenuViewModel.BBQ.FirstOrDefault(x => x.Id == bbq.Id) != null)
                                         {
                                             <input type="checkbox" value="@bbq.Id" id=@string.Format("bbq{0}", i) name="recipesIds" checked /><label for=@string.Format("bbq{0}", i)>@bbq.Title</label>
                                         }

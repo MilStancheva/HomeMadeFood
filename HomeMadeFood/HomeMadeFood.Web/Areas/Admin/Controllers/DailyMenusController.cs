@@ -80,12 +80,8 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult AddDailyMenu()
         {
-            return this.View();
-        }
-
-        public ActionResult AddMenu(EditDailyMenuViewModel editModel)
-        {
             AddDailyMenuViewModel model = this.GetAddDailyMenuViewModelWithAllRecipes();
+            EditDailyMenuViewModel editModel = new EditDailyMenuViewModel();
             editModel.DailyMenuViewModelWithAllRecipes = model;
             editModel.SelectedDailyMenuViewModel = new DailyMenuViewModel()
             {
@@ -99,6 +95,11 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 Date = DateTime.Today
             };
 
+            return this.View(editModel);
+        }
+
+        public ActionResult AddMenu(EditDailyMenuViewModel editModel)
+        {       
             return this.PartialView("_AddMenu", editModel);
         }
 
