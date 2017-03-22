@@ -49,7 +49,7 @@ namespace HomeMadeFood.Controllers.UnitTests.RecipesControllerUnitTests
         }
 
         [Test]
-        public void RenderTheRightView_DetailsRecipeWithModel_RecipeViewModel_When_IdGuidIsValidAnd()
+        public void RenderTheRightView_DetailsRecipeWithModel_RecipeViewModel_When_IdGuidIsValid()
         {
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();

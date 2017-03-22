@@ -16,7 +16,7 @@ namespace HomeMadeFood.Controllers.UnitTests.RecipesControllerUnitTests
     public class DeleteRecipe_Should
     {
         [Test]
-        public void RenderTheRightView_DeleteIRecipe()
+        public void RenderTheRightView_DeleteRecipe()
         {
             //Arrange
             var ingredientsServiceMock = new Mock<IIngredientsService>();

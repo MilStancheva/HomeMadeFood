@@ -37,10 +37,12 @@ namespace HomeMadeFood.Web
                       "~/Content/footer-distributed-with-contact-form.css",
                       "~/Content/Site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/toastr", "http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css")
+            bundles.Add(new StyleBundle("~/Content/toastr", 
+                "http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css")
                  .Include("~/Content/toastr.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/toastr", "http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js")
+            bundles.Add(new ScriptBundle("~/bundles/toastr", 
+                "http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js")
                             .Include("~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminindexpage").Include(

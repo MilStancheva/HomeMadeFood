@@ -19,7 +19,7 @@ namespace HomeMadeFood.Controllers.UnitTests.RecipesControllerUnitTests
     public class Search_Should
     {
         [Test]
-        public void RenderTheRightPartialView()
+        public void RenderTheRightPartialView_RecipesGridPartial()
         {
             //Arrange
             IEnumerable<Ingredient> ingredients = new List<Ingredient>();

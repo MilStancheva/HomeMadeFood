@@ -63,6 +63,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DailyMenuServiceUnitTests\AddDailyMenu_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\DeleteDailyMenu_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\EditDailyMenu_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\GetAllDailyMenus_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\GetDailyMenuById_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\AddFoodCategory_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\DeleteFoodCategory_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\EditFoodCategory_Should.cs" />

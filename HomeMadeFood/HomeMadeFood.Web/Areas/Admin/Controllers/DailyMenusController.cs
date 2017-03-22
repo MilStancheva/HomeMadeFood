@@ -14,6 +14,7 @@ using HomeMadeFood.Web.Controllers.Extensions;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DailyMenusController : Controller
     {
         private readonly int gridPageSize = 25;
@@ -98,6 +99,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.View(editModel);
         }
 
+        [ChildActionOnly]
         public ActionResult AddMenu(EditDailyMenuViewModel editModel)
         {       
             return this.PartialView("_AddMenu", editModel);

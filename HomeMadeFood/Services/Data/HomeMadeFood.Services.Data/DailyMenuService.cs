@@ -1,12 +1,12 @@
-﻿using Bytes2you.Validation;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Bytes2you.Validation;
+
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
 using HomeMadeFood.Services.Data.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeMadeFood.Services.Data
 {
@@ -47,28 +47,14 @@ namespace HomeMadeFood.Services.Data
 
         public IEnumerable<DailyMenu> GetAllDailyMenus()
         {
-            return this.data.DailyMenus.GetAll();
-        }
+            var dailyMenus = this.data.DailyMenus.GetAll();
 
-        private IEnumerable<Recipe> GetRecipesOfDailyMenu(IEnumerable<Guid> recipesIds)
-        {
-            Guard.WhenArgument(recipesIds, "recipesIds").IsNullOrEmpty().Throw();
-
-            var recipesIdsAsList = recipesIds.ToList();
-            var allRecipes = this.data.Recipes.GetAll().ToList();
-            var recipesToAdd = new List<Recipe>();
-            for (int i = 0; i < allRecipes.Count; i++)
+            if (dailyMenus == null)
             {
-                for (int j = 0; j < recipesIdsAsList.Count; j++)
-                {
-                    if ((allRecipes[i].Id).Equals(recipesIdsAsList[j]))
-                    {
-                        recipesToAdd.Add(allRecipes[i]);
-                    }
-                }                
+                return null;
             }
 
-            return recipesToAdd;
+            return dailyMenus;
         }
 
         public DailyMenu GetDailyMenuById(Guid id)
@@ -84,7 +70,7 @@ namespace HomeMadeFood.Services.Data
         {
             Guard.WhenArgument(id, "id").IsEmptyGuid().Throw();
             Guard.WhenArgument(recipesIds, "recipesIds").IsNullOrEmpty().Throw();
-            
+
             var dailyMenu = this.data.DailyMenus.GetById(id);
 
             var recipesToAdd = new List<Recipe>();
@@ -93,9 +79,14 @@ namespace HomeMadeFood.Services.Data
                 recipesToAdd = this.GetRecipesOfDailyMenu(recipesIds).ToList();
             }
 
+            dailyMenu.Recipes = new List<Recipe>();
+            foreach (var recipe in recipesToAdd)
+            {
+                dailyMenu.Recipes.Add(recipe);
+            }
+
             dailyMenu.Date = date;
             dailyMenu.DayOfWeek = date.DayOfWeek;
-            dailyMenu.Recipes = recipesToAdd;
 
             this.data.DailyMenus.Update(dailyMenu);
             this.data.Commit();
@@ -108,5 +99,27 @@ namespace HomeMadeFood.Services.Data
             this.data.DailyMenus.Delete(menu);
             this.data.Commit();
         }
+
+        private IEnumerable<Recipe> GetRecipesOfDailyMenu(IEnumerable<Guid> recipesIds)
+        {
+            Guard.WhenArgument(recipesIds, "recipesIds").IsNullOrEmpty().Throw();
+
+            var recipesIdsAsList = recipesIds.ToList();
+            var allRecipes = this.recipeService.GetAllRecipes().ToList();
+            var recipesToAdd = new List<Recipe>();
+            for (int i = 0; i < allRecipes.Count; i++)
+            {
+                for (int j = 0; j < recipesIdsAsList.Count; j++)
+                {
+                    if ((allRecipes[i].Id).Equals(recipesIdsAsList[j]))
+                    {
+                        recipesToAdd.Add(allRecipes[i]);
+                    }
+                }
+            }
+
+            return recipesToAdd;
+        }
+
     }
 }
