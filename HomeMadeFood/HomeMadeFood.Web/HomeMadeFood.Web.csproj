@@ -254,6 +254,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\GlobalResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\GlobalResources.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalResources.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -269,21 +279,21 @@
     <Compile Include="Areas\Admin\Controllers\IngredientsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RecipesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Admin\Models\AddDailyMenuViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\AddFoodCategoryViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\AddIngredientViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\DailyMenuViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\EditDailyMenuViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\FoodCategoryViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\IngredientViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\AddRecipeViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\RecipeViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\SearchDailyMenuViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\SearchFoodCategoryViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\SearchIngredientViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\SearchRecipeViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\SearchUserViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DailyMenusViewModels\AddDailyMenuViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FoodCategoriesViewModels\AddFoodCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\IngredientViewModels\AddIngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DailyMenusViewModels\DailyMenuViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DailyMenusViewModels\EditDailyMenuViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FoodCategoriesViewModels\FoodCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\IngredientViewModels\IngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RecipesViewModels\AddRecipeViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RecipesViewModels\RecipeViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DailyMenusViewModels\SearchDailyMenuViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FoodCategoriesViewModels\SearchFoodCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\IngredientViewModels\SearchIngredientViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RecipesViewModels\SearchRecipeViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserViewModels\SearchUserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserViewModels\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Extensions\ControllerExtensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -292,6 +302,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HttpModules\CultureModule.cs" />
     <Compile Include="Models\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\Account\ForgotPasswordViewModel.cs" />
@@ -433,6 +444,7 @@
     <Content Include="fonts\roboto\Roboto-Thin.ttf" />
     <Content Include="fonts\roboto\Roboto-Thin.woff" />
     <Content Include="fonts\roboto\Roboto-Thin.woff2" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\Date.cshtml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\homemadefood - Web Deploy %282%29.pubxml" />
@@ -444,6 +456,7 @@
     <Content Include="Scripts\Custom\custom.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\Custom\daily-menu-accordion.js" />
+    <Content Include="Scripts\Custom\datepicker-init.js" />
     <Content Include="Scripts\Custom\get-foodcategories.js" />
     <Content Include="Scripts\Custom\searchform-submit.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -506,7 +519,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\DisplayTemplates\" />
-    <Folder Include="Areas\Admin\Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -535,6 +547,18 @@
       <Project>{8A90B2C3-ABDF-44EB-B434-DFB4D508B4FB}</Project>
       <Name>HomeMadeFood.Web.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_GlobalResources\GlobalResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\GlobalResources.en.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>GlobalResources.en.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

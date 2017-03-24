@@ -100,6 +100,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult AutoComplete(string prefix)
         {
             var ingredients = this.ingredientsService
@@ -148,6 +149,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditRecipe([Bind(Exclude ="Ingredients")]RecipeViewModel model)
         {
             if (!this.ModelState.IsValid)

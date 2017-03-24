@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Bytes2you.Validation;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
 using HomeMadeFood.Services.Data.Contracts;
-using HomeMadeFood.Models.Enums;
-using System.Linq;
 
 namespace HomeMadeFood.Services.Data
 {
@@ -41,14 +40,14 @@ namespace HomeMadeFood.Services.Data
 
         public IEnumerable<Ingredient> GetAllIngredients()
         {
-            var ingredients = this.data.Ingredients.GetAll();
+            var ingredients = this.data.Ingredients.All;
 
             if (ingredients == null)
             {
                 return null;
             }
 
-            return ingredients.OrderBy(x => x.Id);
+            return ingredients;
         }
 
         public Ingredient GetIngredientById(Guid id)

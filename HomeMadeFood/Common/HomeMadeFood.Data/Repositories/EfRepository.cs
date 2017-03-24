@@ -1,10 +1,11 @@
-﻿using Bytes2you.Validation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
+
+using Bytes2you.Validation;
 
 namespace HomeMadeFood.Data.Repositories
 {
@@ -20,9 +21,12 @@ namespace HomeMadeFood.Data.Repositories
             this.DbSet = this.dbContext.Set<T>();
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> All 
         {
-            return this.DbSet;
+            get
+            {
+                return this.DbSet;
+            }
         }
 
         public T GetById(object id)

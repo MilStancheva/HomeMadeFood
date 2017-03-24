@@ -18,13 +18,13 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             var dataMock = new Mock<IHomeMadeFoodData>();
             var recipesServiceMock = new Mock<IRecipesService>();
             DailyMenuService dailyMenuService = new DailyMenuService(dataMock.Object, recipesServiceMock.Object);
-            dataMock.Setup(x => x.DailyMenus.GetAll());
+            dataMock.Setup(x => x.DailyMenus.All);
 
             //Act
             IEnumerable<DailyMenu> dailyMenus = dailyMenuService.GetAllDailyMenus();
 
             //Assert
-            dataMock.Verify(x => x.DailyMenus.GetAll(), Times.Once);
+            dataMock.Verify(x => x.DailyMenus.All, Times.Once);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             var dataMock = new Mock<IHomeMadeFoodData>();
             IEnumerable<DailyMenu> expectedResultCollection = new List<DailyMenu>();
             var recipesServiceMock = new Mock<IRecipesService>();
-            dataMock.Setup(c => c.DailyMenus.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.DailyMenus.All).Returns(() =>
             {
                 return expectedResultCollection.AsQueryable();
             });
@@ -54,7 +54,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
             var recipesServiceMock = new Mock<IRecipesService>();
-            dataMock.Setup(c => c.DailyMenus.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.DailyMenus.All).Returns(() =>
             {
                 IEnumerable<DailyMenu> expectedResultCollection = new List<DailyMenu>();
                 return expectedResultCollection.AsQueryable();
@@ -76,7 +76,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             var dataMock = new Mock<IHomeMadeFoodData>();
             var recipesServiceMock = new Mock<IRecipesService>();
 
-            dataMock.Setup(c => c.DailyMenus.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.DailyMenus.All).Returns(() =>
             {
                 return null;
             });

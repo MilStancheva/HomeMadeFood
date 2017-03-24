@@ -1,0 +1,9 @@
+﻿@model DateTime?
+@{
+    var value = "";
+    if (Model.HasValue)
+    {
+        value = string.Format("{0:d}", DateTime.Today.ToString("dd/MM/yyyy"));
+    }
+}
+@Html.TextBox("", value, new { @class = "datefield", type = "text", name = "date" })

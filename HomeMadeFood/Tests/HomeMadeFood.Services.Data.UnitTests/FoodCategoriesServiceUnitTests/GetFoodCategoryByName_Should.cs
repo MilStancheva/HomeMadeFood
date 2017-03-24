@@ -54,7 +54,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
             };
             var collection = new List<FoodCategory>() { foodCategory };
 
-            dataMock.Setup(c => c.FoodCategories.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.FoodCategories.All).Returns(() =>
             {
                 return collection.AsQueryable();
             });
@@ -66,6 +66,29 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
 
             //Assert
             Assert.AreSame(foodCategory, foodCategoryResult);
+        }
+
+        [Test]
+        public void ReturnNull_WhenPassedArgumentNameIsValidButThereIsNoSuchFoodCategoryInDatabase()
+        {
+            //Arrange
+            var dataMock = new Mock<IHomeMadeFoodData>();
+            string name = "FoodCategoryName";
+
+            var collection = new List<FoodCategory>();
+
+            dataMock.Setup(c => c.FoodCategories.All).Returns(() =>
+            {
+                return collection.AsQueryable();
+            });
+
+            FoodCategoriesService foodCategoriesService = new FoodCategoriesService(dataMock.Object);
+
+            //Act
+            FoodCategory foodCategoryResult = foodCategoriesService.GetFoodCategoryByName(name);
+
+            //Assert
+            Assert.IsNull(foodCategoryResult);
         }
     }
 }

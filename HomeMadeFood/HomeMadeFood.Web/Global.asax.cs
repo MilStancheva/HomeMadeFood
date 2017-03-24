@@ -1,11 +1,12 @@
-﻿using HomeMadeFood.Data;
-using HomeMadeFood.Data.Migrations;
-using HomeMadeFood.Web.Common.Mapping;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+
+using HomeMadeFood.Data;
+using HomeMadeFood.Data.Migrations;
+using HomeMadeFood.Web.Common.Mapping;
 
 namespace HomeMadeFood.Web
 {
@@ -24,6 +25,6 @@ namespace HomeMadeFood.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AutoMapperConfig.Config(Assembly.GetExecutingAssembly());
-        }
+        }        
     }
 }

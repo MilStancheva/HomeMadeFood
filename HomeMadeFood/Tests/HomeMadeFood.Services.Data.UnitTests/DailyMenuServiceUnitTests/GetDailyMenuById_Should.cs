@@ -80,5 +80,25 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             //Assert
             Assert.AreSame(dailyMenu, dailyMenuResult);
         }
+
+        [Test]
+        public void ReturnNull_WhenIdIsValidButThereIsNoSuchDailyMenuInTheDatabase()
+        {
+            //Arrange
+            var dataMock = new Mock<IHomeMadeFoodData>();
+            var recipesServiceMock = new Mock<IRecipesService>();
+            DailyMenuService dailyMenuService = new DailyMenuService(dataMock.Object, recipesServiceMock.Object);
+
+            Guid dailyMenuId = Guid.NewGuid();
+            Guid recipeId = Guid.NewGuid();
+
+            dataMock.Setup(c => c.DailyMenus.GetById(dailyMenuId)).Returns<DailyMenu>(null);
+
+            //Act
+            DailyMenu dailyMenuResult = dailyMenuService.GetDailyMenuById(dailyMenuId);
+
+            //Assert
+            Assert.IsNull(dailyMenuResult);
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace HomeMadeFood.Services.Data
 
         public IEnumerable<ApplicationUser> GetAllUsers()
         {
-            return this.data.Users.GetAll();
+            return this.data.Users.All;
         }
 
         public IEnumerable<ApplicationUser> GetAllUsersWithRoles()

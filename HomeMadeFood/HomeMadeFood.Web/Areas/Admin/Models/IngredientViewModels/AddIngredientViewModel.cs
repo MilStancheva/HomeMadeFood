@@ -6,14 +6,15 @@ using DataAnnotationsExtensions;
 
 using HomeMadeFood.Models;
 using HomeMadeFood.Web.Common.Mapping;
+using HomeMadeFood.Web.App_GlobalResources;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
 {
     public class AddIngredientViewModel : IMapFrom<Ingredient>, IMapTo<Ingredient>
     {
-        [Required]
-        [MinLength(2)]
-        [MaxLength(50)]
+        [MinLength(2, ErrorMessageResourceName = "NameMinValueErrorMessage", ErrorMessageResourceType = typeof(GlobalResources))]
+        [MaxLength(50, ErrorMessageResourceName = "NameMaxValueErrorMessage", ErrorMessageResourceType = typeof(GlobalResources))]
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "NameIsRequiredErrorMessage", ErrorMessageResourceType = typeof(GlobalResources))]
         public string Name { get; set; }
 
         [Display(Name = ("Food Category"))]
@@ -26,12 +27,12 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
 
         public Guid SelectedRecipeId { get; set; }
 
-        [Required]
-        [Min(0)]
+        [Required(ErrorMessageResourceName = "PriceIsRequiredErrorMessage", ErrorMessageResourceType =(typeof(GlobalResources)))]
+        [Min(0, ErrorMessageResourceName = "PriceMinValueErrorMessage", ErrorMessageResourceType = typeof(GlobalResources))]
         [Display(Name = "Price Per Measuring Unit")]
         public decimal PricePerMeasuringUnit { get; set; }
 
-        [Min(0)]
+        [Min(0, ErrorMessageResourceName = "IngredientQuantityMinValueErrorMessage", ErrorMessageResourceType = typeof(GlobalResources))]
         [Display(Name = "Quantity In Measuring Unit")]
         public double QuantityInMeasuringUnit { get; set; }
     }

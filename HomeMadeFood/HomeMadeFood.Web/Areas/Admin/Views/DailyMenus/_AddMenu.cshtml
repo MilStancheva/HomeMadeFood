@@ -9,14 +9,7 @@
 
         <div class="col-md-4">
             <label for="date">Date</label>
-            @if (Model.SelectedDate != null && Model.SelectedDate == Model.SelectedDailyMenuViewModel.Date)
-            {
-                <input type="text" name="date" id="datepicker" class="form-control" value="@Model.SelectedDate" />
-            }
-            else
-            {
-                <input type="text" name="date" id="datepicker" class="form-control" value="@DateTime.Today" />
-            }
+            @Html.EditorFor(model => model.SelectedDate)
             @Html.ValidationMessageFor(model => model.SelectedDate, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-12">
@@ -203,5 +196,3 @@
         </div>
     </div>
                                 }
-
-<script src="~/Scripts/Custom/daily-menu-accordion.js"></script>

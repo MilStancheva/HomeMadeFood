@@ -20,14 +20,14 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
         private readonly int gridPageSize = 25;
 
         private string toastrSuccessTitle = "Yeah!";
-        private string toastrAddObjectSuccessMessage = "Daily Menu for {0} is successfully added";
-        private string toastrUpdateObjectSuccessMessage = "Daily Menu for {0} is successfully updated";
-        private string toastrDeleteObjectSuccessMessage = "Daily Menu for {0} is successfully deleted";
+        private string toastrAddObjectSuccessMessage = "Daily Menu for {0:dd/MM/yyyy} is successfully added";
+        private string toastrUpdateObjectSuccessMessage = "Daily Menu for {0:dd/MM/yyyy} is successfully updated";
+        private string toastrDeleteObjectSuccessMessage = "Daily Menu for {0:dd/MM/yyyy} is successfully deleted";
 
         private string toastrFailureTitle = "Something went wrong...";
-        private string toastrAddObjectFailureMessage = "Ooops! Daily Menu for {0} could not be added. Please check again the input data. Thanks!";
-        private string toastrUpdateObjectFailureMessage = "Ooops! Daily Menu for {0} could not be updated. Please check again the input data. Thanks!";
-        private string toastrDeleteObjectFailureMessage = "Ooops! Daily Menu for {0} could not be deleted.";
+        private string toastrAddObjectFailureMessage = "Ooops! Daily Menu for {0:dd/MM/yyyy} could not be added. Please check again the input data. Thanks!";
+        private string toastrUpdateObjectFailureMessage = "Ooops! Daily Menu for {0:dd/MM/yyyy} could not be updated. Please check again the input data. Thanks!";
+        private string toastrDeleteObjectFailureMessage = "Ooops! Daily Menu for {0:dd/MM/yyyy} could not be deleted.";
 
         private readonly IRecipesService recipesService;
         private readonly IDailyMenuService dailyMenuService;
@@ -45,6 +45,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             this.mappingService = mappingService;
         }
 
+        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Any, VaryByParam = "none")]
         public ActionResult Index()
         {
             var dailyMenus = this.dailyMenuService.GetAllDailyMenus()
@@ -78,6 +79,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.PartialView("_DailyMenusGridPartial", searchModel);
         }
 
+        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "none")]
         [HttpGet]
         public ActionResult AddDailyMenu()
         {
@@ -95,7 +97,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
                 BBQ = new List<RecipeViewModel>(),
                 Date = DateTime.Today
             };
-
+            
             return this.View(editModel);
         }
 
@@ -107,19 +109,20 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddDailyMenu(DateTime date, IEnumerable<Guid> recipesIds)
+        public ActionResult AddDailyMenu(DateTime selectedDate, IEnumerable<Guid> recipesIds)
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage(toastrFailureTitle, string.Format(toastrAddObjectFailureMessage, date), ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrAddObjectFailureMessage, selectedDate), ToastType.Error);
                 return this.View("AddDailyMenu");
             }
 
-            this.dailyMenuService.AddDailyMenu(date, recipesIds);
-            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrAddObjectSuccessMessage, date), ToastType.Success);
+            this.dailyMenuService.AddDailyMenu(selectedDate, recipesIds);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrAddObjectSuccessMessage, selectedDate), ToastType.Success);
             return this.RedirectToAction("Index");
         }
 
+        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Any, VaryByParam = "id")]
         public ActionResult DetailsDailyMenu(Guid id)
         {
             if (id == Guid.Empty)
@@ -132,6 +135,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.View(menuModel);
         }
 
+        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "id")]
         [HttpGet]
         public ActionResult EditDailyMenu(Guid id)
         {
@@ -156,20 +160,21 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditDailyMenu(Guid id, DateTime date, IEnumerable<Guid> recipesIds)
+        public ActionResult EditDailyMenu(Guid id, DateTime selectedDate, IEnumerable<Guid> recipesIds)
         {
             if (!this.ModelState.IsValid)
             {
-                this.AddToastMessage(toastrFailureTitle, string.Format(toastrUpdateObjectFailureMessage, date), ToastType.Error);
+                this.AddToastMessage(toastrFailureTitle, string.Format(toastrUpdateObjectFailureMessage, selectedDate), ToastType.Error);
                 return this.RedirectToAction("EditDailyMenu");
             }
 
-            this.dailyMenuService.EditDailyMenu(id, date, recipesIds);
-            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrUpdateObjectSuccessMessage, date), ToastType.Success);
+            this.dailyMenuService.EditDailyMenu(id, selectedDate, recipesIds);
+            this.AddToastMessage(toastrSuccessTitle, string.Format(toastrUpdateObjectSuccessMessage, selectedDate), ToastType.Success);
 
             return this.RedirectToAction("Index");
         }
 
+        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "id")]
         [HttpGet]
         public ActionResult DeleteDailyMenu(Guid id)
         {
@@ -210,31 +215,31 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
 
         private AddDailyMenuViewModel GetAddDailyMenuViewModelWithAllRecipes()
         {
-            var soups = this.recipesService.GetAllSoups()
+            var soups = this.recipesService.GetAllOfDishType(DishType.Soup)
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
 
-            var salads = this.recipesService.GetAllSalads()
+            var salads = this.recipesService.GetAllOfDishType(DishType.Salad)
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
 
-            var bigSalads = this.recipesService.GetAllBigSalads()
+            var bigSalads = this.recipesService.GetAllOfDishType(DishType.BigSalad)
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
 
-            var mainDishes = this.recipesService.GetAllMainDishes()
+            var mainDishes = this.recipesService.GetAllOfDishType(DishType.MainDish)
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
 
-            var vegetarian = this.recipesService.GetAllVegetarian()
+            var vegetarian = this.recipesService.GetAllOfDishType(DishType.Vegetarian)
                 .Select(this.mappingService.Map<RecipeViewModel>)
                 .ToList();
 
-            var bbq = this.recipesService.GetAllBBQ()
+            var bbq = this.recipesService.GetAllOfDishType(DishType.BBQ)
                .Select(this.mappingService.Map<RecipeViewModel>)
                .ToList();
 
-            var pasta = this.recipesService.GetAllPasta()
+            var pasta = this.recipesService.GetAllOfDishType(DishType.Pasta)
                .Select(this.mappingService.Map<RecipeViewModel>)
                .ToList();
 

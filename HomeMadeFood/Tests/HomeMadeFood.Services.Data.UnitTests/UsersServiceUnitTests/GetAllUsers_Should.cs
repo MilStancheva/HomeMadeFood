@@ -18,13 +18,13 @@ namespace HomeMadeFood.Services.Data.UnitTests.UsersServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
             UsersService usersService = new UsersService(dataMock.Object);
-            dataMock.Setup(x => x.Users.GetAll());
+            dataMock.Setup(x => x.Users.All);
 
             //Act
             IEnumerable<ApplicationUser> users = usersService.GetAllUsers();
 
             //Assert
-            dataMock.Verify(x => x.Users.GetAll(), Times.Once);
+            dataMock.Verify(x => x.Users.All, Times.Once);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.UsersServiceUnitTests
             var dataMock = new Mock<IHomeMadeFoodData>();
             IEnumerable<ApplicationUser> expectedResultCollection = new List<ApplicationUser>();
 
-            dataMock.Setup(c => c.Users.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.Users.All).Returns(() =>
             {
                 return expectedResultCollection.AsQueryable();
             });
@@ -54,7 +54,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.UsersServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
 
-            dataMock.Setup(c => c.Users.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.Users.All).Returns(() =>
             {
                 IEnumerable<ApplicationUser> expectedResultCollection = new List<ApplicationUser>();
                 return expectedResultCollection.AsQueryable();
@@ -75,7 +75,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.UsersServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
 
-            dataMock.Setup(c => c.Users.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.Users.All).Returns(() =>
             {
                 return null;
             });

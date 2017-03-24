@@ -10,7 +10,7 @@ namespace HomeMadeFood.Data.Repositories
     {
         T GetById(object id);
 
-        IQueryable<T> GetAll();
+        IQueryable<T> All { get; }
 
         void Add(T entity);
 

@@ -7,8 +7,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HomeMadeFood.Web.Models.Account;
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HomeMadeFood.Web.Controllers
 {

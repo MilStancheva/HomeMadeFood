@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using HomeMadeFood.Web.App_GlobalResources;
 
 namespace HomeMadeFood.Web.Areas.Admin.Models
 {
@@ -7,8 +8,8 @@ namespace HomeMadeFood.Web.Areas.Admin.Models
     {
         public Guid Id { get; set; }
 
-        [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:D}")]
+        [Required(ErrorMessageResourceName = "DateIsRequiredErrorMessage", ErrorMessageResourceType = typeof(GlobalResources))]
+        [DataType(DataType.Date)]
         public DateTime SelectedDate { get; set; }
 
         public DailyMenuViewModel SelectedDailyMenuViewModel { get; set; }

@@ -47,5 +47,23 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
             //Assert
             Assert.AreSame(foodCategory, foodCategoryResult);
         }
+
+        [Test]
+        public void ReturnsNull_WhenIdIsValidButThereIsNoSuchFoodCategoryInDatabase()
+        {
+            //Arrange
+            var dataMock = new Mock<IHomeMadeFoodData>();
+            Guid foodcategoryId = Guid.NewGuid();
+            
+            dataMock.Setup(c => c.FoodCategories.GetById(foodcategoryId)).Returns<FoodCategory>(null);
+
+            FoodCategoriesService foodCategoriesService = new FoodCategoriesService(dataMock.Object);
+
+            //Act
+            FoodCategory foodCategoryResult = foodCategoriesService.GetFoodCategoryById(foodcategoryId);
+
+            //Assert
+            Assert.IsNull(foodCategoryResult);
+        }
     }
 }

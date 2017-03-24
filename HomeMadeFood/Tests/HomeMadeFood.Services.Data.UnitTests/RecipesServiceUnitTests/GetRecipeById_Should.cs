@@ -61,5 +61,23 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
             //Assert
             Assert.AreSame(recipe, recipeResult);
         }
+
+        [Test]
+        public void ReturnNull_WhenNoRecipeExistsWithThePassesValidId()
+        {
+            //Arrange
+            var dataMock = new Mock<IHomeMadeFoodData>();
+            Guid recipeId = Guid.NewGuid();
+            
+            dataMock.Setup(c => c.Recipes.GetById(recipeId)).Returns<Recipe>(null);
+
+            RecipesService recipesService = new RecipesService(dataMock.Object);
+
+            //Act
+            Recipe recipeResult = recipesService.GetRecipeById(recipeId);
+
+            //Assert
+            Assert.IsNull(recipeResult);
+        }
     }
 }

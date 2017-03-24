@@ -1,5 +1,5 @@
-﻿using HomeMadeFood.Web.Common.Messaging;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using HomeMadeFood.Web.Common.Messaging;
 
 namespace HomeMadeFood.Web.Controllers.Extensions
 {

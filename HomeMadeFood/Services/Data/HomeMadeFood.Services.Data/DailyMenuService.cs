@@ -47,7 +47,7 @@ namespace HomeMadeFood.Services.Data
 
         public IEnumerable<DailyMenu> GetAllDailyMenus()
         {
-            var dailyMenus = this.data.DailyMenus.GetAll();
+            var dailyMenus = this.data.DailyMenus.All;
 
             if (dailyMenus == null)
             {
@@ -62,6 +62,11 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(id, "id").IsEmptyGuid().Throw();
 
             DailyMenu menu = this.data.DailyMenus.GetById(id);
+
+            if (menu == null)
+            {
+                return null;
+            }
 
             return menu;
         }
@@ -79,10 +84,19 @@ namespace HomeMadeFood.Services.Data
                 recipesToAdd = this.GetRecipesOfDailyMenu(recipesIds).ToList();
             }
 
+            foreach (var recipe in dailyMenu.Recipes)
+            {
+                recipe.DailyMenus.Remove(dailyMenu);
+            }
             dailyMenu.Recipes = new List<Recipe>();
             foreach (var recipe in recipesToAdd)
             {
                 dailyMenu.Recipes.Add(recipe);
+            }
+
+            foreach (var recipe in recipesToAdd)
+            {
+                recipe.DailyMenus.Add(dailyMenu);
             }
 
             dailyMenu.Date = date;

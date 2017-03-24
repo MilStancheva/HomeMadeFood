@@ -40,5 +40,22 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             //Assert
             Assert.AreSame(ingredient, ingredientResult);
         }
+        [Test]
+        public void ReturnsNull_WhenIdIsValidButThereIsNoSuchIngredientInDatabase()
+        {
+            //Arrange
+            var dataMock = new Mock<IHomeMadeFoodData>();
+            Guid ingredientId = Guid.NewGuid();
+
+            dataMock.Setup(c => c.Ingredients.GetById(ingredientId)).Returns<Ingredient>(null);
+
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+
+            //Act
+            Ingredient ingredientResult = ingredientsService.GetIngredientById(ingredientId);
+
+            //Assert
+            Assert.IsNull(ingredientResult);
+        }
     }
 }

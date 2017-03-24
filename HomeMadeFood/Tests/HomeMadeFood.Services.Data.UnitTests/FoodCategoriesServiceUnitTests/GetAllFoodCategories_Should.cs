@@ -18,13 +18,13 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
             FoodCategoriesService foodCategoriesService = new FoodCategoriesService(dataMock.Object);
-            dataMock.Setup(x => x.FoodCategories.GetAll());
+            dataMock.Setup(x => x.FoodCategories.All);
 
             //Act
             IEnumerable<FoodCategory> foodCategories = foodCategoriesService.GetAllFoodCategories();
 
             //Assert
-            dataMock.Verify(x => x.FoodCategories.GetAll(), Times.Once);
+            dataMock.Verify(x => x.FoodCategories.All, Times.Once);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
             var dataMock = new Mock<IHomeMadeFoodData>();
             IEnumerable<FoodCategory> expectedResultCollection = new List<FoodCategory>();
 
-            dataMock.Setup(c => c.FoodCategories.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.FoodCategories.All).Returns(() =>
             {
                 return expectedResultCollection.AsQueryable();
             });
@@ -54,7 +54,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
 
-            dataMock.Setup(c => c.FoodCategories.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.FoodCategories.All).Returns(() =>
             {
                 IEnumerable<FoodCategory> expectedResultCollection = new List<FoodCategory>();
                 return expectedResultCollection.AsQueryable();
@@ -75,7 +75,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
 
-            dataMock.Setup(c => c.FoodCategories.GetAll()).Returns(() =>
+            dataMock.Setup(c => c.FoodCategories.All).Returns(() =>
             {
                 return null;
             });

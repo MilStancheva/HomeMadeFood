@@ -1,6 +1,6 @@
-﻿using HomeMadeFood.Models;
+﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
+using HomeMadeFood.Models;
 
 namespace HomeMadeFood.Data
 {

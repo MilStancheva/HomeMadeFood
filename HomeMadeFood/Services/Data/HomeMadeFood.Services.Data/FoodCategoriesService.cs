@@ -46,14 +46,14 @@ namespace HomeMadeFood.Services.Data
 
         public IEnumerable<FoodCategory> GetAllFoodCategories()
         {
-            var foodCategories = this.data.FoodCategories.GetAll();
+            var foodCategories = this.data.FoodCategories.All;
 
             if (foodCategories == null)
             {
                 return null;
             }
 
-            return foodCategories.OrderBy(x => x.Id);
+            return foodCategories;
         }
 
         public FoodCategory GetFoodCategoryById(Guid id)
@@ -74,7 +74,7 @@ namespace HomeMadeFood.Services.Data
         {
             Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();
 
-            var foodCategory = this.data.FoodCategories.GetAll().FirstOrDefault(x => x.Name.ToLower() == name.ToLower());
+            var foodCategory = this.data.FoodCategories.All.FirstOrDefault(x => x.Name.ToLower() == name.ToLower());
 
             if (foodCategory == null)
             {

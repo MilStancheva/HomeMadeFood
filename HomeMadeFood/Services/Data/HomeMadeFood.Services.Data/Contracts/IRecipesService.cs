@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using HomeMadeFood.Models;
+using HomeMadeFood.Models.Enums;
 
 namespace HomeMadeFood.Services.Data.Contracts
 {
@@ -21,20 +22,6 @@ namespace HomeMadeFood.Services.Data.Contracts
 
         Recipe GetRecipeById(Guid id);
 
-        IEnumerable<Recipe> GetAllSoups();
-
-        IEnumerable<Recipe> GetAllSalads();
-
-        IEnumerable<Recipe> GetAllBigSalads();
-
-        IEnumerable<Recipe> GetAllMainDishes();
-
-        IEnumerable<Recipe> GetAllVegetarian();
-
-        IEnumerable<Recipe> GetAllPasta();
-
-        IEnumerable<Recipe> GetAllBBQ();
-
-        IEnumerable<Recipe> GetAllDesserts();
+        IEnumerable<Recipe> GetAllOfDishType(DishType dishType);
     }
 }
