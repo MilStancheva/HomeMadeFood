@@ -132,7 +132,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             dailyMenuService.DeleteDailyMenu(dailyMenu);
 
             //Assert
-            dataMock.Verify(x => x.Commit(), Times.Once);
+            dataMock.Verify(x => x.SaveChanges(), Times.Once);
         }
     }
 }

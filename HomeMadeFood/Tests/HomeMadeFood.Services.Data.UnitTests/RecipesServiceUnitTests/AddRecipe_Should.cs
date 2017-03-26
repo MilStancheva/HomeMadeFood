@@ -9,6 +9,7 @@ using HomeMadeFood.Models;
 using HomeMadeFood.Models.Enums;
 using HomeMadeFood.Services.Data.Contracts;
 using System.Linq;
+using System.Data.Entity;
 
 namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
 {
@@ -31,10 +32,10 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
             //Act & Assert
             Assert.Throws<ArgumentNullException>(
                 () => recipesService.AddRecipe(
-                    recipe, 
-                    ingredientNames, 
-                    ingredientQuantities, 
-                    ingredientPrices, 
+                    recipe,
+                    ingredientNames,
+                    ingredientQuantities,
+                    ingredientPrices,
                     foodCategories));
         }
 
@@ -44,47 +45,37 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         //    //Arrange
         //    var dataMock = new Mock<IHomeMadeFoodData>();
         //    var ingredientsServiceMock = new Mock<IIngredientsService>();
-        //    var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
-        //    RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
+        //    var foodcategoriesServiceMock = new Mock<IFoodCategoriesService>();
+        //    RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object, foodcategoriesServiceMock.Object);
+
         //    List<string> ingredientNames = new List<string>() { "Tomato" };
         //    List<double> ingredientQuantities = new List<double>() { 1.200 };
         //    List<decimal> ingredientPrices = new List<decimal>() { 4.80m };
         //    List<Guid> foodCategories = new List<Guid>() { Guid.NewGuid() };
 
-        //    Guid recipeId = Guid.NewGuid();
-        //    var ingredient = new Ingredient()
+        //    ingredientsServiceMock.Setup(x => x.CreateIngredient(ingredientNames[0], foodCategories[0], ingredientPrices[0], ingredientQuantities[0]))
+        //        .Returns(() =>
         //    {
-        //        Id = Guid.NewGuid(),
-        //        Name = ingredientNames[0],
-        //        FoodCategoryId = foodCategories[0],
-        //        RecipeId = recipeId,
-        //        QuantityInMeasuringUnit = ingredientQuantities[0],
-        //        PricePerMeasuringUnit = ingredientPrices[0]
-        //    };
-
-        //    var ingredients = new List<Ingredient>()
+        //        return new Ingredient()
         //        {
-        //            ingredient
+        //            Id = Guid.NewGuid(),
+        //            Name = ingredientNames[0],
+        //            FoodCategoryId = foodCategories[0],
+        //            QuantityInMeasuringUnit = ingredientQuantities[0],
+        //            PricePerMeasuringUnit = ingredientPrices[0]
         //        };
+        //    });
+
+        //    Guid recipeId = Guid.NewGuid();            
         //    Recipe recipe = new Recipe()
         //    {
         //        Id = recipeId,
         //        Title = "Title Of A New Recipe",
         //        Describtion = "This is a decsribtion",
         //        Instruction = "Instructions of the recipe",
-        //        DishType = DishType.MainDish,
-        //        Ingredients = ingredients
+        //        DishType = DishType.MainDish
         //    };
-        //    var costPerPortion = ingredients.Select(x => x.PricePerMeasuringUnit).Sum();
-        //    var quantityPerPortion = ingredients.Select(x => x.QuantityInMeasuringUnit).Sum();
-        //    var costPercentage = 0.30m;
-        //    recipe.CostPerPortion = costPerPortion;
-        //    recipe.QuantityPerPortion = quantityPerPortion;
-        //    recipe.PricePerPortion = costPerPortion / costPercentage;
 
-        //    ingredientsServiceMock.Setup(x => x.CreateIngredient(ingredientNames[0], foodCategories[0], ingredientPrices[0], ingredientQuantities[0])).Returns(ingredient);
-        //    foodCategoriesServiceMock.Setup(x => x.AddIngredientCostToFoodCategory(ingredient));
-        //    foodCategoriesServiceMock.Setup(x => x.AddIngredientQuantityToFoodCategory(ingredient));
         //    dataMock.Setup(x => x.Recipes.Add(recipe));
 
         //    //Act
@@ -146,7 +137,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         //    dataMock.Setup(x => x.Recipes.Add(recipe));
 
         //    //Act
-            
+
         //    recipesService.AddRecipe(recipe,
         //            ingredientNames,
         //            ingredientQuantities,

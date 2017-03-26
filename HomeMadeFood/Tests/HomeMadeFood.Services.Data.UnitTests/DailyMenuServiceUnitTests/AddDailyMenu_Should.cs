@@ -88,7 +88,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             dailyMenuService.AddDailyMenu(date, recipesIds);
 
             //Assert
-            dataMock.Verify(x => x.Commit(), Times.Once);
+            dataMock.Verify(x => x.SaveChanges(), Times.Once);
         }
 
         [Test]

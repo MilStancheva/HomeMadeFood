@@ -43,7 +43,6 @@ namespace HomeMadeFood.Data.Repositories
 
         public void Update(T entity)
         {
-            //this.DbSet.Add(entity);
             var entry = AttachIfDetached(entity);
             entry.State = EntityState.Modified;
         }

@@ -71,7 +71,7 @@ namespace HomeMadeFood.Services.Data
                 var price = pricesAsList[i];
                 var foodCategoryId = foodCategoriesIdsAsList[i];
                 var ingredient = this.ingredientsService.CreateIngredient(name, foodCategoryId, price, quantity);
-                recipe.Ingredients.Add(ingredient);           
+                recipe.Ingredients.Add(ingredient);
             }
 
             decimal costPercentage = 0.30m;
@@ -81,10 +81,10 @@ namespace HomeMadeFood.Services.Data
 
             recipe.CostPerPortion = costPerPortion;
             recipe.PricePerPortion = pricePerPortion;
-            recipe.QuantityPerPortion = quantityPerPortion;
+            recipe.QuantityPerPortion = quantityPerPortion;            
 
             this.data.Recipes.Add(recipe);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void DeleteRecipe(Recipe recipe)
@@ -92,7 +92,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
 
             this.data.Recipes.Delete(recipe);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void EditRecipe(Recipe recipe)
@@ -100,7 +100,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
 
             this.data.Recipes.Update(recipe);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public IEnumerable<Recipe> GetAllOfDishType(DishType dishType)
@@ -120,10 +120,15 @@ namespace HomeMadeFood.Services.Data
         private decimal CalculateRecipeCostPerPortion(Recipe recipe)
         {
             Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
-            
-            var costPerPotion = recipe.Ingredients
-                .Select(x => x.PricePerMeasuringUnit)
-                .Sum();
+
+            var costPerPotion = 0m;
+            if (recipe.Ingredients != null)
+            {
+                costPerPotion = recipe.Ingredients
+                    .ToList()
+                    .Select(x => x.PricePerMeasuringUnit)
+                    .Sum();
+            }           
 
             return costPerPotion;
         }

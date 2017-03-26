@@ -17,6 +17,6 @@ namespace HomeMadeFood.Data.Data
 
         IEfRepository<ApplicationUser> Users { get; }
 
-        void Commit();
+        void SaveChanges();
     }
 }

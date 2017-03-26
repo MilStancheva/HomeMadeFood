@@ -111,6 +111,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AdminControllerUnitTests\Index_Should.cs" />
+    <Compile Include="AdminControllerUnitTests\ShoppingList_Should.cs" />
     <Compile Include="DailyMenusControllerUnitTests\AddDailyMenu_Should.cs" />
     <Compile Include="DailyMenusControllerUnitTests\AddMenu_Should.cs" />
     <Compile Include="DailyMenusControllerUnitTests\DeleteDailyMenu_Should.cs" />
@@ -123,9 +124,11 @@
     <Compile Include="FoodCategoriesControllerUnitTests\EditFoodCategory_Should.cs" />
     <Compile Include="FoodCategoriesControllerUnitTests\Index_Should.cs" />
     <Compile Include="FoodCategoriesControllerUnitTests\Search_Should.cs" />
+    <Compile Include="HomeControllerTests\BackgroundVideo_Should.cs" />
     <Compile Include="HomeControllerTests\ContactShould.cs" />
     <Compile Include="HomeControllerTests\AboutShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
+    <Compile Include="HomeControllerTests\WeeklyMenu_Should.cs" />
     <Compile Include="IngredientsControllerUnitTests\AddIngredient_Should.cs" />
     <Compile Include="IngredientsControllerUnitTests\DeleteIngredient_Should.cs" />
     <Compile Include="IngredientsControllerUnitTests\EditIngredient_Should.cs" />

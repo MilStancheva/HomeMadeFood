@@ -67,7 +67,7 @@ namespace HomeMadeFood.Data.Data
             }
         }
 
-        public void Commit()
+        public void SaveChanges()
         {
             this.dbContext.SaveChanges();
         }

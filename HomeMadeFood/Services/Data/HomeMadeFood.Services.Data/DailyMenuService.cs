@@ -42,7 +42,7 @@ namespace HomeMadeFood.Services.Data
             };
 
             this.data.DailyMenus.Add(menu);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public IEnumerable<DailyMenu> GetAllDailyMenus()
@@ -104,7 +104,7 @@ namespace HomeMadeFood.Services.Data
             dailyMenu.DayOfWeek = date.DayOfWeek;
 
             this.data.DailyMenus.Update(dailyMenu);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void DeleteDailyMenu(DailyMenu menu)
@@ -112,7 +112,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(menu, "menu").IsNull().Throw();
 
             this.data.DailyMenus.Delete(menu);
-            this.data.Commit();
+            this.data.SaveChanges();
         }        
 
         public IEnumerable<DailyMenu> GetFiveDailyMenusForTheNextWeek()
@@ -120,6 +120,11 @@ namespace HomeMadeFood.Services.Data
             var dailyMenus = this.data.DailyMenus
                 .GetAllIncluding(x => x.Recipes)
                 .Take(5);
+
+            if (dailyMenus == null)
+            {
+                return null;
+            }
 
             return dailyMenus;
         }
@@ -142,28 +147,7 @@ namespace HomeMadeFood.Services.Data
             var foodCategories = this.GetFoodCategoriesFromIngredients(ingredients);
 
             return foodCategories;
-        }
-
-        private IEnumerable<Recipe> GetRecipesOfDailyMenu(IEnumerable<Guid> recipesIds)
-        {
-            Guard.WhenArgument(recipesIds, "recipesIds").IsNullOrEmpty().Throw();
-
-            var recipesIdsAsList = recipesIds.ToList();
-            var allRecipes = this.recipeService.GetAllRecipes().ToList();
-            var recipesToAdd = new List<Recipe>();
-            for (int i = 0; i < allRecipes.Count; i++)
-            {
-                for (int j = 0; j < recipesIdsAsList.Count; j++)
-                {
-                    if ((allRecipes[i].Id).Equals(recipesIdsAsList[j]))
-                    {
-                        recipesToAdd.Add(allRecipes[i]);
-                    }
-                }
-            }
-
-            return recipesToAdd;
-        }
+        }       
 
         public decimal CalculateShoppingListCostForActiveDailyMenus(IEnumerable<FoodCategory> foodCategoriesOfActiveDailyMenus)
         {
@@ -195,6 +179,27 @@ namespace HomeMadeFood.Services.Data
             }
 
             return foodCategories.Distinct();
+        }
+
+        private IEnumerable<Recipe> GetRecipesOfDailyMenu(IEnumerable<Guid> recipesIds)
+        {
+            Guard.WhenArgument(recipesIds, "recipesIds").IsNullOrEmpty().Throw();
+
+            var recipesIdsAsList = recipesIds.ToList();
+            var allRecipes = this.recipeService.GetAllRecipes().ToList();
+            var recipesToAdd = new List<Recipe>();
+            for (int i = 0; i < allRecipes.Count; i++)
+            {
+                for (int j = 0; j < recipesIdsAsList.Count; j++)
+                {
+                    if ((allRecipes[i].Id).Equals(recipesIdsAsList[j]))
+                    {
+                        recipesToAdd.Add(allRecipes[i]);
+                    }
+                }
+            }
+
+            return recipesToAdd;
         }
     }
 }

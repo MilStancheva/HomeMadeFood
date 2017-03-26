@@ -111,7 +111,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             ingredientsService.DeleteIngredient(ingredient);
 
             //Assert
-            dataMock.Verify(x => x.Commit(), Times.Once);
+            dataMock.Verify(x => x.SaveChanges(), Times.Once);
         }
     }
 }

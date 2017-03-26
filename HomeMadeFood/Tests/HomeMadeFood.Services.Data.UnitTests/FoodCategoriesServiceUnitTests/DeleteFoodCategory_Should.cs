@@ -69,7 +69,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.FoodCategoriesServiceUnitTests
             foodCategoriesService.DeleteFoodCategory(foodCategory);
 
             //Assert
-            dataMock.Verify(x => x.Commit(), Times.Once);
+            dataMock.Verify(x => x.SaveChanges(), Times.Once);
         }
     }
 }

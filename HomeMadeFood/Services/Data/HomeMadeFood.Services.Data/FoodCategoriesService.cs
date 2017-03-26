@@ -25,7 +25,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(foodCategory, "foodCategory").IsNull().Throw();
 
             this.data.FoodCategories.Add(foodCategory);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void DeleteFoodCategory(FoodCategory foodCategory)
@@ -33,7 +33,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(foodCategory, "foodCategory").IsNull().Throw();
 
             this.data.FoodCategories.Delete(foodCategory);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void EditFoodCategory(FoodCategory foodCategory)
@@ -41,7 +41,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(foodCategory, "foodCategory").IsNull().Throw();
 
             this.data.FoodCategories.Update(foodCategory);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public IEnumerable<FoodCategory> GetAllFoodCategories()
@@ -86,35 +86,42 @@ namespace HomeMadeFood.Services.Data
 
         public void AddIngredientCostToFoodCategory(Ingredient ingredient)
         {
+            Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
+
             FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
             foodCategory.CostOfAllCategoryIngredients += ingredient.PricePerMeasuringUnit;
 
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void RemoveIngredientCostFromFoodCategory(Ingredient ingredient)
         {
+            Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
+
             FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
             foodCategory.CostOfAllCategoryIngredients -= ingredient.PricePerMeasuringUnit;
 
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void AddIngredientQuantityToFoodCategory(Ingredient ingredient)
         {
+            Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
+
             FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
             foodCategory.QuantityOfAllCategoryIngredients += ingredient.QuantityInMeasuringUnit;
 
-            this.data.Commit();
-
+            this.data.SaveChanges();
         }
 
         public void RemoveIngredientQuantityFromFoodCategory(Ingredient ingredient)
         {
+            Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
+
             FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
             foodCategory.QuantityOfAllCategoryIngredients -= ingredient.QuantityInMeasuringUnit;
 
-            this.data.Commit();
+            this.data.SaveChanges();
         }
     }
 }

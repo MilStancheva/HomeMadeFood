@@ -39,6 +39,10 @@
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Services\Data\HomeMadeFood.Services.Data\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
@@ -64,17 +68,26 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DailyMenuServiceUnitTests\AddDailyMenu_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\CalculateShoppingListCostForActiveDailyMenus_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\DailyMenuServiceConstructor_Should.cs" />
     <Compile Include="DailyMenuServiceUnitTests\DeleteDailyMenu_Should.cs" />
     <Compile Include="DailyMenuServiceUnitTests\EditDailyMenu_Should.cs" />
     <Compile Include="DailyMenuServiceUnitTests\GetAllDailyMenus_Should.cs" />
     <Compile Include="DailyMenuServiceUnitTests\GetDailyMenuById_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\GetFiveDailyMenusForTheNextWeek_Should.cs" />
+    <Compile Include="DailyMenuServiceUnitTests\GetShoppingListOfFoodCategoriesForActiveDailyMenus_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\AddFoodCategory_Should.cs" />
+    <Compile Include="FoodCategoriesServiceUnitTests\AddIngredientCostToFoodCategory_Should.cs" />
+    <Compile Include="FoodCategoriesServiceUnitTests\AddIngredientQuantityToFoodCategory_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\DeleteFoodCategory_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\EditFoodCategory_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\GetAllFoodCategories_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\GetFoodCategoryById_Should.cs" />
     <Compile Include="FoodCategoriesServiceUnitTests\GetFoodCategoryByName_Should.cs" />
+    <Compile Include="FoodCategoriesServiceUnitTests\RemoveIngredientCostFromFoodCategory_Should.cs" />
+    <Compile Include="FoodCategoriesServiceUnitTests\RemoveIngredientQuantityFromFoodCategory_Should.cs" />
     <Compile Include="IngredientsServiceUnitTests\AddIngredient_Should.cs" />
+    <Compile Include="IngredientsServiceUnitTests\CreateIngredient_Should.cs" />
     <Compile Include="IngredientsServiceUnitTests\DeleteIngredient_Should.cs" />
     <Compile Include="IngredientsServiceUnitTests\EditIngredient_Should.cs" />
     <Compile Include="IngredientsServiceUnitTests\GetAllIngredients_Should.cs" />
@@ -83,6 +96,7 @@
     <Compile Include="RecipesServiceUnitTests\AddRecipe_Should.cs" />
     <Compile Include="RecipesServiceUnitTests\DeleteRecipe_Should.cs" />
     <Compile Include="RecipesServiceUnitTests\EditRecipe_Should.cs" />
+    <Compile Include="RecipesServiceUnitTests\GetAllOfDishType_Should.cs" />
     <Compile Include="RecipesServiceUnitTests\GetAllRecipes_Should.cs" />
     <Compile Include="RecipesServiceUnitTests\GetRecipeById_Should.cs" />
     <Compile Include="UsersServiceUnitTests\GetAllUsersWithRoles_Should.cs" />

@@ -67,7 +67,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
             recipesService.EditRecipe(recipe);
 
             //Assert
-            dataMock.Verify(x => x.Commit(), Times.Once);
+            dataMock.Verify(x => x.SaveChanges(), Times.Once);
         }
 
         [Test]

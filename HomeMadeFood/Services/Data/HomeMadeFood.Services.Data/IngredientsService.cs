@@ -44,7 +44,7 @@ namespace HomeMadeFood.Services.Data
             this.foodCategoriesService.AddIngredientCostToFoodCategory(ingredient);
             this.foodCategoriesService.AddIngredientQuantityToFoodCategory(ingredient);
 
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void AddIngredient(Ingredient ingredient)
@@ -55,7 +55,7 @@ namespace HomeMadeFood.Services.Data
             this.foodCategoriesService.AddIngredientCostToFoodCategory(ingredient);
             this.foodCategoriesService.AddIngredientQuantityToFoodCategory(ingredient);
 
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public Ingredient CreateIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit)
@@ -105,7 +105,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
 
             this.data.Ingredients.Update(ingredient);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public void DeleteIngredient(Ingredient ingredient)
@@ -116,7 +116,7 @@ namespace HomeMadeFood.Services.Data
             this.foodCategoriesService.RemoveIngredientQuantityFromFoodCategory(ingredient);
 
             this.data.Ingredients.Delete(ingredient);
-            this.data.Commit();
+            this.data.SaveChanges();
         }
 
         public IEnumerable<Ingredient> GetAllIngredientsIncludingRecipes()
