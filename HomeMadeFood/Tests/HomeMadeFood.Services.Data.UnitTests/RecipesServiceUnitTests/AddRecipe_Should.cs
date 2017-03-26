@@ -6,10 +6,7 @@ using NUnit.Framework;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
 using HomeMadeFood.Services.Data.Contracts;
-using System.Linq;
-using System.Data.Entity;
 
 namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
 {
