@@ -26,6 +26,8 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             this.mappingService = mappingService;
         }
 
+        [OutputCache(CacheProfile = "AdminIndex")]
+
         public ActionResult Index()
         {            
             var users = this.usersService.GetAllUsersWithRoles()

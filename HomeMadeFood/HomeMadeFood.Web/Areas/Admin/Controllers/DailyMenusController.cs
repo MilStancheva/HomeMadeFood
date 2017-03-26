@@ -46,7 +46,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             this.mappingService = mappingService;
         }
 
-        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Any, VaryByParam = "none")]
+        [OutputCache(CacheProfile = "AdminIndex")]
         public ActionResult Index()
         {
             var dailyMenus = this.dailyMenuService.GetAllDailyMenus()
@@ -80,7 +80,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.PartialView("_DailyMenusGridPartial", searchModel);
         }
 
-        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "none")]
+        [OutputCache(Duration = 60, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "none")]
         [HttpGet]
         public ActionResult AddDailyMenu()
         {
@@ -102,6 +102,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.View(editModel);
         }
 
+        [OutputCache (Duration = 60, VaryByParam = "none")]
         [ChildActionOnly]
         public ActionResult AddMenu(EditDailyMenuViewModel editModel)
         {       
@@ -123,7 +124,6 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.RedirectToAction("Index");
         }
 
-        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Any, VaryByParam = "id")]
         public ActionResult DetailsDailyMenu(Guid id)
         {
             if (id == Guid.Empty)
@@ -136,7 +136,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.View(menuModel);
         }
 
-        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "id")]
+        [OutputCache(Duration = 30, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "id")]
         [HttpGet]
         public ActionResult EditDailyMenu(Guid id)
         {
@@ -175,7 +175,6 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.RedirectToAction("Index");
         }
 
-        [OutputCache(Duration = 2, Location = System.Web.UI.OutputCacheLocation.Client, VaryByParam = "id")]
         [HttpGet]
         public ActionResult DeleteDailyMenu(Guid id)
         {
@@ -252,6 +251,20 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             model.Vegetarian = vegetarian;
             model.BBQ = bbq;
             model.Pasta = pasta;
+
+            var viewModel = model;
+            //if (this.HttpContext.Cache["AddDailyMenuViewModel"] == null)
+            //{
+            //    this.HttpContext.Cache.Insert(
+            //        "AddDailyMenuViewModel",
+            //        model,
+            //        null,
+            //        DateTime.Now.AddMinutes(1),
+            //        TimeSpan.Zero,
+            //        CacheItemPriority.Default, 
+            //        null);
+            //}
+            //viewModel = this.HttpContext.Cache["AddDailyMenuViewModel"] as AddDailyMenuViewModel;
 
             return model;
         }

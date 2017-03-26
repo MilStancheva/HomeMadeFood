@@ -51,6 +51,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             this.mappingService = mappingService;
         }
 
+        [OutputCache(CacheProfile = "AdminIndex")]
         public ActionResult Index()
         {
             var recipes = this.recipesService.GetAllRecipes()
@@ -92,6 +93,7 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
             return this.View();
         }
 
+        [OutputCache(Duration = 60, Location = System.Web.UI.OutputCacheLocation.Server, VaryByParam = "none")]
         [HttpGet]
         public JsonResult GetFoodCategories()
         {

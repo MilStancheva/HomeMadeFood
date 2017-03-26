@@ -51,6 +51,7 @@ namespace HomeMadeFood.Web.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 180, VaryByParam = "none")]
         [ChildActionOnly]
         public ActionResult WeeklyMenu()
         {
