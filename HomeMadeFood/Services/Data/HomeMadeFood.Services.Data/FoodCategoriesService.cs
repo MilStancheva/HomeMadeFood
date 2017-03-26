@@ -53,7 +53,7 @@ namespace HomeMadeFood.Services.Data
                 return null;
             }
 
-            return foodCategories;
+            return foodCategories.OrderBy(x => x.Name);
         }
 
         public FoodCategory GetFoodCategoryById(Guid id)

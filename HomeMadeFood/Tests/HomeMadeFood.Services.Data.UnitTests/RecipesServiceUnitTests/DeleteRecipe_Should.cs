@@ -7,6 +7,7 @@ using NUnit.Framework;
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
 using HomeMadeFood.Models.Enums;
+using HomeMadeFood.Services.Data.Contracts;
 
 namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
 {
@@ -18,7 +19,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            RecipesService recipesService = new RecipesService(dataMock.Object);
+            var ingredientsServiceMock = new Mock<IIngredientsService>();
+            RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
             dataMock.Setup(x => x.Recipes.Delete(It.IsAny<Recipe>()));
 
             //Act & Assert
@@ -29,7 +31,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         public void InvokeDataRecipesDeleteOnce_WhenThePassedArgumentIsValid()
         {
             var dataMock = new Mock<IHomeMadeFoodData>();
-            RecipesService recipeService = new RecipesService(dataMock.Object);
+            var ingredientsServiceMock = new Mock<IIngredientsService>();
+            RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
             List<string> ingredientNames = new List<string>() { "Tomato" };
             List<double> ingredientQuantities = new List<double>() { 1.200 };
             List<decimal> ingredientPrices = new List<decimal>() { 4.80m };
@@ -60,7 +63,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
             dataMock.Setup(x => x.Recipes.Delete(It.IsAny<Recipe>()));
 
             //Act
-            recipeService.DeleteRecipe(recipe);
+            recipesService.DeleteRecipe(recipe);
 
             //Assert
             dataMock.Verify(x => x.Recipes.Delete(recipe), Times.Once);
@@ -71,7 +74,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            RecipesService recipeService = new RecipesService(dataMock.Object);
+            var ingredientsServiceMock = new Mock<IIngredientsService>();
+            RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
             List<string> ingredientNames = new List<string>() { "Tomato" };
             List<double> ingredientQuantities = new List<double>() { 1.200 };
             List<decimal> ingredientPrices = new List<decimal>() { 4.80m };
@@ -102,7 +106,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
             dataMock.Setup(x => x.Recipes.Delete(It.IsAny<Recipe>()));
 
             //Act
-            recipeService.DeleteRecipe(recipe);
+            recipesService.DeleteRecipe(recipe);
 
             //Assert
             dataMock.Verify(x => x.Commit(), Times.Once);

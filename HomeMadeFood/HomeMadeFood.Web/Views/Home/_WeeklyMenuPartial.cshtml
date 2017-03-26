@@ -85,7 +85,7 @@
                                         @{
                                             if (dailyMenusCollection[i].Pasta != null && dailyMenusCollection[i].Pasta.Count() > 0)
                                             {
-                                                foreach (var pasta in dailyMenusCollection[i].Vegetarian)
+                                                foreach (var pasta in dailyMenusCollection[i].Pasta)
                                                 {
                                                     <h4>@pasta.Title</h4>
                                                 <p class="recipe-description">@pasta.Describtion</p>
@@ -94,20 +94,6 @@
 
                                         }
                                         </p>
-
-                                        <p class="white-text">
-                                            @{
-                                                if (dailyMenusCollection[i].Pasta != null && dailyMenusCollection[i].Pasta.Count() > 0)
-                                                {
-                                                    foreach (var pasta in dailyMenusCollection[i].Vegetarian)
-                                                    {
-                                                        <h4>@pasta.Title</h4>
-                                                    <p class="recipe-description">@pasta.Describtion</p>
-                                                    }
-                                                }
-
-                                            }
-                                            </p>
 
                                             <p class="white-text">
                                                 @{

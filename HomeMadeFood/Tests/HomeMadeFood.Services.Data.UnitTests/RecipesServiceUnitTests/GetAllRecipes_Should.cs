@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
+using HomeMadeFood.Services.Data.Contracts;
 
 namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
 {
@@ -17,7 +18,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            RecipesService recipesService = new RecipesService(dataMock.Object);
+            var ingredientsServiceMock = new Mock<IIngredientsService>();
+            RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
             dataMock.Setup(x => x.Recipes.All);
 
             //Act
@@ -32,17 +34,17 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
+            var ingredientsServiceMock = new Mock<IIngredientsService>();
+            RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
             IEnumerable<Recipe> expectedResultCollection = new List<Recipe>();
 
             dataMock.Setup(c => c.Recipes.All).Returns(() =>
             {
                 return expectedResultCollection.AsQueryable();
             });
-
-            RecipesService recipeService = new RecipesService(dataMock.Object);
-
+            
             //Act
-            IEnumerable<Recipe> recipesResult = recipeService.GetAllRecipes();
+            IEnumerable<Recipe> recipesResult = recipesService.GetAllRecipes();
 
             //Assert
             Assert.That(recipesResult, Is.EqualTo(expectedResultCollection));
@@ -53,17 +55,16 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-
+            var ingredientsServiceMock = new Mock<IIngredientsService>();
+            RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
             dataMock.Setup(c => c.Recipes.All).Returns(() =>
             {
                 IEnumerable<Recipe> expectedResultCollection = new List<Recipe>();
                 return expectedResultCollection.AsQueryable();
             });
-
-            RecipesService recipeService = new RecipesService(dataMock.Object);
-
+            
             //Act
-            IEnumerable<Recipe> recipesResult = recipeService.GetAllRecipes();
+            IEnumerable<Recipe> recipesResult = recipesService.GetAllRecipes();
 
             //Assert
             Assert.That(recipesResult, Is.InstanceOf<IEnumerable<Recipe>>());
@@ -74,14 +75,13 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-
+            var ingredientsServiceMock = new Mock<IIngredientsService>();
+            RecipesService recipesService = new RecipesService(dataMock.Object, ingredientsServiceMock.Object);
             dataMock.Setup(c => c.Recipes.All).Returns(() =>
             {
                 return null;
             });
-
-            RecipesService recipesService = new RecipesService(dataMock.Object);
-
+            
             //Act
             IEnumerable<Recipe> recipesResult = recipesService.GetAllRecipes();
 

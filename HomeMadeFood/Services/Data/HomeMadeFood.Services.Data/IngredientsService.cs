@@ -40,11 +40,38 @@ namespace HomeMadeFood.Services.Data
                 RecipeId = recipeId
             };
 
+            this.data.Ingredients.Add(ingredient);
             this.foodCategoriesService.AddIngredientCostToFoodCategory(ingredient);
             this.foodCategoriesService.AddIngredientQuantityToFoodCategory(ingredient);
 
-            this.data.Ingredients.Add(ingredient);
             this.data.Commit();
+        }
+
+        public void AddIngredient(Ingredient ingredient)
+        {
+            Guard.WhenArgument(ingredient, "ingredient").IsNull().Throw();
+
+            this.data.Ingredients.Add(ingredient);
+            this.foodCategoriesService.AddIngredientCostToFoodCategory(ingredient);
+            this.foodCategoriesService.AddIngredientQuantityToFoodCategory(ingredient);
+
+            this.data.Commit();
+        }
+
+        public Ingredient CreateIngredient(string name, Guid foodCategoryId, decimal pricePerMeasuringUnit, double quantityPerMeasuringUnit)
+        {
+            Ingredient ingredient = new Ingredient()
+            {
+                Name = name,
+                FoodCategoryId = foodCategoryId,
+                PricePerMeasuringUnit = pricePerMeasuringUnit,
+                QuantityInMeasuringUnit = quantityPerMeasuringUnit
+            };
+
+            this.foodCategoriesService.AddIngredientCostToFoodCategory(ingredient);
+            this.foodCategoriesService.AddIngredientQuantityToFoodCategory(ingredient);
+
+            return ingredient;
         }
 
         public IEnumerable<Ingredient> GetAllIngredients()

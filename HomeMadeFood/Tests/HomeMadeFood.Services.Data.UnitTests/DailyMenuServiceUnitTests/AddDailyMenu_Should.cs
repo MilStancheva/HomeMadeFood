@@ -77,9 +77,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             {
                 Id = dailyMenuId,
                 Date =date,
-                DayOfWeek = date.DayOfWeek,
-                //Recipes = recipes
-
+                DayOfWeek = date.DayOfWeek
             };
 
             recipesServiceMock.Setup(x => x.GetAllRecipes()).Returns(recipes);

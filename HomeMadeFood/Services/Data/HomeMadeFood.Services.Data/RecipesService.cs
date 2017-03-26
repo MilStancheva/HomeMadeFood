@@ -14,11 +14,15 @@ namespace HomeMadeFood.Services.Data
     public class RecipesService : IRecipesService
     {
         private readonly IHomeMadeFoodData data;
+        private readonly IIngredientsService ingredientsService;
 
-        public RecipesService(IHomeMadeFoodData data)
+        public RecipesService(IHomeMadeFoodData data, IIngredientsService ingredientsService)
         {
             Guard.WhenArgument(data, "data").IsNull().Throw();
             this.data = data;
+
+            Guard.WhenArgument(ingredientsService, "ingredientsService").IsNull().Throw();
+            this.ingredientsService = ingredientsService;
         }
 
         public IEnumerable<Recipe> GetAllRecipes()
@@ -50,7 +54,7 @@ namespace HomeMadeFood.Services.Data
             IEnumerable<string> ingredientNames, 
             IEnumerable<double> ingredientQuantities, 
             IEnumerable<decimal> ingredientPrices,
-            IEnumerable<Guid> foodCategories)
+            IEnumerable<Guid> foodCategoriesIds)
         {
             Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
 
@@ -58,24 +62,16 @@ namespace HomeMadeFood.Services.Data
             var ingredientsAsList = ingredientNames.ToList();
             var quantitiesAsList = ingredientQuantities.ToList();
             var pricesAsList = ingredientPrices.ToList();
-            var foodCategoriesIdsAsList = foodCategories.ToList();
+            var foodCategoriesIdsAsList = foodCategoriesIds.ToList();
             var count = ingredientsAsList.Count;
-
             for (int i = 0; i < count; i++)
             {
                 var name = ingredientsAsList[i].ToLower();
                 var quantity = quantitiesAsList[i];
                 var price = pricesAsList[i];
                 var foodCategoryId = foodCategoriesIdsAsList[i];
-                var ingredient = new Ingredient()
-                {
-                    Name = name,
-                    QuantityInMeasuringUnit = quantity,
-                    PricePerMeasuringUnit = price,
-                    FoodCategoryId = foodCategoryId
-                };
-
-                recipe.Ingredients.Add(ingredient);               
+                var ingredient = this.ingredientsService.CreateIngredient(name, foodCategoryId, price, quantity);
+                recipe.Ingredients.Add(ingredient);           
             }
 
             decimal costPercentage = 0.30m;
