@@ -82,12 +82,12 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             {
                 Id = id,
                 Name = name,
-                FoodcategoryId = foodcategoryId,
+                FoodCategoryId = foodcategoryId,
                 RecipeId = recipeId
             };
             ingredientsServiceMock.Setup(x => x.GetIngredientById(id)).Returns(ingredient);
             var model = new IngredientViewModel();
-            model.FoodCategoryId = ingredient.FoodcategoryId;
+            model.FoodCategoryId = ingredient.FoodCategoryId;
             model.Name = ingredient.Name;
             model.RecipeId = ingredient.RecipeId;
             model.Id = ingredient.Id;

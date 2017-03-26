@@ -43,7 +43,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
                     {
                         Id = Guid.NewGuid(),
                         Name = "IngredientName",
-                        FoodcategoryId = Guid.NewGuid(),
+                        FoodCategoryId = Guid.NewGuid(),
                         RecipeId = recipeId,
                         QuantityInMeasuringUnit = 0.200,
                         PricePerMeasuringUnit = 1.29m

@@ -1,19 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 <div class="parallax-container">
-    <div class="fullscreen-bg">
-        <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-            <source src="~/Content/media/588741282.mp4" type="video/mp4" />
-        </video>
+    <div class="parallax">
+        @Html.Action("BackgroundVideo")
     </div>
 
     <div class="container-home parallax">
-        <div class="col-md-8">
+        <div class="col-md-8 index-inner-text">
             <h1>@GlobalResources.HomeMadeFoodTitle</h1>
             <p>
-               @GlobalResources.IndexWeAreHereToMakeYourDay 
+                @GlobalResources.IndexWeAreHereToMakeYourDay
             </p>
             <p>
                 @GlobalResources.IndexMakeYourEmployeesHappy
@@ -28,3 +26,11 @@
         </div>
     </div>
 </div>
+<div class="parallax-container carousel">
+    <div class="parallax">
+        @Html.Action("WeeklyMenu")
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/Custom/carousel-parallax-materialize.js"></script>
+}

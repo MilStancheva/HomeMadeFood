@@ -1,4 +1,7 @@
-﻿using HomeMadeFood.Web.Controllers;
+﻿using HomeMadeFood.Services.Common.Contracts;
+using HomeMadeFood.Services.Data.Contracts;
+using HomeMadeFood.Web.Controllers;
+using Moq;
 using NUnit.Framework;
 using System.Web.Mvc;
 
@@ -11,13 +14,15 @@ namespace HomeMadeFood.Controllers.UnitTests.HomeControllerTests
         public void AddTheRightMessageInTheViewBag()
         {
             //Arrange
-            HomeController homeController = new HomeController();
+            var dailyMenuServiceMock = new Mock<IDailyMenuService>();
+            var mappringServiceMock = new Mock<IMappingService>();
+            HomeController homeController = new HomeController(dailyMenuServiceMock.Object, mappringServiceMock.Object);
 
             //Act
             ViewResult result = homeController.About() as ViewResult;
 
             //Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("About HomeMadeFood", result.ViewBag.Message);
         }
     }
 }

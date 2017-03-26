@@ -18,7 +18,10 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             var dataMock = new Mock<IHomeMadeFoodData>();
             var recipesServiceMock = new Mock<IRecipesService>();
             DailyMenuService dailyMenuService = new DailyMenuService(dataMock.Object, recipesServiceMock.Object);
-            dataMock.Setup(x => x.DailyMenus.All);
+            IEnumerable<DailyMenu> expectedResultCollection = new List<DailyMenu>();
+            dataMock.Setup(x => x.DailyMenus.All).Returns(() => {
+                return expectedResultCollection.AsQueryable();
+            });
 
             //Act
             IEnumerable<DailyMenu> dailyMenus = dailyMenuService.GetAllDailyMenus();
@@ -75,7 +78,6 @@ namespace HomeMadeFood.Services.Data.UnitTests.DailyMenuServiceUnitTests
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
             var recipesServiceMock = new Mock<IRecipesService>();
-
             dataMock.Setup(c => c.DailyMenus.All).Returns(() =>
             {
                 return null;

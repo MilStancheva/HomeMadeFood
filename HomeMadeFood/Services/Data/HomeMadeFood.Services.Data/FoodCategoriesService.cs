@@ -83,5 +83,38 @@ namespace HomeMadeFood.Services.Data
 
             return foodCategory;
         }
+
+        public void AddIngredientCostToFoodCategory(Ingredient ingredient)
+        {
+            FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
+            foodCategory.CostOfAllCategoryIngredients += ingredient.PricePerMeasuringUnit;
+
+            this.data.Commit();
+        }
+
+        public void RemoveIngredientCostFromFoodCategory(Ingredient ingredient)
+        {
+            FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
+            foodCategory.CostOfAllCategoryIngredients -= ingredient.PricePerMeasuringUnit;
+
+            this.data.Commit();
+        }
+
+        public void AddIngredientQuantityToFoodCategory(Ingredient ingredient)
+        {
+            FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
+            foodCategory.QuantityOfAllCategoryIngredients += ingredient.QuantityInMeasuringUnit;
+
+            this.data.Commit();
+
+        }
+
+        public void RemoveIngredientQuantityFromFoodCategory(Ingredient ingredient)
+        {
+            FoodCategory foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
+            foodCategory.QuantityOfAllCategoryIngredients -= ingredient.QuantityInMeasuringUnit;
+
+            this.data.Commit();
+        }
     }
 }

@@ -189,4 +189,46 @@
   <data name="TitleMinValueErrorMessage" xml:space="preserve">
     <value>Title should be at least 2 symbols</value>
   </data>
+  <data name="ToastrAddDailyMenuFailureMessage" xml:space="preserve">
+    <value>Ooops! Daily Menu for {0:dd/MM/yyyy} could not be added. Please check again the input data. Thanks!</value>
+  </data>
+  <data name="ToastrAddDailyMenuSuccessMessage" xml:space="preserve">
+    <value>Daily Menu for {0:dd/MM/yyyy} is successfully added</value>
+  </data>
+  <data name="ToastrAddObjectFailureMessage" xml:space="preserve">
+    <value>Ooops! {0} could not be added. Please check again the input data. Thanks!</value>
+  </data>
+  <data name="ToastrAddObjectSuccessMessage" xml:space="preserve">
+    <value>{0} is successfully added</value>
+  </data>
+  <data name="ToastrDeleteDailyMenuFailureMessage" xml:space="preserve">
+    <value>Ooops! Daily Menu for {0:dd/MM/yyyy} could not be deleted.</value>
+  </data>
+  <data name="ToastrDeleteDailyMenuSuccessMessage" xml:space="preserve">
+    <value>Daily Menu for {0:dd/MM/yyyy} is successfully deleted</value>
+  </data>
+  <data name="ToastrDeleteObjectFailureMessage" xml:space="preserve">
+    <value>Ooops! {0} could not be deleted.</value>
+  </data>
+  <data name="ToastrDeleteObjectSuccessMessage" xml:space="preserve">
+    <value>{0} is successfully deleted</value>
+  </data>
+  <data name="ToastrFailureTitle" xml:space="preserve">
+    <value>Something went wrong...</value>
+  </data>
+  <data name="ToastrUpdateDailyMenuFailureMessage" xml:space="preserve">
+    <value>Ooops! Daily Menu for {0:dd/MM/yyyy} could not be updated. Please check again the input data. Thanks!</value>
+  </data>
+  <data name="ToastrUpdateObjectFailureMessage" xml:space="preserve">
+    <value>Ooops! {0} could not be updated. Please check again the input data. Thanks!</value>
+  </data>
+  <data name="ToastrUpdateObjectSuccessMessage" xml:space="preserve">
+    <value>{0} is successfully updated</value>
+  </data>
+  <data name="ТoastrSuccessTitle" xml:space="preserve">
+    <value>Yeah!</value>
+  </data>
+  <data name="ТoastrUpdateDailyMenuSuccessMessage" xml:space="preserve">
+    <value>Daily Menu for {0:dd/MM/yyyy} is successfully updated</value>
+  </data>
 </root>

@@ -1,7 +1,6 @@
 ﻿body {
-    margin-top: 50px;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    margin-top: 30px;
+    padding-top: 30px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,6 +21,12 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.index-inner-text{
+    margin: 40px;
+    padding: 40px;
+    padding-left: 60px;
 }
 
 
@@ -62,11 +67,6 @@ textarea {
 
     .content-box-header:after {
         clear: both;
-    }
-
-    .container .body-content{
-        padding-left: 0;
-        margin-left: 0;
     }
 
 .sidebar ul.nav, .sidebar ul.nav ul {
@@ -323,3 +323,15 @@ footer {
     }
 }
 
+.body-content {
+    margin: 0;
+    padding: 0;
+}
+
+.parallax-container> .carousel {
+      height: 415px;
+    }
+
+.recipe-description{
+    font-style: italic
+}

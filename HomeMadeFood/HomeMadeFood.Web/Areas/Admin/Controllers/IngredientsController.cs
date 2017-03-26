@@ -11,6 +11,7 @@ using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
 using HomeMadeFood.Web.Common.Messaging;
 using HomeMadeFood.Web.Controllers.Extensions;
+using HomeMadeFood.Web.App_GlobalResources;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
@@ -19,15 +20,15 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
     {
         private readonly int gridPageSize = 25;
 
-        private string toastrSuccessTitle = "Yeah!";
-        private string toastrAddObjectSuccessMessage = "{0} is successfully added";
-        private string toastrUpdateObjectSuccessMessage = "{0} is successfully updated";
-        private string toastrDeleteObjectSuccessMessage = "{0} is successfully deleted";
+        private string toastrSuccessTitle = GlobalResources.ТoastrSuccessTitle;
+        private string toastrAddObjectSuccessMessage = GlobalResources.ToastrAddObjectSuccessMessage;
+        private string toastrUpdateObjectSuccessMessage = GlobalResources.ToastrUpdateObjectSuccessMessage;
+        private string toastrDeleteObjectSuccessMessage = GlobalResources.ToastrDeleteObjectSuccessMessage;
 
-        private string toastrFailureTitle = "Something went wrong...";
-        private string toastrAddObjectFailureMessage = "Ooops! {0} could not be added. Please check again the input data. Thanks!";
-        private string toastrUpdateObjectFailureMessage = "Ooops! {0} could not be updated. Please check again the input data. Thanks!";
-        private string toastrDeleteObjectFailureMessage = "Ooops! {0} could not be deleted.";
+        private string toastrFailureTitle = GlobalResources.ToastrFailureTitle;
+        private string toastrAddObjectFailureMessage = GlobalResources.ToastrAddObjectFailureMessage;
+        private string toastrUpdateObjectFailureMessage = GlobalResources.ToastrUpdateObjectFailureMessage;
+        private string toastrDeleteObjectFailureMessage = GlobalResources.ToastrDeleteObjectFailureMessage;
 
         private readonly IIngredientsService ingredientsService;
         private readonly IFoodCategoriesService foodCategoriesService;

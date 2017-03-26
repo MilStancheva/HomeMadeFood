@@ -2,6 +2,7 @@
 /// <reference path="bootstrap.js" />
 /// <reference path="custom/add-ingredients-autocomplete.js" />
 /// <reference path="custom/bootstrap.min.js" />
+/// <reference path="custom/carousel-parallax-materialize.js" />
 /// <reference path="custom/custom.js" />
 /// <reference path="custom/daily-menu-accordion.js" />
 /// <reference path="custom/datepicker-init.js" />

@@ -1,6 +1,7 @@
-﻿using HomeMadeFood.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+
+using HomeMadeFood.Models;
 
 namespace HomeMadeFood.Services.Data.Contracts
 {
@@ -17,5 +18,13 @@ namespace HomeMadeFood.Services.Data.Contracts
         void EditFoodCategory(FoodCategory foodCategory);
 
         void DeleteFoodCategory(FoodCategory foodCategory);
+
+        void AddIngredientCostToFoodCategory(Ingredient ingredient);
+
+        void RemoveIngredientCostFromFoodCategory(Ingredient ingredient);
+
+        void AddIngredientQuantityToFoodCategory(Ingredient ingredient);
+
+        void RemoveIngredientQuantityFromFoodCategory(Ingredient ingredient);
     }
 }

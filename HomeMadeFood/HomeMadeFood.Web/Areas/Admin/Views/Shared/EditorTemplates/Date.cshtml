@@ -3,7 +3,7 @@
     var value = "";
     if (Model.HasValue)
     {
-        value = string.Format("{0:d}", DateTime.Today.ToString("dd/MM/yyyy"));
+        value = string.Format("{0:d}", Model.Value.ToString("dd/MM/yyyy"));
     }
 }
-@Html.TextBox("", value, new { @class = "datefield", type = "text", name = "date" })
+@Html.TextBox("", value, new { @class = "datefield", type = "text", name = "selectedDate" })

@@ -54,7 +54,7 @@ namespace HomeMadeFood.Services.Data
                 return null;
             }
 
-            return dailyMenus;
+            return dailyMenus.OrderByDescending(x => x.Date);
         }
 
         public DailyMenu GetDailyMenuById(Guid id)
@@ -88,6 +88,7 @@ namespace HomeMadeFood.Services.Data
             {
                 recipe.DailyMenus.Remove(dailyMenu);
             }
+
             dailyMenu.Recipes = new List<Recipe>();
             foreach (var recipe in recipesToAdd)
             {
@@ -112,6 +113,35 @@ namespace HomeMadeFood.Services.Data
 
             this.data.DailyMenus.Delete(menu);
             this.data.Commit();
+        }        
+
+        public IEnumerable<DailyMenu> GetFiveDailyMenusForTheNextWeek()
+        {
+            var dailyMenus = this.data.DailyMenus
+                .GetAllIncluding(x => x.Recipes)
+                .Take(5);
+
+            return dailyMenus;
+        }
+
+        public IEnumerable<FoodCategory> GetShoppingListOfFoodCategoriesForActiveDailyMenus(IEnumerable<DailyMenu> dailyMenus)
+        {
+            Guard.WhenArgument(dailyMenus, "dailyMenus").IsNull().Throw();
+
+            var recipes = dailyMenus.SelectMany(x => x.Recipes);
+            var ingredients = new List<Ingredient>();
+
+            foreach (var recipe in recipes)
+            {
+                foreach (var ingredient in recipe.Ingredients)
+                {
+                    ingredients.Add(ingredient);
+                }
+            }
+
+            var foodCategories = this.GetFoodCategoriesFromIngredients(ingredients);
+
+            return foodCategories;
         }
 
         private IEnumerable<Recipe> GetRecipesOfDailyMenu(IEnumerable<Guid> recipesIds)
@@ -135,5 +165,36 @@ namespace HomeMadeFood.Services.Data
             return recipesToAdd;
         }
 
+        public decimal CalculateShoppingListCostForActiveDailyMenus(IEnumerable<FoodCategory> foodCategoriesOfActiveDailyMenus)
+        {
+            Guard.WhenArgument(foodCategoriesOfActiveDailyMenus, "foodCategoriesOfActiveDailymenus").IsNullOrEmpty().Throw();
+
+            decimal cost = 0;
+            foreach (var foodCategory in foodCategoriesOfActiveDailyMenus)
+            {
+                cost += foodCategory.CostOfAllCategoryIngredients;
+            }
+
+            return cost;
+        }
+
+        private IEnumerable<FoodCategory> GetFoodCategoriesFromIngredients(IEnumerable<Ingredient> ingredients)
+        {
+            Guard.WhenArgument(ingredients, "ingredients").IsNullOrEmpty().Throw();
+
+            var foodCategories = new List<FoodCategory>();
+            foreach (var ingredient in ingredients)
+            {
+                var foodCategory = this.data.FoodCategories.GetById(ingredient.FoodCategoryId);
+                foodCategories.Add(foodCategory);
+            }
+
+            if (foodCategories == null)
+            {
+                return null;
+            }
+
+            return foodCategories.Distinct();
+        }
     }
 }

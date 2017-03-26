@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
+using HomeMadeFood.Services.Data.Contracts;
 
 namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
 {
@@ -16,7 +17,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
             dataMock.Setup(x => x.Ingredients.Update(It.IsAny<Ingredient>()));
 
             //Act & Assert
@@ -28,10 +30,18 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
             dataMock.Setup(x => x.Ingredients.Update(It.IsAny<Ingredient>()));
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+
             Guid ingredientId = Guid.NewGuid();
-            Ingredient ingredient = new Ingredient() { Id = ingredientId, Name = "IngredientName", PricePerMeasuringUnit = 12.60m, QuantityInMeasuringUnit = 0 };
+            Ingredient ingredient = new Ingredient()
+            {
+                Id = ingredientId,
+                Name = "IngredientName",
+                PricePerMeasuringUnit = 12.60m,
+                QuantityInMeasuringUnit = 0
+            };
 
             //Act
             ingredientsService.EditIngredient(ingredient);
@@ -45,7 +55,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
             string name = "NameOfTheIngredient";
             decimal pricePerMeasuringUnit = 1.19m;
             Guid foodCategoryId = Guid.NewGuid();
@@ -55,7 +66,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
             {
                 Name = name,
                 RecipeId = recipeId,
-                FoodcategoryId = foodCategoryId,
+                FoodCategoryId = foodCategoryId,
                 QuantityInMeasuringUnit = quantityPerMeasuringUnit,
                 PricePerMeasuringUnit = pricePerMeasuringUnit
             };            

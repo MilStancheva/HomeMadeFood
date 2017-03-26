@@ -50,7 +50,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
                     {
                         Id = Guid.NewGuid(),
                         Name = ingredientNames[0],
-                        FoodcategoryId = foodCategories[0],
+                        FoodCategoryId = foodCategories[0],
                         RecipeId = recipeId,
                         QuantityInMeasuringUnit = ingredientQuantities[0],
                         PricePerMeasuringUnit = ingredientPrices[0]
@@ -91,7 +91,7 @@ namespace HomeMadeFood.Services.Data.UnitTests.RecipesServiceUnitTests
                     {
                         Id = Guid.NewGuid(),
                         Name = ingredientNames[0],
-                        FoodcategoryId = foodCategories[0],
+                        FoodCategoryId = foodCategories[0],
                         RecipeId = recipeId,
                         QuantityInMeasuringUnit = ingredientQuantities[0],
                         PricePerMeasuringUnit = ingredientPrices[0]

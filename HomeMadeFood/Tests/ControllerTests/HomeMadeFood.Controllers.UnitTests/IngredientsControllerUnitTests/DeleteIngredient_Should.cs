@@ -76,7 +76,7 @@ namespace HomeMadeFood.Controllers.UnitTests.IngredientsControllerUnitTests
             Ingredient ingredient = new Ingredient();
             ingredient.Id = id;
             ingredient.Name = "Carrot";
-            ingredient.FoodcategoryId = Guid.NewGuid();
+            ingredient.FoodCategoryId = Guid.NewGuid();
             ingredient.PricePerMeasuringUnit = 1.80m;
             ingredient.QuantityInMeasuringUnit = 2;
 

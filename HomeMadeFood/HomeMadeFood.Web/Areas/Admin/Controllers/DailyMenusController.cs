@@ -11,6 +11,7 @@ using HomeMadeFood.Services.Data.Contracts;
 using HomeMadeFood.Web.Areas.Admin.Models;
 using HomeMadeFood.Web.Common.Messaging;
 using HomeMadeFood.Web.Controllers.Extensions;
+using HomeMadeFood.Web.App_GlobalResources;
 
 namespace HomeMadeFood.Web.Areas.Admin.Controllers
 {
@@ -19,15 +20,15 @@ namespace HomeMadeFood.Web.Areas.Admin.Controllers
     {
         private readonly int gridPageSize = 25;
 
-        private string toastrSuccessTitle = "Yeah!";
-        private string toastrAddObjectSuccessMessage = "Daily Menu for {0:dd/MM/yyyy} is successfully added";
-        private string toastrUpdateObjectSuccessMessage = "Daily Menu for {0:dd/MM/yyyy} is successfully updated";
-        private string toastrDeleteObjectSuccessMessage = "Daily Menu for {0:dd/MM/yyyy} is successfully deleted";
+        private string toastrSuccessTitle = GlobalResources.ТoastrSuccessTitle;
+        private string toastrAddObjectSuccessMessage = GlobalResources.ToastrAddDailyMenuSuccessMessage;
+        private string toastrUpdateObjectSuccessMessage = GlobalResources.ТoastrUpdateDailyMenuSuccessMessage;
+        private string toastrDeleteObjectSuccessMessage = GlobalResources.ToastrDeleteDailyMenuSuccessMessage;
 
-        private string toastrFailureTitle = "Something went wrong...";
-        private string toastrAddObjectFailureMessage = "Ooops! Daily Menu for {0:dd/MM/yyyy} could not be added. Please check again the input data. Thanks!";
-        private string toastrUpdateObjectFailureMessage = "Ooops! Daily Menu for {0:dd/MM/yyyy} could not be updated. Please check again the input data. Thanks!";
-        private string toastrDeleteObjectFailureMessage = "Ooops! Daily Menu for {0:dd/MM/yyyy} could not be deleted.";
+        private string toastrFailureTitle = GlobalResources.ToastrFailureTitle;
+        private string toastrAddObjectFailureMessage = GlobalResources.ToastrAddDailyMenuFailureMessage;
+        private string toastrUpdateObjectFailureMessage = GlobalResources.ToastrUpdateDailyMenuFailureMessage;
+        private string toastrDeleteObjectFailureMessage = GlobalResources.ToastrDeleteDailyMenuFailureMessage;
 
         private readonly IRecipesService recipesService;
         private readonly IDailyMenuService dailyMenuService;

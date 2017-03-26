@@ -1,0 +1,28 @@
+﻿@model HomeMadeFood.Web.Areas.Admin.Models.ShoppingListViewModels.ShoppingListViewModel
+
+<div class="col-md-4 panel">
+    <h4>Shopping List</h4>
+    <table class="responsive-table highlight">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                foreach (var foodcategory in Model.FoodCategories)
+                {
+                    <tr>
+                        <td>@foodcategory.Name</td>
+                        <td>@string.Format("{0} kg", foodcategory.QuantityOfAllCategoryIngredients)</td>
+                        <td>@string.Format("{0:c}", foodcategory.CostOfAllCategoryIngredients)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <p>Total Cost: @Model.TotalCost</p>
+</div>

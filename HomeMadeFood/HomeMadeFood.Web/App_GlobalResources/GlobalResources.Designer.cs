@@ -142,24 +142,6 @@ namespace HomeMadeFood.Web.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Цената на съствка (за мерна единица) е задължителна.
-        /// </summary>
-        public static string IngredientPriceIsRequiredErrorMessage {
-            get {
-                return ResourceManager.GetString("IngredientPriceIsRequiredErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Цената на съставка (за мерна единица) трябва да е положително число.
-        /// </summary>
-        public static string IngredientPriceMinValueErrorMessage {
-            get {
-                return ResourceManager.GetString("IngredientPriceMinValueErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Количеството на съставка (за мерна единица) трябва да е положително число.
         /// </summary>
         public static string IngredientQuantityMinValueErrorMessage {
@@ -232,6 +214,24 @@ namespace HomeMadeFood.Web.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Цената (за мерна единица) е задължителна.
+        /// </summary>
+        public static string PriceIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("PriceIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цената (за мерна единица) трябва да е положително число.
+        /// </summary>
+        public static string PriceMinValueErrorMessage {
+            get {
+                return ResourceManager.GetString("PriceMinValueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Количестото трябва да е положително число.
         /// </summary>
         public static string QuantityMinValueErrorMessage {
@@ -273,6 +273,132 @@ namespace HomeMadeFood.Web.App_GlobalResources {
         public static string TitleMinValueErrorMessage {
             get {
                 return ResourceManager.GetString("TitleMinValueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дневно меню за {0:dd/MM/yyyy} не успя да се добави. Моля, проверете отново входните данни. Благодаря!.
+        /// </summary>
+        public static string ToastrAddDailyMenuFailureMessage {
+            get {
+                return ResourceManager.GetString("ToastrAddDailyMenuFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успешно добавихте дневно меню за {0:dd/MM/yyyy}.
+        /// </summary>
+        public static string ToastrAddDailyMenuSuccessMessage {
+            get {
+                return ResourceManager.GetString("ToastrAddDailyMenuSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} не успя да се добави. Моля, проверете отново входните данни. Благодаря!.
+        /// </summary>
+        public static string ToastrAddObjectFailureMessage {
+            get {
+                return ResourceManager.GetString("ToastrAddObjectFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавихте успешно {0}..
+        /// </summary>
+        public static string ToastrAddObjectSuccessMessage {
+            get {
+                return ResourceManager.GetString("ToastrAddObjectSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дневно меню за {0:dd/MM/yyyy} не успя да сe премахне..
+        /// </summary>
+        public static string ToastrDeleteDailyMenuFailureMessage {
+            get {
+                return ResourceManager.GetString("ToastrDeleteDailyMenuFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успешно премахнахте дневно меню за {0:dd/MM/yyyy}.
+        /// </summary>
+        public static string ToastrDeleteDailyMenuSuccessMessage {
+            get {
+                return ResourceManager.GetString("ToastrDeleteDailyMenuSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} не успя да сe премахне..
+        /// </summary>
+        public static string ToastrDeleteObjectFailureMessage {
+            get {
+                return ResourceManager.GetString("ToastrDeleteObjectFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Премахнахте успешно {0}..
+        /// </summary>
+        public static string ToastrDeleteObjectSuccessMessage {
+            get {
+                return ResourceManager.GetString("ToastrDeleteObjectSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нещо не е наред....
+        /// </summary>
+        public static string ToastrFailureTitle {
+            get {
+                return ResourceManager.GetString("ToastrFailureTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дневно меню за {0:dd/MM/yyyy} не успя да сe редактира. Моля, проверете отново входните данни. Благодаря!.
+        /// </summary>
+        public static string ToastrUpdateDailyMenuFailureMessage {
+            get {
+                return ResourceManager.GetString("ToastrUpdateDailyMenuFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} не успя да сe редактира. Моля, проверете отново входните данни. Благодаря!.
+        /// </summary>
+        public static string ToastrUpdateObjectFailureMessage {
+            get {
+                return ResourceManager.GetString("ToastrUpdateObjectFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактирахте успешно {0}..
+        /// </summary>
+        public static string ToastrUpdateObjectSuccessMessage {
+            get {
+                return ResourceManager.GetString("ToastrUpdateObjectSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успех!.
+        /// </summary>
+        public static string ТoastrSuccessTitle {
+            get {
+                return ResourceManager.GetString("ТoastrSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успешно редактирахте дневно меню за {0:dd/MM/yyyy}.
+        /// </summary>
+        public static string ТoastrUpdateDailyMenuSuccessMessage {
+            get {
+                return ResourceManager.GetString("ТoastrUpdateDailyMenuSuccessMessage", resourceCulture);
             }
         }
     }

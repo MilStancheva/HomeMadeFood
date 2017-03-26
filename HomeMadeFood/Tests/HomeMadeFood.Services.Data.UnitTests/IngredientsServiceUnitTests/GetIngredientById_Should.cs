@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
+using HomeMadeFood.Services.Data.Contracts;
 
 namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
 {
@@ -16,7 +17,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
 
             //Act&Assert
             Assert.Throws<ArgumentException>(() => ingredientsService.GetIngredientById(Guid.Empty));
@@ -27,12 +29,12 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
             Guid ingredientId = Guid.NewGuid();
             Ingredient ingredient = new Ingredient() { Id = ingredientId, Name = "IngredientName", PricePerMeasuringUnit = 12.60m, QuantityInMeasuringUnit = 0 };
 
             dataMock.Setup(c => c.Ingredients.GetById(ingredientId)).Returns(ingredient);
-
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
 
             //Act
             Ingredient ingredientResult = ingredientsService.GetIngredientById(ingredientId);
@@ -45,11 +47,11 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
             Guid ingredientId = Guid.NewGuid();
 
             dataMock.Setup(c => c.Ingredients.GetById(ingredientId)).Returns<Ingredient>(null);
-
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
 
             //Act
             Ingredient ingredientResult = ingredientsService.GetIngredientById(ingredientId);

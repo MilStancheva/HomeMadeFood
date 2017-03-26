@@ -1,4 +1,7 @@
-﻿using HomeMadeFood.Web.Areas.Admin.Controllers;
+﻿using HomeMadeFood.Services.Common.Contracts;
+using HomeMadeFood.Services.Data.Contracts;
+using HomeMadeFood.Web.Areas.Admin.Controllers;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -16,7 +19,9 @@ namespace HomeMadeFood.Controllers.UnitTests.AdminControllerUnitTests
         public void ReturnActionResultThatIsNotNull()
         {
             //Arrange
-            AdminController adminController = new AdminController();
+            var dailyMenusServiceMock = new Mock<IDailyMenuService>();
+            var mappingServiceMock = new Mock<IMappingService>();
+            AdminController adminController = new AdminController(dailyMenusServiceMock.Object, mappingServiceMock.Object);
 
             //Act
             ViewResult result = adminController.Index() as ViewResult;

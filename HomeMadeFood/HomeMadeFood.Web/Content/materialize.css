@@ -4694,7 +4694,7 @@ small {
   display: block;
 }
 
-#toast-container {
+/*#toast-container {
   display: block;
   position: fixed;
   z-index: 10000;
@@ -4777,7 +4777,7 @@ small {
   .toast {
     float: right;
   }
-}
+}*/
 
 .tabs {
   position: relative;

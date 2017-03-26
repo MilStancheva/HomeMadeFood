@@ -144,12 +144,6 @@
   <data name="IndexWeAreHereToMakeYourDay" xml:space="preserve">
     <value>Искаме  да направим деня в офиса ти по-радостен като се насладиш на вкусен, домашно приготвен обяд.</value>
   </data>
-  <data name="IngredientPriceIsRequiredErrorMessage" xml:space="preserve">
-    <value>Цената на съствка (за мерна единица) е задължителна</value>
-  </data>
-  <data name="IngredientPriceMinValueErrorMessage" xml:space="preserve">
-    <value>Цената на съставка (за мерна единица) трябва да е положително число</value>
-  </data>
   <data name="IngredientQuantityMinValueErrorMessage" xml:space="preserve">
     <value>Количеството на съставка (за мерна единица) трябва да е положително число</value>
   </data>
@@ -174,6 +168,12 @@
   <data name="OrderYourLunchLink" xml:space="preserve">
     <value>Поръчай обяд</value>
   </data>
+  <data name="PriceIsRequiredErrorMessage" xml:space="preserve">
+    <value>Цената (за мерна единица) е задължителна</value>
+  </data>
+  <data name="PriceMinValueErrorMessage" xml:space="preserve">
+    <value>Цената (за мерна единица) трябва да е положително число</value>
+  </data>
   <data name="QuantityMinValueErrorMessage" xml:space="preserve">
     <value>Количестото трябва да е положително число</value>
   </data>
@@ -188,5 +188,47 @@
   </data>
   <data name="TitleMinValueErrorMessage" xml:space="preserve">
     <value>Заглавието трябва да е с минимум 2 символа</value>
+  </data>
+  <data name="ToastrAddDailyMenuFailureMessage" xml:space="preserve">
+    <value>Дневно меню за {0:dd/MM/yyyy} не успя да се добави. Моля, проверете отново входните данни. Благодаря!</value>
+  </data>
+  <data name="ToastrAddDailyMenuSuccessMessage" xml:space="preserve">
+    <value>Успешно добавихте дневно меню за {0:dd/MM/yyyy}</value>
+  </data>
+  <data name="ToastrAddObjectFailureMessage" xml:space="preserve">
+    <value>{0} не успя да се добави. Моля, проверете отново входните данни. Благодаря!</value>
+  </data>
+  <data name="ToastrAddObjectSuccessMessage" xml:space="preserve">
+    <value>Добавихте успешно {0}.</value>
+  </data>
+  <data name="ToastrDeleteDailyMenuFailureMessage" xml:space="preserve">
+    <value>Дневно меню за {0:dd/MM/yyyy} не успя да сe премахне.</value>
+  </data>
+  <data name="ToastrDeleteDailyMenuSuccessMessage" xml:space="preserve">
+    <value>Успешно премахнахте дневно меню за {0:dd/MM/yyyy}</value>
+  </data>
+  <data name="ToastrDeleteObjectFailureMessage" xml:space="preserve">
+    <value>{0} не успя да сe премахне.</value>
+  </data>
+  <data name="ToastrDeleteObjectSuccessMessage" xml:space="preserve">
+    <value>Премахнахте успешно {0}.</value>
+  </data>
+  <data name="ToastrFailureTitle" xml:space="preserve">
+    <value>Нещо не е наред...</value>
+  </data>
+  <data name="ToastrUpdateDailyMenuFailureMessage" xml:space="preserve">
+    <value>Дневно меню за {0:dd/MM/yyyy} не успя да сe редактира. Моля, проверете отново входните данни. Благодаря!</value>
+  </data>
+  <data name="ToastrUpdateObjectFailureMessage" xml:space="preserve">
+    <value>{0} не успя да сe редактира. Моля, проверете отново входните данни. Благодаря!</value>
+  </data>
+  <data name="ToastrUpdateObjectSuccessMessage" xml:space="preserve">
+    <value>Редактирахте успешно {0}.</value>
+  </data>
+  <data name="ТoastrSuccessTitle" xml:space="preserve">
+    <value>Успех!</value>
+  </data>
+  <data name="ТoastrUpdateDailyMenuSuccessMessage" xml:space="preserve">
+    <value>Успешно редактирахте дневно меню за {0:dd/MM/yyyy}</value>
   </data>
 </root>

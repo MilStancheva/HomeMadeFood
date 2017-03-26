@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Moq;
 using NUnit.Framework;
 
 using HomeMadeFood.Data.Data;
 using HomeMadeFood.Models;
-using HomeMadeFood.Models.Enums;
+using HomeMadeFood.Services.Data.Contracts;
 
 namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
 {
@@ -17,7 +18,8 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
             dataMock.Setup(x => x.Ingredients.Delete(It.IsAny<Ingredient>()));
 
             //Act & Assert
@@ -29,10 +31,38 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
             dataMock.Setup(x => x.Ingredients.Delete(It.IsAny<Ingredient>()));
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
+
             Guid ingredientId = Guid.NewGuid();
-            Ingredient ingredient = new Ingredient() { Id = ingredientId, Name = "IngredientName", PricePerMeasuringUnit = 12.60m, QuantityInMeasuringUnit = 0 };
+            string ingredientName = "NameOfTheIngredient";
+            decimal pricePerMeasuringUnit = 1.19m;
+            Guid foodCategoryId = Guid.NewGuid();
+            string foodCategoryName = "FoodcategoryName";
+            ICollection<Ingredient> foodcategoryIngredients = new List<Ingredient>();
+            FoodCategory foodcategory = new FoodCategory()
+            {
+                Id = foodCategoryId,
+                Name = foodCategoryName,
+                Ingredients = foodcategoryIngredients
+            };
+
+            Guid recipeId = Guid.NewGuid();
+            double quantityPerMeasuringUnit = 0.250;
+
+            Ingredient ingredient = new Ingredient()
+            {
+                Id = ingredientId,
+                Name = ingredientName,
+                PricePerMeasuringUnit = pricePerMeasuringUnit,
+                FoodCategoryId = foodCategoryId,
+                FoodCategory = foodcategory,
+                RecipeId = recipeId,
+                QuantityInMeasuringUnit = quantityPerMeasuringUnit
+            };
+
+            dataMock.Setup(x => x.FoodCategories.GetById(foodCategoryId)).Returns(foodcategory);
 
             //Act
             ingredientsService.DeleteIngredient(ingredient);
@@ -46,21 +76,36 @@ namespace HomeMadeFood.Services.Data.UnitTests.IngredientsServiceUnitTests
         {
             //Arrange
             var dataMock = new Mock<IHomeMadeFoodData>();
-            IngredientsService ingredientsService = new IngredientsService(dataMock.Object);
-            string name = "NameOfTheIngredient";
+            var foodCategoriesServiceMock = new Mock<IFoodCategoriesService>();
+            IngredientsService ingredientsService = new IngredientsService(dataMock.Object, foodCategoriesServiceMock.Object);
+            Guid ingredientId = Guid.NewGuid();
+            string ingredientName = "NameOfTheIngredient";
             decimal pricePerMeasuringUnit = 1.19m;
             Guid foodCategoryId = Guid.NewGuid();
-            Guid recipeId = Guid.NewGuid();
-            double quantityPerMeasuringUnit = 0.250;
-            Ingredient ingredient = new Ingredient()
+            string foodCategoryName = "FoodcategoryName";
+            ICollection<Ingredient> foodcategoryIngredients = new List<Ingredient>();
+            FoodCategory foodcategory = new FoodCategory()
             {
-                Name = name,
-                RecipeId = recipeId,
-                FoodcategoryId = foodCategoryId,
-                QuantityInMeasuringUnit = quantityPerMeasuringUnit,
-                PricePerMeasuringUnit = pricePerMeasuringUnit
+                Id = foodCategoryId,
+                Name = foodCategoryName,
+                Ingredients = foodcategoryIngredients
             };
 
+            Guid recipeId = Guid.NewGuid();
+            double quantityPerMeasuringUnit = 0.250;
+
+            Ingredient ingredient = new Ingredient()
+            {
+                Id = ingredientId,
+                Name = ingredientName,
+                PricePerMeasuringUnit = pricePerMeasuringUnit,
+                FoodCategoryId = foodCategoryId,
+                FoodCategory = foodcategory,
+                RecipeId = recipeId,
+                QuantityInMeasuringUnit = quantityPerMeasuringUnit
+            };
+
+            dataMock.Setup(x => x.FoodCategories.GetById(foodCategoryId)).Returns(foodcategory);
             dataMock.Setup(x => x.Ingredients.Delete(ingredient));
             //Act
             ingredientsService.DeleteIngredient(ingredient);

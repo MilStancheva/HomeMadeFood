@@ -96,6 +96,14 @@
     <Compile Include="Migrations\201703201349387_DateTimeFormat.Designer.cs">
       <DependentUpon>201703201349387_DateTimeFormat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703251253092_FoodCategoryIngredientsOneToManyRelationFixed.cs" />
+    <Compile Include="Migrations\201703251253092_FoodCategoryIngredientsOneToManyRelationFixed.Designer.cs">
+      <DependentUpon>201703251253092_FoodCategoryIngredientsOneToManyRelationFixed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703251305521_FoodCategoryIdFixed.cs" />
+    <Compile Include="Migrations\201703251305521_FoodCategoryIdFixed.Designer.cs">
+      <DependentUpon>201703251305521_FoodCategoryIdFixed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfRepository.cs" />
@@ -136,6 +144,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703201349387_DateTimeFormat.resx">
       <DependentUpon>201703201349387_DateTimeFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703251253092_FoodCategoryIngredientsOneToManyRelationFixed.resx">
+      <DependentUpon>201703251253092_FoodCategoryIngredientsOneToManyRelationFixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703251305521_FoodCategoryIdFixed.resx">
+      <DependentUpon>201703251305521_FoodCategoryIdFixed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

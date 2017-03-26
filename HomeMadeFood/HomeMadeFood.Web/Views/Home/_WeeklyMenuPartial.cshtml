@@ -1,0 +1,127 @@
+﻿@model HomeMadeFood.Web.Models.WeeklyMenu.WeeklyMenuViewModel
+
+@{
+    var dailyMenusCollection = Model.DailyMenus.ToList();
+    var carouselColors = new string[] { "red", "amber", "green", "blue", "amber" };
+    var carouselHrefs = new string[] { "#one!", "#two!", "#three!", "#four!", "#five" };
+}
+<div class="carousel carousel-slider center" data-indicators="true">
+    <div class="carousel-fixed-item center">
+        <a class="btn waves-effect white grey-text darken-text-3">@GlobalResources.OrderYourLunchLink</a>
+    </div>
+
+    @{
+        for (int i = 0; i < dailyMenusCollection.Count; i++)
+        {
+            <div class="carousel-item @carouselColors[i] white-text" href=@carouselHrefs[i]>
+                <h2>@string.Format("{0:d}", dailyMenusCollection[i].Date) - @dailyMenusCollection[i].DayOfWeek</h2>
+                <p class="white-text">
+                    @{
+                        if (dailyMenusCollection[i].Soups != null && dailyMenusCollection[i].Soups.Count() > 0)
+                        {
+                            foreach (var soup in dailyMenusCollection[i].Soups)
+                            {
+                                <h4>@soup.Title</h4>
+                            <p class="recipe-description">@soup.Describtion</p>
+                            }
+                        }
+
+                    }
+                    </p>
+                    <p class="white-text">
+                        @{
+                            if (dailyMenusCollection[i].Salads != null && dailyMenusCollection[i].Salads.Count() > 0)
+                            {
+                                foreach (var salad in dailyMenusCollection[i].Salads)
+                                {
+                                    <h4>@salad.Title</h4>
+                                <p class="recipe-description">@salad.Describtion</p>
+                                }
+                            }
+
+                        }
+                        </p>
+                        <p class="white-text">
+                            @{
+                                if (dailyMenusCollection[i].BigSalads != null && dailyMenusCollection[i].BigSalads.Count() > 0)
+                                {
+                                    foreach (var bigSalad in dailyMenusCollection[i].BigSalads)
+                                    {
+                                        <h4>@bigSalad.Title</h4>
+                                    <p class="recipe-description">@bigSalad.Describtion</p>
+                                    }
+                                }
+
+                            }
+                            </p>
+                            <p class="white-text">
+                                @{
+                                    if (dailyMenusCollection[i].MainDishes != null && dailyMenusCollection[i].MainDishes.Count() > 0)
+                                    {
+                                        foreach (var dish in dailyMenusCollection[0].MainDishes)
+                                        {
+                                            <h4>@dish.Title</h4>
+                                        <p class="recipe-description">@dish.Describtion</p>
+                                        }
+                                    }
+
+                                }
+                                </p>
+                                <p class="white-text">
+                                    @{
+                                        if (dailyMenusCollection[i].Vegetarian != null && dailyMenusCollection[i].Vegetarian.Count() > 0)
+                                        {
+                                            foreach (var veggie in dailyMenusCollection[i].Vegetarian)
+                                            {
+                                                <h4>@veggie.Title</h4>
+                                            <p class="recipe-description">@veggie.Describtion</p>
+                                            }
+                                        }
+
+                                    }
+                                    </p>
+
+                                    <p class="white-text">
+                                        @{
+                                            if (dailyMenusCollection[i].Pasta != null && dailyMenusCollection[i].Pasta.Count() > 0)
+                                            {
+                                                foreach (var pasta in dailyMenusCollection[i].Vegetarian)
+                                                {
+                                                    <h4>@pasta.Title</h4>
+                                                <p class="recipe-description">@pasta.Describtion</p>
+                                                }
+                                            }
+
+                                        }
+                                        </p>
+
+                                        <p class="white-text">
+                                            @{
+                                                if (dailyMenusCollection[i].Pasta != null && dailyMenusCollection[i].Pasta.Count() > 0)
+                                                {
+                                                    foreach (var pasta in dailyMenusCollection[i].Vegetarian)
+                                                    {
+                                                        <h4>@pasta.Title</h4>
+                                                    <p class="recipe-description">@pasta.Describtion</p>
+                                                    }
+                                                }
+
+                                            }
+                                            </p>
+
+                                            <p class="white-text">
+                                                @{
+                                                    if (dailyMenusCollection[i].BBQ != null && dailyMenusCollection[i].BBQ.Count() > 0)
+                                                    {
+                                                        foreach (var bbq in dailyMenusCollection[i].BBQ)
+                                                        {
+                                                            <h4>@bbq.Title</h4>
+                                                        <p class="recipe-description">@bbq.Describtion</p>
+                                                        }
+                                                    }
+                                                }
+                                                </p>
+                                            </div>
+                                                    }
+    }
+</div>

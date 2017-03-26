@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +10,13 @@ namespace HomeMadeFood.Models
 {
     public class FoodCategory
     {
+        private ICollection<Ingredient> ingredients;
+
+        public FoodCategory()
+        {
+            this.ingredients = new HashSet<Ingredient>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -30,5 +38,17 @@ namespace HomeMadeFood.Models
 
         [Min(0)]
         public double QuantityOfAllCategoryIngredients { get; set; }
+
+        public virtual ICollection<Ingredient> Ingredients
+        {
+            get
+            {
+                return this.ingredients;
+            }
+            set
+            {
+                this.ingredients = value;
+            }
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace HomeMadeFood.Web
                       "~/Scripts/materialize.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/materialize.min.css",
+                      "~/Content/materialize.css",
                       "~/Content/bootstrap.css",
                       "~/Content/sandstone.bootstrap.min.css",
                       "~/Content/footer-distributed-with-contact-form.css",
@@ -55,6 +55,10 @@ namespace HomeMadeFood.Web
                     "~/Scripts/Custom/custom.js",
                     "~/Scripts/Custom/get-foodcategories.js",
                     "~/Scripts/Custom/add-ingredients-autocomplete.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminadddailymenu").Include(
+                   "~/Scripts/Custom/daily-menu-accordion.js",
+                   "~/Scripts/Custom/datepicker-init.js"));
         }
     }
 }

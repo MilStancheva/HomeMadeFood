@@ -72,15 +72,19 @@ namespace HomeMadeFood.Services.Data
                     Name = name,
                     QuantityInMeasuringUnit = quantity,
                     PricePerMeasuringUnit = price,
-                    FoodcategoryId = foodCategoryId
+                    FoodCategoryId = foodCategoryId
                 };
 
                 recipe.Ingredients.Add(ingredient);               
             }
 
-            var costPerPortion = recipe.Ingredients.Select(x => x.PricePerMeasuringUnit).Sum();
-            var quantityPerPortion = recipe.Ingredients.Select(x => x.QuantityInMeasuringUnit).Sum();
+            decimal costPercentage = 0.30m;
+            decimal costPerPortion = this.CalculateRecipeCostPerPortion(recipe);
+            decimal pricePerPortion = this.CalculateRecipePricePerPortion(costPerPortion, costPercentage);
+            double quantityPerPortion = this.CalculateRecipeQuantityPerPortion(recipe);
+
             recipe.CostPerPortion = costPerPortion;
+            recipe.PricePerPortion = pricePerPortion;
             recipe.QuantityPerPortion = quantityPerPortion;
 
             this.data.Recipes.Add(recipe);
@@ -115,6 +119,38 @@ namespace HomeMadeFood.Services.Data
             }
 
             return resultRecipes;
+        }
+
+        private decimal CalculateRecipeCostPerPortion(Recipe recipe)
+        {
+            Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
+            
+            var costPerPotion = recipe.Ingredients
+                .Select(x => x.PricePerMeasuringUnit)
+                .Sum();
+
+            return costPerPotion;
+        }
+
+        private double CalculateRecipeQuantityPerPortion(Recipe recipe)
+        {
+            Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
+
+            var quantityerPortion = recipe.Ingredients
+                .Select(x => x.QuantityInMeasuringUnit)
+                .Sum();
+
+            return quantityerPortion;
+        }
+
+        private decimal CalculateRecipePricePerPortion(decimal costPerPortion, decimal costPercentage)
+        {
+            Guard.WhenArgument(costPerPortion, "costPerPortion").IsLessThan(0).Throw();
+            Guard.WhenArgument(costPercentage, "costPercentage").IsLessThan(0).Throw();
+
+            decimal pricePerPerPortion = (costPerPortion / costPercentage);
+
+            return pricePerPerPortion;
         }
     }
 }

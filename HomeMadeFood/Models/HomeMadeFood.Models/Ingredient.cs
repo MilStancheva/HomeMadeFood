@@ -25,7 +25,7 @@ namespace HomeMadeFood.Models
         public double QuantityInMeasuringUnit { get; set; }
         
         public FoodCategory FoodCategory { get; set; }
-        public virtual Guid FoodcategoryId { get; set; }
+        public virtual Guid FoodCategoryId { get; set; }
 
         public Recipe Recipe { get; set; }
         public virtual Guid RecipeId { get; set; }
