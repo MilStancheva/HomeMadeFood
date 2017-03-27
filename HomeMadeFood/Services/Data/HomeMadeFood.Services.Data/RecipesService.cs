@@ -122,7 +122,7 @@ namespace HomeMadeFood.Services.Data
             Guard.WhenArgument(recipe, "recipe").IsNull().Throw();
 
             var costPerPotion = 0m;
-            if (recipe.Ingredients != null)
+            if (recipe.Ingredients != null && recipe.Ingredients.Count > 0)
             {
                 costPerPotion = recipe.Ingredients
                     .ToList()

@@ -15,7 +15,6 @@ namespace HomeMadeFood.Web.App_Start.NinjectModules
             this.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
             this.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>)).InRequestScope();
             this.Bind<IHomeMadeFoodData>().To<HomeMadeFoodData>().InRequestScope();
-
             this.Bind<IEfRepositoryFactory>().ToFactory().InSingletonScope();
         }
     }

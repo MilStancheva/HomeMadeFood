@@ -115,7 +115,7 @@ namespace HomeMadeFood.Web.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Направи служителите си щастливи и им поръчай обяд!.
+        ///   Looks up a localized string similar to Направи колегите си щастливи и им поръчай обяд!.
         /// </summary>
         public static string IndexMakeYourEmployeesHappy {
             get {
